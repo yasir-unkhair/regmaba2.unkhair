@@ -219,7 +219,7 @@ class Registrasi extends Component
                     'email' => $this->email,
                     'get' => $get,
                     'content' => 'registrasi'
-                ]);
+                ])->delay(Carbon::now()->addSecond(5));
 
                 alert()->success('Success', 'Silahkan cek inbox pada E-Mail anda dan setelah itu lakukan aktivasi akun.');
                 return $this->redirect(route('auth.registrasi'));

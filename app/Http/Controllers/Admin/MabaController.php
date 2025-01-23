@@ -35,9 +35,6 @@ class MabaController extends Controller
                     $str = strtoupper($row->vonis_ukt);
                     return $str;
                 })
-                ->editColumn('jalur', function ($row) {
-                    return $row->jalur;
-                })
                 ->editColumn('proses', function ($row) {
                     if (strtolower($row->vonis_ukt) == 'kip-k') {
                         return 'Manual';
@@ -84,7 +81,6 @@ class MabaController extends Controller
                     ['data' => 'nomor_peserta', 'name' => 'nomor_peserta', 'orderable' => 'false', 'searchable' => 'true'],
                     ['data' => 'nama_peserta', 'name' => 'nama_peserta', 'orderable' => 'true', 'searchable' => 'true'],
                     ['data' => 'prodi', 'name' => 'prodi', 'orderable' => 'false', 'searchable' => 'false'],
-                    ['data' => 'jalur', 'name' => 'jalur', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'ukt', 'name' => 'ukt', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'npm', 'name' => 'npm', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'proses', 'name' => 'proses', 'orderable' => 'false', 'searchable' => 'false'],

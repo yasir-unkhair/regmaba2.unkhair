@@ -85,9 +85,10 @@
                             <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200">
                                 <a href="{{ route('auth.login') }}" class="btn btn-lg btn-success mr-2">Login <i
                                         class="bi bi-arrow-right"></i></a> &nbsp;&nbsp;
-                                <a href="" class="btn btn-lg btn-warning text-light ml-2">Registrasi <i
+                                <a href="{{ route('auth.registrasi') }}"
+                                    class="btn btn-lg btn-warning text-light ml-2">Registrasi <i
                                         class="bi bi-arrow-right"></i></a>
-                                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
+                                <a href="#"
                                     class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i
                                         class="bi bi-play-circle"></i><span>Video Panduan</span></a>
                             </div>

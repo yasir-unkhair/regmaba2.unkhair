@@ -152,9 +152,9 @@ class PenetapanuktController extends Controller
                     $str = strtoupper($row->vonis_ukt);
                     return $str;
                 })
-                ->editColumn('jalur', function ($row) {
-                    return $row->jalur;
-                })
+                // ->editColumn('jalur', function ($row) {
+                //     return $row->jalur;
+                // })
                 ->editColumn('keterangan', function ($row) {
                     $str = '<b>Ditetapkan:</b> <i>' . tgl_indo($row->tgl_vonis) . '</i>';
                     $str .= '<br><b>Oleh:</b> <i>' . $row->name . '</i>';
@@ -199,7 +199,7 @@ class PenetapanuktController extends Controller
                     ['data' => 'nomor_peserta', 'name' => 'nomor_peserta', 'orderable' => 'false', 'searchable' => 'true'],
                     ['data' => 'nama_peserta', 'name' => 'nama_peserta', 'orderable' => 'true', 'searchable' => 'true'],
                     ['data' => 'prodi', 'name' => 'prodi', 'orderable' => 'false', 'searchable' => 'false'],
-                    ['data' => 'jalur', 'name' => 'jalur', 'orderable' => 'false', 'searchable' => 'false'],
+                    // ['data' => 'jalur', 'name' => 'jalur', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'status', 'name' => 'status', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'keterangan', 'name' => 'keterangan', 'orderable' => 'false', 'searchable' => 'false'],
                 ]

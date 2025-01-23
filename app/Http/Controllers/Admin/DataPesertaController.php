@@ -18,7 +18,7 @@ class DataPesertaController extends Controller
     {
         $setup = get_setup();
         if ($request->ajax()) {
-            $peserta = Pesertaukt::with(['prodi'])->where('setup_id', $setup->id)->orderBy('jalur', 'ASC')->orderBy('prodi_id', 'ASC')->orderBy('nama_peserta', 'ASC');
+            $peserta = Pesertaukt::with(['prodi'])->setup($setup->id)->orderBy('jalur', 'ASC')->orderBy('prodi_id', 'ASC')->orderBy('nama_peserta', 'ASC');
             return DataTables::eloquent($peserta)
                 ->addIndexColumn()
                 ->editColumn('ket_jalur', function ($row) {
@@ -133,7 +133,7 @@ class DataPesertaController extends Controller
             $kode_prodi = $data['kode_prodi'];
             $validator = Validator::make($data, [
                 'nomor_peserta' => ['required', 'numeric', 'unique:app_peserta,nomor_peserta'],
-                'nisn' => ['required', 'numeric'],
+                'nisn' => ['required'],
                 'nama_peserta' => ['required'],
                 'kode_prodi' => ['required', function ($attribute, $value, $fail) use ($kode_prodi) {
                     if ($kode_prodi) {
@@ -143,7 +143,7 @@ class DataPesertaController extends Controller
                         }
                     }
                 }],
-                'npsn' => ['required', 'numeric'],
+                'npsn' => ['required'],
                 'sekolah_asal' => ['required']
             ], [
                 'nomor_peserta.required' => 'Nomor Peserta jangan dikosongkan!',
@@ -151,7 +151,6 @@ class DataPesertaController extends Controller
                 'nomor_peserta.unique' => 'Nomor Peserta sudah terdaftar!',
 
                 'nisn.required' => 'NISN jangan dikosongkan!',
-                'nisn.numeric' => 'NISN harus berbentuk angka!',
 
                 'nama_peserta.required' => 'Nama Peserta jangan dikosongkan!',
 
@@ -159,7 +158,6 @@ class DataPesertaController extends Controller
                 'kode_prodi.exists' => 'Kode Prodi tidak dikenali!',
 
                 'npsn.required' => 'NPSN jangan dikosongkan!',
-                'npsn.numeric' => 'NPSN harus berbentuk angka!',
 
                 'sekolah_asal.required' => 'Sekolah Asal jangan dikosongkan!',
             ]);

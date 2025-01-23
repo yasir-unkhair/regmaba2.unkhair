@@ -124,6 +124,8 @@ class Setup extends Component
             'pembayaran_mandiri' => $this->pembayaran_mandiri,
             'aktif' => $this->aktif,
         ]);
+
+        alert()->success('Success', 'Berhasil edit setup pengimputan.');
         $this->redirect(route('admin.setup'));
     }
 

@@ -202,6 +202,10 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
         Barryvdh\Debugbar\ServiceProvider::class,
+
+        Ixudra\Curl\CurlServiceProvider::class,
+
+        ComLaude\Amqp\AmqpServiceProvider::class
     ],
 
     /*
@@ -217,6 +221,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Curl' => Ixudra\Curl\Facades\Curl::class,
+        'Amqp' => ComLaude\Amqp\Facades\Amqp::class
     ])->toArray(),
 
 ];

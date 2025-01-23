@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = [
+        $this->roles();
+
+        $this->user();
+    }
+
+    public function user()
+    {
+        $user = [
             'name' => 'Muhamad Yasir',
             'email' => 'iryas@admin.com',
             'username' => 'yasir@admin',
@@ -24,6 +32,45 @@ class DatabaseSeeder extends Seeder
             'is_active' => 1
         ];
 
-        User::create($users);
+        $user = User::create($user);
+        $user->assignRole(['developper', 'admin']);
+    }
+
+    public function roles()
+    {
+        $roles = [
+            [
+                'name' => 'developper',
+                'description' => 'Role Developper UKT',
+            ],
+            [
+                'name' => 'admin',
+                'description' => 'Role Admin UKT',
+            ],
+            [
+                'name' => 'pimpinan-universitas',
+                'description' => 'Role Pimpinan Universitas UKT',
+            ],
+            [
+                'name' => 'pimipinan-fakultas',
+                'description' => 'Role Pimipinan Fakultas UKT',
+            ],
+            [
+                'name' => 'verifikator',
+                'description' => 'Role Verifikator UKT',
+            ],
+            [
+                'name' => 'peserta',
+                'description' => 'Role Peserta UKT',
+            ],
+            [
+                'name' => 'kprodi',
+                'description' => 'Role Ka. Prodi UKT',
+            ]
+        ];
+
+        foreach ($roles as $role) {
+            Role::create($role);
+        }
     }
 }

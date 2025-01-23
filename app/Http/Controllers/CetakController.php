@@ -62,15 +62,16 @@ class CetakController extends Controller
 
         $pdf->Image(public_path('images/dikbud.jpg'), 2, 0.5, 2, 2.2);
         $pdf->Image(public_path('images/logo.jpg'), 17, 0.5, 2, 2.2);
-        $pdf->SetFont("Arial", "B", 10);
-        $pdf->Cell(19, 0.5, 'KEMENTERIAN PENDIDIKAN, KEBUDAYAAN, RISET DAN TEKNOLOGI', '', 0, 'C');
+        $pdf->SetFont("Arial", "", 13);
+        $pdf->Cell(19, 0.5, 'KEMENTERIAN PENDIDIKAN, SAINS DAN TEKNOLOGI', '', 0, 'C');
         $pdf->Ln();
+        $pdf->SetFont("Arial", "B", 11);
         $pdf->Cell(19, 0.5, 'UNIVERSITAS KHAIRUN', '', 0, 'C');
         $pdf->Ln();
-        $pdf->SetFont("Arial", "", 10);
-        $pdf->Cell(19, 0.5, 'Kampus II Kelurahan Gambesi Kota Ternate Selatan', '', 0, 'C');
+        $pdf->SetFont("Arial", "", 9);
+        $pdf->Cell(19, 0.5, 'Jalan Jusuf Abdurrahman Kampus Gambesi Kode Pos 97719 Ternate Selatan', '', 0, 'C');
         $pdf->Ln();
-        $pdf->Cell(19, 0.5, 'Telp. 0921-3110905, Fax (0921) 3110901 Kotak Pos 53 Ternate 97719', '', 0, 'C');
+        $pdf->Cell(19, 0.5, 'Laman: www.unkhair.ac.id / Email: admin@unkhair.ac.id', '', 0, 'C');
         $pdf->Ln();
         $pdf->Ln();
         $pdf->Ln();
@@ -471,15 +472,16 @@ class CetakController extends Controller
 
         $pdf->Image(public_path('images/dikbud.jpg'), 2, 0.5, 2, 2.2);
         $pdf->Image(public_path('images/logo.jpg'), 17, 0.5, 2, 2.2);
-        $pdf->SetFont("Arial", "B", 10);
-        $pdf->Cell(19, 0.5, 'KEMENTERIAN PENDIDIKAN, KEBUDAYAAN, RISET DAN TEKNOLOGI', '', 0, 'C');
+        $pdf->SetFont("Arial", "", 13);
+        $pdf->Cell(19, 0.5, 'KEMENTERIAN PENDIDIKAN, SAINS DAN TEKNOLOGI', '', 0, 'C');
         $pdf->Ln();
+        $pdf->SetFont("Arial", "B", 11);
         $pdf->Cell(19, 0.5, 'UNIVERSITAS KHAIRUN', '', 0, 'C');
         $pdf->Ln();
-        $pdf->SetFont("Arial", "", 10);
-        $pdf->Cell(19, 0.5, 'Kampus II Kelurahan Gambesi Kota Ternate Selatan', '', 0, 'C');
+        $pdf->SetFont("Arial", "", 9);
+        $pdf->Cell(19, 0.5, 'Jalan Jusuf Abdurrahman Kampus Gambesi Kode Pos 97719 Ternate Selatan', '', 0, 'C');
         $pdf->Ln();
-        $pdf->Cell(19, 0.5, 'Telp. 0921-3110905, Fax (0921) 3110901 Kotak Pos 53 Ternate 97719', '', 0, 'C');
+        $pdf->Cell(19, 0.5, 'Laman: www.unkhair.ac.id / Email: admin@unkhair.ac.id', '', 0, 'C');
         $pdf->Ln();
         $pdf->Ln();
         $pdf->Ln();

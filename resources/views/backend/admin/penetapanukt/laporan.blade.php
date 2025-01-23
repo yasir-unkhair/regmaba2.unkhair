@@ -84,7 +84,7 @@
                                         <th class="text-left">No. Peserta</th>
                                         <th class="text-left">Nama Lengkap</th>
                                         <th class="text-left">Program Studi</th>
-                                        <th class="text-left">Jalur</th>
+                                        {{-- <th class="text-left">Jalur</th> --}}
                                         <th class="text-left">Status</th>
                                         <th class="text-left">Keterangan</th>
                                     </tr>
