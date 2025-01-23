@@ -59,14 +59,17 @@
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="#hero" class="active">Home<br></a></li>
+                        {{-- <li><a href="#hero" class="active">Home<br></a></li>
                         <li><a href="#kategoriukt">Kategori UKT</a></li>
                         <li><a href="#download">Download</a></li>
-                        <li><a href="#contact">Kontak</a></li>
+                        <li><a href="#contact">Kontak</a></li> --}}
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
-                <a class="btn-getstarted flex-md-shrink-0" href="{{ route('auth.login') }}">Login</a>
+                {{-- <a class="btn-getstarted flex-md-shrink-0" href="{{ route('auth.login') }}">Login</a> --}}
+                {{-- <a class="btn-getstarted flex-md-shrink-0" href="#">
+                    Tahun Angkatan {{ $tahun }}
+                </a> --}}
             </div>
         </header>
 
@@ -88,9 +91,9 @@
                                 <a href="{{ route('auth.registrasi') }}"
                                     class="btn btn-lg btn-warning text-light ml-2">Registrasi <i
                                         class="bi bi-arrow-right"></i></a>
-                                <a href="#"
+                                {{-- <a href="#"
                                     class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i
-                                        class="bi bi-play-circle"></i><span>Video Panduan</span></a>
+                                        class="bi bi-play-circle"></i><span>Video Panduan</span></a> --}}
                             </div>
                         </div>
                         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">

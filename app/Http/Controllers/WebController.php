@@ -13,7 +13,11 @@ class WebController extends Controller
 {
     public function index()
     {
-        return view('layouts.frontent2');
+        $setup = get_setup();
+        $data = [
+            'tahun' => $setup->tahun
+        ];
+        return view('layouts.frontent2', $data);
     }
 
     public function aktivasi_registrasi($params)
