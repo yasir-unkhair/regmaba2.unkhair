@@ -132,7 +132,8 @@ class DataPesertaController extends Controller
         foreach ($formattedData as $data) {
             $kode_prodi = $data['kode_prodi'];
             $validator = Validator::make($data, [
-                'nomor_peserta' => ['required', 'numeric', 'unique:app_peserta,nomor_peserta'],
+                // 'nomor_peserta' => ['required', 'numeric', 'unique:app_peserta,nomor_peserta'],
+                'nomor_peserta' => ['required', 'numeric'],
                 'nisn' => ['required'],
                 'nama_peserta' => ['required'],
                 'kode_prodi' => ['required', function ($attribute, $value, $fail) use ($kode_prodi) {
@@ -148,7 +149,7 @@ class DataPesertaController extends Controller
             ], [
                 'nomor_peserta.required' => 'Nomor Peserta jangan dikosongkan!',
                 'nomor_peserta.numeric' => 'Nomor Peserta harus berbentuk angka!',
-                'nomor_peserta.unique' => 'Nomor Peserta sudah terdaftar!',
+                // 'nomor_peserta.unique' => 'Nomor Peserta sudah terdaftar!',
 
                 'nisn.required' => 'NISN jangan dikosongkan!',
 
@@ -176,24 +177,45 @@ class DataPesertaController extends Controller
 
         foreach ($formattedData as $row) {
             $prodi = Prodi::where('kode_prodi', trim($row['kode_prodi']))->orWhere('kode_prodi_dikti', trim($row['kode_prodi']))->first();
-            $peserta = Pesertaukt::create([
-                'prodi_id' => $prodi->id,
-                'fakultas_id' => $prodi->fakultas_id,
-                'setup_id' => request()->input('setup_id'),
-                'jalur' => request()->input('jalur'),
-                'nomor_peserta' => trim($row['nomor_peserta']),
-                'nama_peserta' => ucwords(strtolower(trim($row['nama_peserta']))),
-                // 'nik' => $row['nik'],
-                'nisn' => $row['nisn'],
-                'npsn' => $row['npsn'],
-                'sekolah_asal' => $row['sekolah_asal'],
-                // 'jk' => $row['jk'],
-                'kip' => $row['nomor_kip'],
-                'jpeserta' => (strlen($row['nomor_kip']) > 3) ? 'KIP-K' : 'Non KIP-K',
-                // 'alamat_asal' => $row['alamat_asal'],
-                'tpl_lahir' => ucwords(strtolower($row['tpl_lahir'])),
-                'tgl_lahir' => $row['tgl_lahir']
-            ]);
+
+            // cek peserta by nomor_peserta dan nisn
+            $peserta = Pesertaukt::where('nomor_peserta', trim($row['nomor_peserta']))->where('nisn', trim($row['nisn']))->first();
+            if (!$peserta) {
+                $peserta = Pesertaukt::create([
+                    'prodi_id' => $prodi->id,
+                    'fakultas_id' => $prodi->fakultas_id,
+                    'setup_id' => request()->input('setup_id'),
+                    'jalur' => request()->input('jalur'),
+                    'nomor_peserta' => trim($row['nomor_peserta']),
+                    'nama_peserta' => ucwords(strtolower(trim($row['nama_peserta']))),
+                    // 'nik' => $row['nik'],
+                    'nisn' => trim($row['nisn']),
+                    'npsn' => $row['npsn'],
+                    'sekolah_asal' => $row['sekolah_asal'],
+                    // 'jk' => $row['jk'],
+                    'kip' => $row['nomor_kip'],
+                    'jpeserta' => (strlen($row['nomor_kip']) > 3) ? 'KIP-K' : 'Non KIP-K',
+                    // 'alamat_asal' => $row['alamat_asal'],
+                    'tpl_lahir' => ucwords(strtolower($row['tpl_lahir'])),
+                    'tgl_lahir' => $row['tgl_lahir']
+                ]);
+            } else {
+                $peserta->update([
+                    'prodi_id' => $prodi->id,
+                    'fakultas_id' => $prodi->fakultas_id,
+                    'setup_id' => request()->input('setup_id'),
+                    'jalur' => request()->input('jalur'),
+                    'nama_peserta' => ucwords(strtolower(trim($row['nama_peserta']))),
+                    'nisn' => $row['nisn'],
+                    'npsn' => $row['npsn'],
+                    'sekolah_asal' => $row['sekolah_asal'],
+                    'kip' => $row['nomor_kip'],
+                    'jpeserta' => (strlen($row['nomor_kip']) > 3) ? 'KIP-K' : 'Non KIP-K',
+                    'tpl_lahir' => ucwords(strtolower($row['tpl_lahir'])),
+                    'tgl_lahir' => $row['tgl_lahir']
+                ]);
+            }
+
             $peserta->kondisikeluarga()->updateOrCreate(
                 [
                     'peserta_id' => $peserta->id
