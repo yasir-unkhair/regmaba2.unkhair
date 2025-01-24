@@ -6,14 +6,14 @@ use App\Mail\PenetapanUktMail;
 use App\Mail\RegisterMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-// use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
-// class SendMail implements ShouldQueue, ShouldBeUnique
-class SendMail implements ShouldQueue
+class SendMail implements ShouldQueue, ShouldBeUnique
+// class SendMail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -22,7 +22,7 @@ class SendMail implements ShouldQueue
      *
      * @var int
      */
-    // public $uniqueFor = 3600;
+    public $uniqueFor = 120;
 
     protected $peserta;
     protected $email;
@@ -60,8 +60,8 @@ class SendMail implements ShouldQueue
     /**
      * Get the unique ID for the job.
      */
-    // public function uniqueId(): string
-    // {
-    //     return $this->email;
-    // }
+    public function uniqueId(): string
+    {
+        return $this->email;
+    }
 }
