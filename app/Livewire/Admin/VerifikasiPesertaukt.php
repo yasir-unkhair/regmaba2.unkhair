@@ -14,8 +14,8 @@ class VerifikasiPesertaukt extends Component
     public function mount($peserta_id)
     {
         $this->get = PesertauktVerifikasiBerkas::where('peserta_id', $peserta_id)->first();
-        $this->rekomendasi = $this->get->rekomendasi;
-        $this->catatan = $this->get->catatan;
+        $this->rekomendasi = $this->get->rekomendasi ?? NULL;
+        $this->catatan = $this->get->catatan ?? NULL;
     }
     public function render()
     {

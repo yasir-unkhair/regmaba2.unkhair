@@ -22,7 +22,7 @@ class SendMail implements ShouldQueue, ShouldBeUnique
      *
      * @var int
      */
-    public $uniqueFor = 120;
+    public $uniqueFor = 60; // 1 menit
 
     protected $peserta;
     protected $email;
