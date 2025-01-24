@@ -75,7 +75,7 @@ class Penetapanukt extends Component
                 'user_id_vonis' => auth()->user()->id
             ];
 
-            // dd($this->get->email, $this->get);
+            dd($this->get->email, $this->get);
 
             $this->get->update(['status' => 5]);
             $this->get->verifikasiberkas->update($data);
