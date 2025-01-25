@@ -35,6 +35,7 @@ class PesertauktPembayaran extends Model
     protected $fillable = [
         'peserta_id',
         'jenis_pembayaran',
+        'kategori_ukt',
         'detail_pembayaran',
         'bank',
         'trx_id',

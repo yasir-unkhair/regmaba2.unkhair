@@ -60,31 +60,33 @@ class BankBtn
             ];
         } elseif ($pembayaran->jenis_pembayaran == 'ukt') {
             $params = [
+                'apikey' => $this->apikey,
                 'demo' => $this->demo,
                 'versi' => $this->versi,
+                'trx' => $pembayaran->trx_id,
+                'va' => $pembayaran->billing,
                 'expired_va' => ($expired_va) ? $expired_va : 1, // expired_va
-                'apikey' => $this->apikey,
                 'kode_payment' => '007',
                 'jenis_payment' => 'UKT Mahasiswa Baru',
-                'prefix_trx' => 'UKT',
                 'nama' => $pembayaran->peserta->nama_peserta,
                 'nominal' => $pembayaran->amount,
                 'deskripsi' => 'UKT Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun,
-                // 'jenis_bayar' => $pembayaran->jenis_pembayaran,
-                'jenis_bayar' => 'ukt-maba',
+                'jenis_bayar' => 'UMB',
                 'detail' => [
-                    'nomor_peserta' => $pembayaran->peserta->nomor_peserta,
-                    'jalur' => $pembayaran->peserta->jalur,
-                    'npm' => $pembayaran->peserta->npm,
-                    'prodi' => $pembayaran->peserta->prodi->nama_prodi,
-                    'fakultas' => $pembayaran->peserta->fakultas->nama_fakultas,
-                    'tahun' => $pembayaran->peserta->setup->tahun
+                    'no_identitas' => $pembayaran->peserta->nomor_peserta,
+                    'angkatan' => $pembayaran->peserta->setup->tahun,
+                    'kode_prodi' => $pembayaran->peserta->prodi->kode_prodi,
+                    'nama_prodi' => $pembayaran->peserta->prodi->nama_prodi,
+                    'nama_fakultas' => $pembayaran->peserta->fakultas->nama_fakultas,
+                    'kategori_ukt' => strtoupper($pembayaran->kategori_ukt),
+                    'jalur' => $pembayaran->peserta->jalur
                 ]
             ];
         }
 
-        $response = json_decode(post_data('http://ecoll.unkhair.ac.id/btn/createva.php', $params), TRUE);
-
+        $response = json_decode(post_data(env('URL_ECOLL') . '/btn/createva.php', $params), TRUE);
+        // $response = json_decode(post_data(env('URL_ECOLL') . '/btn/ebilling.php', $params), TRUE);
+        // dd($response);
         if (!$response['response']) {
             $this->message = $response['pesan'];
             return [
@@ -168,20 +170,20 @@ class BankBtn
                 'nama' => $pembayaran->peserta->nama_peserta,
                 'nominal' => $pembayaran->amount,
                 'deskripsi' => 'UKT Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun,
-                // 'jenis_bayar' => $pembayaran->jenis_pembayaran,
-                'jenis_bayar' => 'ukt-maba',
+                'jenis_bayar' => 'UMB',
                 'detail' => [
-                    'nomor_peserta' => $pembayaran->peserta->nomor_peserta,
-                    'jalur' => $pembayaran->peserta->jalur,
-                    'npm' => $pembayaran->peserta->npm,
-                    'prodi' => $pembayaran->peserta->prodi->nama_prodi,
-                    'fakultas' => $pembayaran->peserta->fakultas->nama_fakultas,
-                    'tahun' => $pembayaran->peserta->setup->tahun
+                    'no_identitas' => $pembayaran->peserta->nomor_peserta,
+                    'angkatan' => $pembayaran->peserta->setup->tahun,
+                    'kode_prodi' => $pembayaran->peserta->prodi->kode_prodi,
+                    'nama_prodi' => $pembayaran->peserta->prodi->nama_prodi,
+                    'nama_fakultas' => $pembayaran->peserta->fakultas->nama_fakultas,
+                    'kategori_ukt' => strtoupper($pembayaran->kategori_ukt),
+                    'jalur' => $pembayaran->peserta->jalur
                 ]
             ];
         }
 
-        $response = json_decode(post_data('http://ecoll.unkhair.ac.id/btn/updateva.php', $params), TRUE);
+        $response = json_decode(post_data(env('URL_ECOLL') . '/btn/updateva.php', $params), TRUE);
 
         if (!$response['response']) {
             $this->message = $response['pesan'];

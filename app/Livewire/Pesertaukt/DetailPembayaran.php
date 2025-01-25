@@ -139,7 +139,7 @@ class DetailPembayaran extends Component
         if (!$err) {
 
             # cek va di ecoll
-            $rsp = json_decode(konfirmasi_pembayaran('http://developper2.unkhair.ac.id/e-billing/public/api/history-bank/' . $pembayaran->trx_id), TRUE);
+            $rsp = json_decode(konfirmasi_pembayaran(env('URL_EBILLING') . '/api/history-bank/' . $pembayaran->trx_id), TRUE);
 
             // dd($rsp);
 

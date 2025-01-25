@@ -21,6 +21,7 @@ class PembayaranController extends Controller
             // jalur mandiri
             $pembayaran[] = [
                 'jenis_pembayaran' => 'ukt',
+                'kategori_ukt' => $peserta->verifikasiberkas->vonis_ukt,
                 'detail_pembayaran' => 'Pembayaran UKT  ' . strtoupper($peserta->verifikasiberkas->vonis_ukt) . ' Tahun ' . $peserta->setup->tahun,
                 'bank' => 'BTN',
                 'amount' => $peserta->verifikasiberkas->nominal_ukt
@@ -30,6 +31,7 @@ class PembayaranController extends Controller
             if ($peserta->jalur == 'MANDIRI') {
                 $pembayaran[] = [
                     'jenis_pembayaran' => 'ipi',
+                    'kategori_ukt' => '',
                     'detail_pembayaran' => 'Pembayaran Iuran Pengembangan Institusi (IPI)',
                     'bank' => 'BTN',
                     'amount' => $peserta->verifikasiberkas->nominal_ipi
@@ -50,6 +52,7 @@ class PembayaranController extends Controller
 
                 $pembayaran[] = [
                     'jenis_pembayaran' => 'pemkes',
+                    'kategori_ukt' => '',
                     'detail_pembayaran' => 'Pemeriksaan Kesehatan Mahasiswa Baru ' . $peserta->setup->tahun . $ket,
                     'bank' => 'BTN',
                     'amount' => '960000'
@@ -65,6 +68,7 @@ class PembayaranController extends Controller
 
                 $pembayaran[] = [
                     'jenis_pembayaran' => 'pemkes',
+                    'kategori_ukt' => '',
                     'detail_pembayaran' => 'Pemeriksaan Kesehatan Mahasiswa Baru ' . $peserta->setup->tahun . $ket,
                     'bank' => 'BTN',
                     'amount' => '410000',

@@ -22,7 +22,7 @@ class BankBni
             'customer_email' => $pembayaran->peserta->email,
             'description' => 'UKT Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun
         ];
-        $response = json_decode(post_data('http://ecoll.unkhair.ac.id/bni/createva.php', $params), TRUE);
+        $response = json_decode(post_data(env('URL_ECOLL') . '/bni/createva.php', $params), TRUE);
         if (!$response['response']) {
             $this->message = 'Terjadi Kesalah Saat Membuat Virtual Account BANK BNI!';
             return [
@@ -37,7 +37,7 @@ class BankBni
             'trx_id' => $response['data']['trx_id'],
         ];
 
-        $response = json_decode(post_data('http://ecoll.unkhair.ac.id/bni/inquiry.php', $params), TRUE);
+        $response = json_decode(post_data(env('URL_ECOLL') . '/bni/inquiry.php', $params), TRUE);
         if (!$response['response']) {
             $this->message = 'Terjadi Kesalah Saat Inquiry Virtual Account BANK BNI';
             return [
@@ -72,7 +72,7 @@ class BankBni
             'customer_email' => $pembayaran->peserta->email,
             'description' => 'UKT Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun
         ];
-        $response = json_decode(post_data('http://ecoll.unkhair.ac.id/bni/createva.php', $params), TRUE);
+        $response = json_decode(post_data(env('URL_ECOLL') . '/bni/createva.php', $params), TRUE);
         if (!$response['response']) {
             $this->message = 'Terjadi Kesalah Saat Update Virtual Account BANK BNI!';
             return [
@@ -87,7 +87,7 @@ class BankBni
             'trx_id' => $response['data']['trx_id'],
         ];
 
-        $response = json_decode(post_data('http://ecoll.unkhair.ac.id/bni/inquiry.php', $params), TRUE);
+        $response = json_decode(post_data(env('URL_ECOLL') . '/bni/inquiry.php', $params), TRUE);
         if (!$response['response']) {
             $this->message = 'Terjadi Kesalah Saat Inquiry Virtual Account BANK BNI';
             return [
