@@ -21,7 +21,7 @@ class PembayaranController extends Controller
             // jalur mandiri
             $pembayaran[] = [
                 'jenis_pembayaran' => 'ukt',
-                'detail_pembayaran' => 'Pembayaran UKT  ' . ucwords($peserta->verifikasiberkas->vonis_ukt) . ' Tahun ' . $peserta->setup->tahun,
+                'detail_pembayaran' => 'Pembayaran UKT  ' . strtoupper($peserta->verifikasiberkas->vonis_ukt) . ' Tahun ' . $peserta->setup->tahun,
                 'bank' => 'BTN',
                 'amount' => $peserta->verifikasiberkas->nominal_ukt
             ];
@@ -78,15 +78,21 @@ class PembayaranController extends Controller
 
         if ($request->ajax()) {
             $pembayaran = $peserta->pembayaran()->orderBy(DB::raw('FIELD(jenis_pembayaran, "ukt", "ipi", "pemkes")'));
+            $vonis_ukt  = $peserta->verifikasiberkas->vonis_ukt ?? NULL;
             return DataTables::of($pembayaran)
                 ->addIndexColumn()
-                ->editColumn('action', function ($row) {
+                ->editColumn('action', function ($row) use ($vonis_ukt) {
                     $actionBtn = '
                     <center>
                         <a href="' . route('peserta.pembayaran.detail', encode_arr(['pembayaran_id' => $row->id])) . '" class="btn btn-sm btn-info" title="Detail Pembayaran">
                             <i class="fa fa-list"></i>
                         </a>
                     </center>';
+
+                    if (strtoupper($vonis_ukt) == 'KIP-K' && $row->jenis_pembayaran == 'ukt') {
+                        $actionBtn = "";
+                    }
+
                     return $actionBtn;
                 })
                 ->editColumn('detail_pembayaran', function ($row) {

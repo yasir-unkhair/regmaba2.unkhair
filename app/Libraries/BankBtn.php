@@ -70,7 +70,8 @@ class BankBtn
                 'nama' => $pembayaran->peserta->nama_peserta,
                 'nominal' => $pembayaran->amount,
                 'deskripsi' => 'UKT Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun,
-                'jenis_bayar' => $pembayaran->jenis_pembayaran,
+                // 'jenis_bayar' => $pembayaran->jenis_pembayaran,
+                'jenis_bayar' => 'ukt-maba',
                 'detail' => [
                     'nomor_peserta' => $pembayaran->peserta->nomor_peserta,
                     'jalur' => $pembayaran->peserta->jalur,
@@ -167,7 +168,8 @@ class BankBtn
                 'nama' => $pembayaran->peserta->nama_peserta,
                 'nominal' => $pembayaran->amount,
                 'deskripsi' => 'UKT Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun,
-                'jenis_bayar' => $pembayaran->jenis_pembayaran,
+                // 'jenis_bayar' => $pembayaran->jenis_pembayaran,
+                'jenis_bayar' => 'ukt-maba',
                 'detail' => [
                     'nomor_peserta' => $pembayaran->peserta->nomor_peserta,
                     'jalur' => $pembayaran->peserta->jalur,

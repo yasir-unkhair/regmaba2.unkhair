@@ -31,7 +31,7 @@
                     </div>
                     <div class="card-body">
 
-                        <livewire:Pesertaukt.DetailPembayaran params="{{ $params }}">
+                        <livewire:pesertaukt.detail-pembayaran params="{{ $params }}">
 
                     </div>
                 </div>

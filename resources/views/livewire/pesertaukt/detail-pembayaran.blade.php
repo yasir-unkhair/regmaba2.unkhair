@@ -79,13 +79,13 @@
             Anda Telah Melunasi Pembayaran
         </div>
     @else
-        <a href="{{ route('peserta.pembayaran') }}" class="btn btn-default btn-sm">
+        <a href="{{ route('peserta.pembayaran') }}" class="btn btn-default">
             <i class="fa fa-arrow-circle-left"></i> Kembali
         </a>
 
         <button type="button"
             wire:click="generateva('{{ encode_arr(['pembayaran_id' => $pembayaran_id]) }}', 'create')"
-            wire:loading.attr="disabled" class="btn btn-primary btn-sm">
+            wire:loading.attr="disabled" class="btn btn-primary">
             <span wire:loading.remove
                 wire.target="generateva('{{ encode_arr(['pembayaran_id' => $pembayaran_id]) }}', 'create')">
                 <i class="ti-settings"></i> Generate VA
@@ -99,19 +99,18 @@
 
 
     @if ($lunas == 0 && $trx_id)
-        <a href="{{ route('peserta.pembayaran') }}" class="btn btn-default btn-sm">
+        <a href="{{ route('peserta.pembayaran') }}" class="btn btn-default">
             <i class="fa fa-arrow-circle-left"></i> Kembali
         </a>
 
         @if (bool_tgl_pembayaran($expired))
-            <a href="{{ route('peserta.pembayaran.cetak', $pembayaran_id) }}" target="_blank"
-                class="btn btn-warning btn-sm">
+            <a href="{{ route('peserta.pembayaran.cetak', $pembayaran_id) }}" target="_blank" class="btn btn-warning">
                 <i class="fa fa-print"></i> Cetak Slip Pembayaran
             </a>
         @endif
 
         <button type="button" wire:click="cekstatus('{{ encode_arr(['pembayaran_id' => $pembayaran_id]) }}')"
-            wire:loading.attr="disabled" class="btn btn-info btn-sm">
+            wire:loading.attr="disabled" class="btn btn-info">
             <span wire:loading.remove wire.target="cekstatus('{{ encode_arr(['pembayaran_id' => $pembayaran_id]) }}')">
                 <i class="fa fa-check"></i>
                 Konfirmasi Pembayaran

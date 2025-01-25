@@ -111,11 +111,13 @@
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar elevation-4 sidebar-dark-lightblue">
                 <!-- Brand Logo -->
-                <a href="#" class="brand-link bg-light bg-white">
-                    <img src="{{ asset('images/' . $logo) }}" alt="Unkhair Logo"
-                        class="brand-image img-circle elevation-3" style="opacity: .8">
-                    <span class="brand-text font-weight-light"><b>{{ $nama_aplikasi }}</b></span>
-                </a>
+                <center>
+                    <a href="#" class="brand-link bg-light bg-white">
+                        {{-- <img src="{{ asset('images/' . $logo) }}" alt="Unkhair Logo"
+                        class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
+                        <span class="brand-text font-weight-light"><b>{{ $nama_aplikasi }}</b></span>
+                    </a>
+                </center>
 
                 <!-- Sidebar -->
                 <div class="sidebar">
