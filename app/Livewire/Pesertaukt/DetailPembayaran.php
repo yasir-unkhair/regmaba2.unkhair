@@ -83,16 +83,6 @@ class DetailPembayaran extends Component
 
             $res = NULL;
             switch ($pembayaran->bank) {
-                case 'bni':
-                case 'BNI':
-                    $bank = new BankBni();
-                    if ($act == 'create') {
-                        $res = $bank->createva($pembayaran, $expired_va);
-                    } else {
-                        $res = $bank->updateva($pembayaran, $expired_va);
-                    }
-                    break;
-
                 case 'btn':
                 case 'BTN':
                     $bank = new BankBtn();

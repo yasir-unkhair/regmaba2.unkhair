@@ -8,18 +8,22 @@ class BankBtn
 {
     private $message;
     private $apikey = '*#un1v3RS1T45Kh41Run*#*';
-    private $versi = 2;
     private $demo = false;
 
     public function createva($pembayaran, $expired_va)
     {
         $params = [];
         if ($pembayaran->jenis_pembayaran == 'pemkes') {
+            $no_identital = $pembayaran->peserta->nomor_peserta;
+            if ($pembayaran->peserta?->npm) {
+                $no_identital = $pembayaran->peserta->npm;
+            }
+
             $params = [
+                'aksi' => 'store-pemkes',
                 'apikey' => $this->apikey,
                 'demo' => $this->demo,
-                'versi' => $this->versi,
-                'expired_va' => ($expired_va) ? $expired_va : 1, // expired_va 1 hari
+                'expired_va' => 1, // expired_va
                 'kode_payment' => '006',
                 'jenis_payment' => 'PEMKES Mahasiswa Baru',
                 'prefix_trx' => 'PKM',
@@ -28,20 +32,26 @@ class BankBtn
                 'deskripsi' => 'Pemeriksaan Kesehatan Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun,
                 'jenis_bayar' => $pembayaran->jenis_pembayaran,
                 'detail' => [
-                    'nomor_peserta' => $pembayaran->peserta->nomor_peserta,
-                    'jalur' => $pembayaran->peserta->jalur,
-                    'npm' => $pembayaran->peserta->npm,
-                    'prodi' => $pembayaran->peserta->prodi->nama_prodi,
-                    'fakultas' => $pembayaran->peserta->fakultas->nama_fakultas,
-                    'tahun' => $pembayaran->peserta->setup->tahun
+                    'no_identitas' => $no_identital,
+                    'angkatan' => $pembayaran->peserta->setup->tahun,
+                    'kode_prodi' => $pembayaran->peserta->prodi->kode_prodi,
+                    'nama_prodi' => $pembayaran->peserta->prodi->nama_prodi,
+                    'nama_fakultas' => $pembayaran->peserta->fakultas->nama_fakultas,
+                    'kategori_ukt' => strtoupper($pembayaran->kategori_ukt),
+                    'jalur' => $pembayaran->peserta->jalur
                 ]
             ];
         } elseif ($pembayaran->jenis_pembayaran == 'ipi') {
+            $no_identital = $pembayaran->peserta->nomor_peserta;
+            if ($pembayaran->peserta?->npm) {
+                $no_identital = $pembayaran->peserta->npm;
+            }
+
             $params = [
-                'demo' => $this->demo,
-                'versi' => $this->versi,
-                'expired_va' => ($expired_va) ? $expired_va : 1, // expired_va 1 hari
+                'aksi' => 'store-ipi',
                 'apikey' => $this->apikey,
+                'demo' => $this->demo,
+                'expired_va' => 1, // expired_va
                 'kode_payment' => '003',
                 'jenis_payment' => 'IPI Mahasiswa Baru',
                 'prefix_trx' => 'IPI',
@@ -50,28 +60,28 @@ class BankBtn
                 'deskripsi' => 'IPI Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun,
                 'jenis_bayar' => $pembayaran->jenis_pembayaran,
                 'detail' => [
-                    'nomor_peserta' => $pembayaran->peserta->nomor_peserta,
-                    'jalur' => $pembayaran->peserta->jalur,
-                    'npm' => $pembayaran->peserta->npm,
-                    'prodi' => $pembayaran->peserta->prodi->nama_prodi,
-                    'fakultas' => $pembayaran->peserta->fakultas->nama_fakultas,
-                    'tahun' => $pembayaran->peserta->setup->tahun
+                    'no_identitas' => $no_identital,
+                    'angkatan' => $pembayaran->peserta->setup->tahun,
+                    'kode_prodi' => $pembayaran->peserta->prodi->kode_prodi,
+                    'nama_prodi' => $pembayaran->peserta->prodi->nama_prodi,
+                    'nama_fakultas' => $pembayaran->peserta->fakultas->nama_fakultas,
+                    'kategori_ukt' => strtoupper($pembayaran->kategori_ukt),
+                    'jalur' => $pembayaran->peserta->jalur
                 ]
             ];
         } elseif ($pembayaran->jenis_pembayaran == 'ukt') {
             $params = [
+                'aksi' => 'store-umb',
                 'apikey' => $this->apikey,
                 'demo' => $this->demo,
-                'versi' => $this->versi,
-                'trx' => $pembayaran->trx_id,
-                'va' => $pembayaran->billing,
                 'expired_va' => ($expired_va) ? $expired_va : 1, // expired_va
                 'kode_payment' => '007',
                 'jenis_payment' => 'UKT Mahasiswa Baru',
+                'prefix_trx' => 'IPI',
                 'nama' => $pembayaran->peserta->nama_peserta,
                 'nominal' => $pembayaran->amount,
                 'deskripsi' => 'UKT Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun,
-                'jenis_bayar' => 'UMB',
+                'jenis_bayar' => 'umb',
                 'detail' => [
                     'no_identitas' => $pembayaran->peserta->nomor_peserta,
                     'angkatan' => $pembayaran->peserta->setup->tahun,
@@ -85,7 +95,6 @@ class BankBtn
         }
 
         $response = json_decode(post_data(env('URL_ECOLL') . '/btn/createva.php', $params), TRUE);
-        // $response = json_decode(post_data(env('URL_ECOLL') . '/btn/ebilling.php', $params), TRUE);
         // dd($response);
         if (!$response['response']) {
             $this->message = $response['pesan'];
@@ -109,12 +118,17 @@ class BankBtn
 
     public function updateva($pembayaran, $expired_va)
     {
+        return [
+            'rsp' => false,
+            'msg' => 'Sedang pengembangan!'
+        ];
+
         $params = [];
         if ($pembayaran->jenis_pembayaran == 'pemkes') {
             $params = [
                 'apikey' => $this->apikey,
                 'demo' => $this->demo,
-                'versi' => $this->versi,
+                'aksi' => 'update-pemkes',
                 'trx' => $pembayaran->trx_id,
                 'va' => $pembayaran->billing,
                 'expired_va' => ($expired_va) ? $expired_va : 1, // expired_va 1 hari
@@ -137,7 +151,7 @@ class BankBtn
             $params = [
                 'apikey' => $this->apikey,
                 'demo' => $this->demo,
-                'versi' => $this->versi,
+                'aksi' => 'update-ipi',
                 'trx' => $pembayaran->trx_id,
                 'va' => $pembayaran->billing,
                 'expired_va' => ($expired_va) ? $expired_va : 1, // expired_va 1 hari
@@ -161,7 +175,7 @@ class BankBtn
             $params = [
                 'apikey' => $this->apikey,
                 'demo' => $this->demo,
-                'versi' => $this->versi,
+                'aksi' => 'update-umb',
                 'trx' => $pembayaran->trx_id,
                 'va' => $pembayaran->billing,
                 'expired_va' => ($expired_va) ? $expired_va : 1, // expired_va
