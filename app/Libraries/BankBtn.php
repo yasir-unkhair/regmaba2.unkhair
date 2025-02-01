@@ -55,7 +55,7 @@ class BankBtn
         }
 
         $response = json_decode(post_data(env('URL_ECOLL') . '/btn/createva.php', $params), TRUE);
-        // dd($response);
+        dd($response);
         if (!$response['response']) {
             $this->message = $response['pesan'];
             return [
