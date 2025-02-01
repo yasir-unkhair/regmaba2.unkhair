@@ -14,9 +14,9 @@ class BankBtn
     {
         $params = [];
         if ($pembayaran->jenis_pembayaran == 'pemkes') {
-            $no_identital = $pembayaran->peserta->nomor_peserta;
+            $no_identitas = $pembayaran->peserta->nomor_peserta;
             if ($pembayaran->peserta?->npm) {
-                $no_identital = $pembayaran->peserta->npm;
+                $no_identitas = $pembayaran->peserta->npm;
             }
 
             $params = [
@@ -32,7 +32,7 @@ class BankBtn
                 'deskripsi' => 'Pemeriksaan Kesehatan Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun,
                 'jenis_bayar' => $pembayaran->jenis_pembayaran,
                 'detail' => [
-                    'no_identitas' => $no_identital,
+                    'no_identitas' => $no_identitas,
                     'angkatan' => $pembayaran->peserta->setup->tahun,
                     'kode_prodi' => $pembayaran->peserta->prodi->kode_prodi,
                     'nama_prodi' => $pembayaran->peserta->prodi->nama_prodi,
@@ -42,9 +42,9 @@ class BankBtn
                 ]
             ];
         } elseif ($pembayaran->jenis_pembayaran == 'ipi') {
-            $no_identital = $pembayaran->peserta->nomor_peserta;
+            $no_identitas = $pembayaran->peserta->nomor_peserta;
             if ($pembayaran->peserta?->npm) {
-                $no_identital = $pembayaran->peserta->npm;
+                $no_identitas = $pembayaran->peserta->npm;
             }
 
             $params = [
@@ -60,7 +60,7 @@ class BankBtn
                 'deskripsi' => 'IPI Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun,
                 'jenis_bayar' => $pembayaran->jenis_pembayaran,
                 'detail' => [
-                    'no_identitas' => $no_identital,
+                    'no_identitas' => $no_identitas,
                     'angkatan' => $pembayaran->peserta->setup->tahun,
                     'kode_prodi' => $pembayaran->peserta->prodi->kode_prodi,
                     'nama_prodi' => $pembayaran->peserta->prodi->nama_prodi,
