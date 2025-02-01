@@ -49,6 +49,7 @@
             "app/Helpers/app_helper.php",
             "app/Helpers/site_helper.php",
             "app/Helpers/tanggal_helper.php",
+            "app/Helpers/ebilling_helper.php",
             "app/Libraries/AppSupport.php",
             "app/Libraries/BankBtn.php",
             "app/Libraries/BankBni.php"
