@@ -78,8 +78,11 @@ class DetailPembayaran extends Component
         }
 
         if (!$err) {
-            $expired_va = Carbon::now()->diffInDays(pecah_jadwal($batas_pembayaran_ukt, 1));
-            $expired_va = ($expired_va < 2) ? 1 : 3;
+            $expired_va = 1;
+            if ($pembayaran->jenis_pembayaran == 'ukt') {
+                $expired_va = Carbon::now()->diffInDays(pecah_jadwal($batas_pembayaran_ukt, 1));
+                $expired_va = ($expired_va < 2) ? 1 : 3;
+            }
 
             $res = NULL;
             switch ($pembayaran->bank) {

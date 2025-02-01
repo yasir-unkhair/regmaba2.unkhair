@@ -17,7 +17,7 @@ class BankBtn
             $params = [
                 'apikey' => $this->apikey,
                 'demo' => $this->demo,
-                'expired_va' => 1, // expired_va
+                'expired_va' => $expired_va, // expired_va
                 'kode_payment' => '006',
                 'jenis_payment' => 'PEMKES Mahasiswa Baru',
                 'prefix_trx' => 'PKM',
@@ -30,7 +30,7 @@ class BankBtn
             $params = [
                 'apikey' => $this->apikey,
                 'demo' => $this->demo,
-                'expired_va' => 1, // expired_va
+                'expired_va' => $expired_va, // expired_va
                 'kode_payment' => '003',
                 'jenis_payment' => 'IPI Mahasiswa Baru',
                 'prefix_trx' => 'IPI',
