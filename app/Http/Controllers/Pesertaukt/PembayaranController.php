@@ -170,7 +170,10 @@ class PembayaranController extends Controller
         $pdf = PDF::loadView($file_template, $data);
 
         $judul = time() . ' - Slip Pembayaran - ' . $pembayaran->peserta->nama_peserta;
-        return $pdf->download($judul . '.pdf', 'I');
-        // return $pdf->output;
+
+        // return $pdf->download($judul . '.pdf', 'I');
+
+        //menampilkan output beupa halaman PDF
+        return $pdf->stream($judul);
     }
 }
