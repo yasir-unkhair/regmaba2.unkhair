@@ -55,7 +55,7 @@ class BankBtn
         }
 
         $response = json_decode(post_data(env('URL_ECOLL') . '/btn/createva.php', $params), TRUE);
-        dd($response);
+        // dd($response);
         if (!$response['response']) {
             $this->message = $response['pesan'];
             return [
@@ -68,6 +68,7 @@ class BankBtn
         if ($pembayaran->peserta?->npm) {
             $no_identitas = $pembayaran->peserta->npm;
         }
+
         // send data va ke e-billing
         postdata_ebilling(env('URL_EBILLING') . '/api/billing-ukt', [
             "no_va" => $response['data']['va'],
