@@ -41,7 +41,7 @@
             <tr>
                 <td
                     style='width:20%;border-bottom:0px;border-right:0px;border-top:0px;border-left:0px;vertical-align: middle;text-align: center;text-align:center'>
-                    <img src='{{ get_image(public_path('images/logo.png')) }}' height=50 width=50 />
+                    <img src='{{ get_image(public_path('images/logo.jpg')) }}' height=50 width=50 />
                 </td>
                 <td
                     style='width:60%;border-bottom:0px;border-right:0px;border-top:0px;border-left:0px;vertical-align: middle;text-align: center;text-align:center'>
@@ -50,13 +50,7 @@
                 </td>
                 <td
                     style='width:20%;border-bottom:0px;border-right:0px;border-top:0px;border-left:0px;vertical-align: middle;text-align: center;text-align:center'>
-                    <?php
-                    $path2 = public_path('/images/btn.jpeg');
-                    $type2 = pathinfo($path2, PATHINFO_EXTENSION);
-                    $data2 = file_get_contents($path2);
-                    $base642 = 'data:image/' . $type2 . ';base64,' . base64_encode($data2);
-                    ?>
-                    <img src='{{ $base642 }}' height=50 width=50 />
+                    <img src='{{ get_image(public_path('images/btn.jpeg')) }}' height=50 width=50 />
                 </td>
             </tr>
         </table>

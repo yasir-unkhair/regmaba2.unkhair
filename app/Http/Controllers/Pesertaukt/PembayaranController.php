@@ -164,6 +164,12 @@ class PembayaranController extends Controller
             'pembayaran' => $pembayaran
         ];
 
+        if (file_exists(public_path('images/logo.jpg'))) {
+            dd(public_path('images/logo.jpg'));
+        }
+
+        dd($data);
+
         $file_template = (strtolower($pembayaran->bank) == 'btn') ? 'pdf.slip-pembayaran-btn' : 'pdf.slip-pembayaran-bni';
 
         PDF::setOption('P', 'A4', 'fr', true, 'UTF-8', array(20, 20, 20, 20));
