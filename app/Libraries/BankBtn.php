@@ -8,7 +8,7 @@ class BankBtn
 {
     private $message;
     private $apikey = '*#un1v3RS1T45Kh41Run*#*';
-    private $demo = true;
+    private $demo = false;
 
     public function createva($pembayaran, $expired_va)
     {
@@ -89,7 +89,7 @@ class BankBtn
         ];
         $res = postdata_ebilling(env('URL_EBILLING') . '/api/billing-ukt', $ebilling);
 
-        dd($response, $ebilling, $res);
+        // dd($response, $ebilling, $res);
 
         $this->message = 'Berhasil Membuat Virtual Account BANK BTN';
         return [
