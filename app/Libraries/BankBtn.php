@@ -77,7 +77,7 @@ class BankBtn
             "nama_bank" => "BTN",
             "nominal" => $params['nominal'],
             "nama" => $params['nama'],
-            "tgl_expire" => $response['data']['expired_va'],
+            "tgl_expire" => date('Y-m-d', strtotime($response['data']['expired_va'])),
             "no_identitas" => $no_identitas,
             "angkatan" => $pembayaran->peserta->setup->tahun,
             "kode_prodi" => $pembayaran->peserta->prodi->kode_prodi,
