@@ -70,7 +70,7 @@ class BankBtn
         }
 
         // send data va ke e-billing
-        $res = postdata_ebilling(env('URL_EBILLING') . '/api/billing-ukt', [
+        $ebilling = [
             "no_va" => $response['data']['va'],
             "trx_id" => $response['data']['trx_id'],
             "jenis_bayar" => $params['jenis_bayar'],
@@ -86,9 +86,10 @@ class BankBtn
             "kategori_ukt" => strtoupper($pembayaran->kategori_ukt),
             "jalur" => $pembayaran->peserta->jalur,
             "detail" => $params['deskripsi']
-        ]);
+        ];
+        $res = postdata_ebilling(env('URL_EBILLING') . '/api/billing-ukt', $ebilling);
 
-        dd($response, $res);
+        dd($response, $ebilling, $res);
 
         $this->message = 'Berhasil Membuat Virtual Account BANK BTN';
         return [
