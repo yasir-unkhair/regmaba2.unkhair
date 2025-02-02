@@ -321,8 +321,15 @@ if (!function_exists('get_image')) {
             return '';
         }
 
+        $arrContextOptions = array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+            ),
+        );
+
         $type = pathinfo($path_image, PATHINFO_EXTENSION);
-        $data = file_get_contents($path_image);
+        $data = file_get_contents($path_image, false, stream_context_create($arrContextOptions));
         return 'data:image/' . $type . ';base64,' . base64_encode($data);
     }
 }
