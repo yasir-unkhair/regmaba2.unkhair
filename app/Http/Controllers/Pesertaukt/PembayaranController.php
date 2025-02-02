@@ -167,6 +167,7 @@ class PembayaranController extends Controller
         $file_template = (strtolower($pembayaran->bank) == 'btn') ? 'pdf.slip-pembayaran-btn' : 'pdf.slip-pembayaran-bni';
 
         PDF::setOption('P', 'A4', 'fr', true, 'UTF-8', array(20, 20, 20, 20));
+        PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'chroot' => public_path()]);
         $pdf = PDF::loadView($file_template, $data);
 
         $judul = time() . ' - Slip Pembayaran - ' . $pembayaran->peserta->nama_peserta;
