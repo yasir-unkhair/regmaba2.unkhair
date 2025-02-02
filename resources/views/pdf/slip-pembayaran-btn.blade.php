@@ -41,13 +41,7 @@
             <tr>
                 <td
                     style='width:20%;border-bottom:0px;border-right:0px;border-top:0px;border-left:0px;vertical-align: middle;text-align: center;text-align:center'>
-                    <?php
-                    $path = public_path('/images/logo.jpg');
-                    $type = pathinfo($path, PATHINFO_EXTENSION);
-                    $data = file_get_contents($path);
-                    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-                    ?>
-                    <img src='{{ $base64 }}' height=50 width=50 />
+                    <img src='{{ get_image(public_path('images/logo.png')) }}' height=50 width=50 />
                 </td>
                 <td
                     style='width:60%;border-bottom:0px;border-right:0px;border-top:0px;border-left:0px;vertical-align: middle;text-align: center;text-align:center'>
