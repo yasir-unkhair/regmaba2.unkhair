@@ -203,6 +203,8 @@ return [
 
         Barryvdh\Debugbar\ServiceProvider::class,
 
+        Barryvdh\DomPDF\ServiceProvider::class,
+
         Ixudra\Curl\CurlServiceProvider::class,
 
         ComLaude\Amqp\AmqpServiceProvider::class
@@ -221,6 +223,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'Curl' => Ixudra\Curl\Facades\Curl::class,
         'Amqp' => ComLaude\Amqp\Facades\Amqp::class
     ])->toArray(),
