@@ -125,7 +125,7 @@
 
                                 @foreach ($postingan as $row)
                                     <div class="faq-item faq-active p-3">
-                                        <h3>{{ $row->judul }}</h3>
+                                        <h3><u>{{ $loop->index + 1 }}. {{ $row->judul }}</u></h3>
                                         <div class="faq-content p-0">
                                             {!! $row->konten !!}
                                         </div>
