@@ -87,15 +87,15 @@
                                                 if ($jarak->i) {
                                                     $str .= $jarak->i . ' menit';
                                                 }
-                                                $str_durasi = '<span class="badge badge-success">' . $str . '</span>';
+                                                $str_durasi = '<span class="badge badge-secondary">' . $str . '</span>';
 
                                                 $str = status_jadwal($registrasi_snbp, 'string');
                                                 if ($str == 'segera' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-secondary ml-2">Segera..</span>';
+                                                        '<span class="badge badge-warning ml-2">Segera..</span>';
                                                 } elseif ($str == 'dalam-proses' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-info ml-2">Sedang berlangsung..</span>';
+                                                        '<span class="badge badge-success ml-2">Sedang berlangsung..</span>';
                                                 } elseif ($str == 'selesai' && $aktif == 'Y') {
                                                     $str_durasi .=
                                                         '<span class="badge badge-danger ml-2">Selesai!</span>';
@@ -129,15 +129,15 @@
                                                 if ($jarak->i) {
                                                     $str .= $jarak->i . ' menit';
                                                 }
-                                                $str_durasi = '<span class="badge badge-success">' . $str . '</span>';
+                                                $str_durasi = '<span class="badge badge-secondary">' . $str . '</span>';
 
                                                 $str = status_jadwal($pengisian_snbp, 'string');
                                                 if ($str == 'segera' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-secondary ml-2">Segera..</span>';
+                                                        '<span class="badge badge-warning ml-2">Segera..</span>';
                                                 } elseif ($str == 'dalam-proses' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-info ml-2">Sedang berlangsung..</span>';
+                                                        '<span class="badge badge-success ml-2">Sedang berlangsung..</span>';
                                                 } elseif ($str == 'selesai' && $aktif == 'Y') {
                                                     $str_durasi .=
                                                         '<span class="badge badge-danger ml-2">Selesai!</span>';
@@ -171,15 +171,15 @@
                                                 if ($jarak->i) {
                                                     $str .= $jarak->i . ' menit';
                                                 }
-                                                $str_durasi = '<span class="badge badge-success">' . $str . '</span>';
+                                                $str_durasi = '<span class="badge badge-secondary">' . $str . '</span>';
 
                                                 $str = status_jadwal($pembayaran_snbp, 'string');
                                                 if ($str == 'segera' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-secondary ml-2">Segera..</span>';
+                                                        '<span class="badge badge-warning ml-2">Segera..</span>';
                                                 } elseif ($str == 'dalam-proses' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-info ml-2">Sedang berlangsung..</span>';
+                                                        '<span class="badge badge-success ml-2">Sedang berlangsung..</span>';
                                                 } elseif ($str == 'selesai' && $aktif == 'Y') {
                                                     $str_durasi .=
                                                         '<span class="badge badge-danger ml-2">Selesai!</span>';
@@ -216,15 +216,15 @@
                                                 if ($jarak->i) {
                                                     $str .= $jarak->i . ' menit';
                                                 }
-                                                $str_durasi = '<span class="badge badge-success">' . $str . '</span>';
+                                                $str_durasi = '<span class="badge badge-secondary">' . $str . '</span>';
 
                                                 $str = status_jadwal($registrasi_snbt, 'string');
                                                 if ($str == 'segera' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-secondary ml-2">Segera..</span>';
+                                                        '<span class="badge badge-warning ml-2">Segera..</span>';
                                                 } elseif ($str == 'dalam-proses' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-info ml-2">Sedang berlangsung..</span>';
+                                                        '<span class="badge badge-success ml-2">Sedang berlangsung..</span>';
                                                 } elseif ($str == 'selesai' && $aktif == 'Y') {
                                                     $str_durasi .=
                                                         '<span class="badge badge-danger ml-2">Selesai!</span>';
@@ -255,15 +255,15 @@
                                                 if ($jarak->i) {
                                                     $str .= $jarak->i . ' menit';
                                                 }
-                                                $str_durasi = '<span class="badge badge-success">' . $str . '</span>';
+                                                $str_durasi = '<span class="badge badge-secondary">' . $str . '</span>';
 
                                                 $str = status_jadwal($pengisian_snbt, 'string');
                                                 if ($str == 'segera' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-secondary ml-2">Segera..</span>';
+                                                        '<span class="badge badge-warning ml-2">Segera..</span>';
                                                 } elseif ($str == 'dalam-proses' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-info ml-2">Sedang berlangsung..</span>';
+                                                        '<span class="badge badge-success ml-2">Sedang berlangsung..</span>';
                                                 } elseif ($str == 'selesai' && $aktif == 'Y') {
                                                     $str_durasi .=
                                                         '<span class="badge badge-danger ml-2">Selesai!</span>';
@@ -294,15 +294,15 @@
                                                 if ($jarak->i) {
                                                     $str .= $jarak->i . ' menit';
                                                 }
-                                                $str_durasi = '<span class="badge badge-success">' . $str . '</span>';
+                                                $str_durasi = '<span class="badge badge-secondary">' . $str . '</span>';
 
                                                 $str = status_jadwal($pembayaran_snbt, 'string');
                                                 if ($str == 'segera' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-secondary ml-2">Segera..</span>';
+                                                        '<span class="badge badge-warning ml-2">Segera..</span>';
                                                 } elseif ($str == 'dalam-proses' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-info ml-2">Sedang berlangsung..</span>';
+                                                        '<span class="badge badge-success ml-2">Sedang berlangsung..</span>';
                                                 } elseif ($str == 'selesai' && $aktif == 'Y') {
                                                     $str_durasi .=
                                                         '<span class="badge badge-danger ml-2">Selesai!</span>';
@@ -339,15 +339,15 @@
                                                 if ($jarak->i) {
                                                     $str .= $jarak->i . ' menit';
                                                 }
-                                                $str_durasi = '<span class="badge badge-success">' . $str . '</span>';
+                                                $str_durasi = '<span class="badge badge-secondary">' . $str . '</span>';
 
                                                 $str = status_jadwal($registrasi_mandiri, 'string');
                                                 if ($str == 'segera' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-secondary ml-2">Segera..</span>';
+                                                        '<span class="badge badge-warning ml-2">Segera..</span>';
                                                 } elseif ($str == 'dalam-proses' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-info ml-2">Sedang berlangsung..</span>';
+                                                        '<span class="badge badge-success ml-2">Sedang berlangsung..</span>';
                                                 } elseif ($str == 'selesai' && $aktif == 'Y') {
                                                     $str_durasi .=
                                                         '<span class="badge badge-danger ml-2">Selesai!</span>';
@@ -378,15 +378,15 @@
                                                 if ($jarak->i) {
                                                     $str .= $jarak->i . ' menit';
                                                 }
-                                                $str_durasi = '<span class="badge badge-success">' . $str . '</span>';
+                                                $str_durasi = '<span class="badge badge-secondary">' . $str . '</span>';
 
                                                 $str = status_jadwal($pengisian_mandiri, 'string');
                                                 if ($str == 'segera' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-secondary ml-2">Segera..</span>';
+                                                        '<span class="badge badge-warning ml-2">Segera..</span>';
                                                 } elseif ($str == 'dalam-proses' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-info ml-2">Sedang berlangsung..</span>';
+                                                        '<span class="badge badge-success ml-2">Sedang berlangsung..</span>';
                                                 } elseif ($str == 'selesai' && $aktif == 'Y') {
                                                     $str_durasi .=
                                                         '<span class="badge badge-danger ml-2">Selesai!</span>';
@@ -417,15 +417,15 @@
                                                 if ($jarak->i) {
                                                     $str .= $jarak->i . ' menit';
                                                 }
-                                                $str_durasi = '<span class="badge badge-success">' . $str . '</span>';
+                                                $str_durasi = '<span class="badge badge-secondary">' . $str . '</span>';
 
                                                 $str = status_jadwal($pembayaran_mandiri, 'string');
                                                 if ($str == 'segera' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-secondary ml-2">Segera..</span>';
+                                                        '<span class="badge badge-warning ml-2">Segera..</span>';
                                                 } elseif ($str == 'dalam-proses' && $aktif == 'Y') {
                                                     $str_durasi .=
-                                                        '<span class="badge badge-info ml-2">Sedang berlangsung..</span>';
+                                                        '<span class="badge badge-success ml-2">Sedang berlangsung..</span>';
                                                 } elseif ($str == 'selesai' && $aktif == 'Y') {
                                                     $str_durasi .=
                                                         '<span class="badge badge-danger ml-2">Selesai!</span>';
