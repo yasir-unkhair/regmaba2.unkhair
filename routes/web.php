@@ -89,7 +89,7 @@ Route::group(['middleware' => 'isLogin'], function () {
             });
         });
 
-        Route::get('/informasi/index', App\Livewire\Postingan\Informasi::class)->name('admin.informasi');
+        Route::get('/informasi/index', App\Livewire\Postingan\Informasi::class)->name('admin.informasi.index');
         Route::get('/informasi/add', App\Livewire\Postingan\AddInformasi::class)->name('admin.informasi.add');
         Route::get('/informasi/edit/{id}', App\Livewire\Postingan\EditInformasi::class)->name('admin.informasi.edit');
 

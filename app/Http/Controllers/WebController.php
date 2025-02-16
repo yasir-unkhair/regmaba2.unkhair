@@ -14,8 +14,10 @@ class WebController extends Controller
     public function index()
     {
         $setup = get_setup();
+        $postingan = Postingan::with('user')->where('publish', 1)->orderBy('updated_at', 'DESC')->limit(10)->get();
         $data = [
-            'tahun' => $setup->tahun
+            'tahun' => $setup->tahun,
+            'postingan' => $postingan
         ];
         return view('layouts.frontent2', $data);
     }

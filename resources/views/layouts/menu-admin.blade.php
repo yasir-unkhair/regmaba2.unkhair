@@ -8,6 +8,15 @@
                 <p> Dashboard</p>
             </a>
         </li>
+
+        <li class="nav-item {{ Route::is('admin.informasi.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.informasi.index') }}"
+                class="nav-link {{ Route::is('admin.informasi.*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-newspaper-o"></i>
+                <p> Informasi</p>
+            </a>
+        </li>
+
         <li
             class="nav-item {{ routeIs(['admin.fakultas', 'admin.prodi.index', 'admin.prodi.biayastudi', 'admin.setup', 'admin.datapeserta.index', 'admin.datapeserta.upload', 'admin.roles', 'admin.pengguna', 'admin.pengguna.import', 'admin.referensi']) ? 'menu-open' : '' }}">
             <a href="#"
@@ -130,7 +139,8 @@
                 <li class="nav-item">
                     <a href="{{ route('admin.maba.generatenpm') }}"
                         class="nav-link {{ routeIs(['admin.maba.generatenpm', 'admin.maba.generatenpm-params']) ? 'active' : '' }}">
-                        <i class="fas fa-angle-double-right nav-icon" aria-hidden="true" style="font-size: 11px;"></i>
+                        <i class="fas fa-angle-double-right nav-icon" aria-hidden="true"
+                            style="font-size: 11px;"></i>
                         <p>Generate NPM</p>
                     </a>
                 </li>

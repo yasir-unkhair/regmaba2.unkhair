@@ -6,6 +6,9 @@ use App\Models\Postingan;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+
+use Illuminate\Support\Str;
+
 class Informasi extends Component
 {
     use WithPagination;

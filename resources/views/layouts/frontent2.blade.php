@@ -12,6 +12,7 @@
         $alamat = $pengaturan['alamat'];
         $telepon = $pengaturan['telepon'];
         $email = $pengaturan['email'];
+        $versi = $pengaturan['versi'];
     @endphp
 
     <head>
@@ -105,126 +106,6 @@
 
             </section><!-- /Hero Section -->
 
-            {{-- 
-            <!-- Recent Posts Section -->
-            <section id="recent-posts" class="recent-posts section">
-
-                <!-- Section Title -->
-                <div class="container section-title" data-aos="fade-up">
-                    <h2>Recent Posts</h2>
-                    <p>Informasi Terkini</p>
-                </div><!-- End Section Title -->
-
-                <div class="container">
-
-                    <div class="row gy-5">
-
-                        <div class="col-xl-4 col-md-6">
-                            <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
-
-                                <div class="post-img position-relative overflow-hidden">
-                                    <img src="{{ asset('flexstart') }}/img/blog/blog-1.jpg" class="img-fluid"
-                                        alt="">
-                                    <span class="post-date">December 12</span>
-                                </div>
-
-                                <div class="post-content d-flex flex-column">
-
-                                    <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis</h3>
-
-                                    <div class="meta d-flex align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-person"></i> <span class="ps-2">Julia Parker</span>
-                                        </div>
-                                        <span class="px-3 text-black-50">/</span>
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
-                                        </div>
-                                    </div>
-
-                                    <hr>
-
-                                    <a href="blog-details.html" class="readmore stretched-link"><span>Read
-                                            More</span><i class="bi bi-arrow-right"></i></a>
-
-                                </div>
-
-                            </div>
-                        </div><!-- End post item -->
-
-                        <div class="col-xl-4 col-md-6">
-                            <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="200">
-
-                                <div class="post-img position-relative overflow-hidden">
-                                    <img src="{{ asset('flexstart') }}/img/blog/blog-2.jpg" class="img-fluid"
-                                        alt="">
-                                    <span class="post-date">July 17</span>
-                                </div>
-
-                                <div class="post-content d-flex flex-column">
-
-                                    <h3 class="post-title">Et repellendus molestiae qui est sed omnis</h3>
-
-                                    <div class="meta d-flex align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-person"></i> <span class="ps-2">Mario Douglas</span>
-                                        </div>
-                                        <span class="px-3 text-black-50">/</span>
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-folder2"></i> <span class="ps-2">Sports</span>
-                                        </div>
-                                    </div>
-
-                                    <hr>
-
-                                    <a href="blog-details.html" class="readmore stretched-link"><span>Read
-                                            More</span><i class="bi bi-arrow-right"></i></a>
-
-                                </div>
-
-                            </div>
-                        </div><!-- End post item -->
-
-                        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                            <div class="post-item position-relative h-100">
-
-                                <div class="post-img position-relative overflow-hidden">
-                                    <img src="{{ asset('flexstart') }}/img/blog/blog-3.jpg" class="img-fluid"
-                                        alt="">
-                                    <span class="post-date">September 05</span>
-                                </div>
-
-                                <div class="post-content d-flex flex-column">
-
-                                    <h3 class="post-title">Quia assumenda est et veritati tirana ploder</h3>
-
-                                    <div class="meta d-flex align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-person"></i> <span class="ps-2">Lisa Hunter</span>
-                                        </div>
-                                        <span class="px-3 text-black-50">/</span>
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-folder2"></i> <span class="ps-2">Economics</span>
-                                        </div>
-                                    </div>
-
-                                    <hr>
-
-                                    <a href="blog-details.html" class="readmore stretched-link"><span>Read
-                                            More</span><i class="bi bi-arrow-right"></i></a>
-
-                                </div>
-
-                            </div>
-                        </div><!-- End post item -->
-
-                    </div>
-
-                </div>
-
-            </section><!-- /Recent Posts Section -->
-
-
             <!-- Faq Section -->
             <section id="faq" class="faq section">
 
@@ -238,90 +119,19 @@
 
                     <div class="row">
 
-                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
 
                             <div class="faq-container">
 
-                                <div class="faq-item faq-active">
-                                    <h3>Non consectetur a erat nam at lectus urna duis?</h3>
-                                    <div class="faq-content">
-                                        <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus
-                                            laoreet non curabitur
-                                            gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus
-                                            non.</p>
-                                    </div>
-                                    <i class="faq-toggle bi bi-chevron-right"></i>
-                                </div><!-- End Faq item-->
-
-                                <div class="faq-item">
-                                    <h3>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h3>
-                                    <div class="faq-content">
-                                        <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id
-                                            interdum velit laoreet
-                                            id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec
-                                            pretium. Est pellentesque
-                                            elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa
-                                            tincidunt dui.</p>
-                                    </div>
-                                    <i class="faq-toggle bi bi-chevron-right"></i>
-                                </div><!-- End Faq item-->
-
-                                <div class="faq-item">
-                                    <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
-                                    <div class="faq-content">
-                                        <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci.
-                                            Faucibus pulvinar
-                                            elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit.
-                                            Rutrum tellus pellentesque
-                                            eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at
-                                            elementum eu facilisis
-                                            sed odio morbi quis</p>
-                                    </div>
-                                    <i class="faq-toggle bi bi-chevron-right"></i>
-                                </div><!-- End Faq item-->
-
-                            </div>
-
-                        </div><!-- End Faq Column-->
-
-                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-
-                            <div class="faq-container">
-
-                                <div class="faq-item">
-                                    <h3>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h3>
-                                    <div class="faq-content">
-                                        <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id
-                                            interdum velit laoreet
-                                            id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec
-                                            pretium. Est pellentesque
-                                            elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa
-                                            tincidunt dui.</p>
-                                    </div>
-                                    <i class="faq-toggle bi bi-chevron-right"></i>
-                                </div><!-- End Faq item-->
-
-                                <div class="faq-item">
-                                    <h3>Tempus quam pellentesque nec nam aliquam sem et tortor consequat?</h3>
-                                    <div class="faq-content">
-                                        <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim
-                                            suspendisse in est ante in.
-                                            Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit
-                                            adipiscing bibendum est.
-                                            Purus gravida quis blandit turpis cursus in</p>
-                                    </div>
-                                    <i class="faq-toggle bi bi-chevron-right"></i>
-                                </div><!-- End Faq item-->
-
-                                <div class="faq-item">
-                                    <h3>Perspiciatis quod quo quos nulla quo illum ullam?</h3>
-                                    <div class="faq-content">
-                                        <p>Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non
-                                            sed in suscipit sequi.
-                                            Distinctio ipsam dolore et.</p>
-                                    </div>
-                                    <i class="faq-toggle bi bi-chevron-right"></i>
-                                </div><!-- End Faq item-->
+                                @foreach ($postingan as $row)
+                                    <div class="faq-item faq-active p-3">
+                                        <h3>{{ $row->judul }}</h3>
+                                        <div class="faq-content p-0">
+                                            {!! $row->konten !!}
+                                        </div>
+                                        <i class="faq-toggle bi bi-chevron-right"></i>
+                                    </div><!-- End Faq item-->
+                                @endforeach
 
                             </div>
 
@@ -331,19 +141,21 @@
 
                 </div>
 
-            </section><!-- /Faq Section --> --}}
+            </section><!-- /Faq Section -->
 
         </main>
+
+        <hr>
 
         <footer id="footer" class="footer">
 
             <div class="container text-center mt-4">
                 <p>
-                    {{ date('Y') }} &copy; Copyright <strong><span>{{ $author }}</span></strong>.
+                    {{ date('Y') }} &copy; <strong><span>{{ $author }}</span></strong>.
                     {{ $nama_departemen }}
                 </p>
                 <div class="credits">
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                    Versi: {{ $versi }}
                 </div>
             </div>
 
