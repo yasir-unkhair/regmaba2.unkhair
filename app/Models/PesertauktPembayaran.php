@@ -44,6 +44,7 @@ class PesertauktPembayaran extends Model
         'amount',
         'lunas',
         'tgl_pelunasan',
+        'rsp_ebilling'
     ];
 
     public function peserta()

@@ -78,7 +78,7 @@ class DetailPembayaran extends Component
         }
 
         if (!$err) {
-            $expired_va = 1;
+            $expired_va = 2;
             if ($pembayaran->jenis_pembayaran == 'ukt') {
                 $expired_va = Carbon::now()->diffInDays(pecah_jadwal($batas_pembayaran_ukt, 1));
                 $expired_va = ($expired_va < 2) ? 1 : 3;
@@ -131,10 +131,11 @@ class DetailPembayaran extends Component
 
         if (!$err) {
 
-            # cek va di ecoll
-            $rsp = json_decode(konfirmasi_pembayaran(env('URL_EBILLING') . '/api/history-bank/' . $pembayaran->trx_id), TRUE);
+            # cek va di ebilling
+            // $rsp = json_decode(konfirmasi_pembayaran(env('URL_EBILLING') . '/api/history-bank/' . $pembayaran->trx_id), TRUE);
 
-            // dd($rsp);
+            // cek va di ecoll
+            $rsp = json_decode(get_data(env('URL_ECOLL') . '/cekva.php?trx_id=' . $pembayaran->trx_id), TRUE);
 
             if ($rsp && $rsp['response'] == true) {
                 if (!$pembayaran->lunas) {

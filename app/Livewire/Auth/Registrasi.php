@@ -22,6 +22,9 @@ class Registrasi extends Component
 
     public $get = NULL;
 
+    // batas waktu bisa ganti email
+    public $menit_mak = 10;
+
     public function mount($params = NULL)
     {
         if ($params && data_params($params, 'nomor_peserta')) {
@@ -89,8 +92,9 @@ class Registrasi extends Component
                     $total_jam = $total_waktu->h;
                     $total_menit = $total_waktu->i;
 
-                    if (($total_hari == 0) && ($total_jam == 0) && ($total_menit < 10)) {
-                        $this->dispatch('alert', type: 'error', message: 'Tunggu beberapa saat lagi untuk mengganti/mengirim kembali E-Mail Konfirmasi!');
+                    if (($total_hari == 0) && ($total_jam == 0) && ($total_menit < $this->menit_mak)) {
+                        $menit = $this->menit_mak - $total_menit;
+                        $this->dispatch('alert', type: 'error', message: 'Harap bersabar, tunggu ' . $menit . ' menit lagi untuk mengganti/mengirim E-Mail Konfirmasi!');
                         $err++;
                     }
                 }
@@ -203,8 +207,9 @@ class Registrasi extends Component
                 $total_jam = $total_waktu->h;
                 $total_menit = $total_waktu->i;
 
-                if (($total_hari == 0) && ($total_jam == 0) && ($total_menit < 10)) {
-                    $this->dispatch('alert', type: 'error', message: 'Tunggu beberapa saat lagi untuk mengganti/mengirim kembali E-Mail Konfirmasi!');
+                if (($total_hari == 0) && ($total_jam == 0) && ($total_menit < $this->menit_mak)) {
+                    $menit = $this->menit_mak - $total_menit;
+                    $this->dispatch('alert', type: 'error', message: 'Harap bersabar, tunggu ' . $menit . ' menit lagi untuk mengganti/mengirim E-Mail Konfirmasi!');
                     $err++;
                 }
             }
@@ -221,7 +226,7 @@ class Registrasi extends Component
                     'content' => 'registrasi'
                 ])->delay(Carbon::now()->addSecond(5));
 
-                alert()->success('Success', 'Silahkan cek inbox pada E-Mail anda dan setelah itu lakukan aktivasi akun.');
+                alert()->success('Success', 'Silahkan cek inbox/spam pada E-Mail anda dan setelah itu lakukan aktivasi akun.');
                 return $this->redirect(route('auth.registrasi'));
             }
         }

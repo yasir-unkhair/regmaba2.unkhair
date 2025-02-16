@@ -8,7 +8,7 @@ class BankBtn
 {
     private $message;
     private $apikey = '*#un1v3RS1T45Kh41Run*#*';
-    private $demo = false;
+    private $demo = true;
 
     public function createva($pembayaran, $expired_va)
     {
@@ -69,7 +69,10 @@ class BankBtn
             $no_identitas = $pembayaran->peserta->npm;
         }
 
-        // send data va ke e-billing
+        // get tahun akademik
+        $setup = json_decode(getdata_ebilling(env('URL_EBILLING') . '/api/tahun-pembayaran'), TRUE);
+
+        // send data va ke ebilling
         $ebilling = [
             "no_va" => $response['data']['va'],
             "trx_id" => $response['data']['trx_id'],
@@ -85,9 +88,10 @@ class BankBtn
             "nama_fakultas" => $pembayaran->peserta->fakultas->nama_fakultas,
             "kategori_ukt" => strtoupper($pembayaran->kategori_ukt),
             "jalur" => $pembayaran->peserta->jalur,
-            "detail" => $params['deskripsi']
+            "detail" => $params['deskripsi'],
+            'tahun_akademik' => $setup['data']['tahun_akademik']
         ];
-        $res = postdata_ebilling(env('URL_EBILLING') . '/api/billing-ukt', $ebilling);
+        $res = postdata_ebilling(env('URL_EBILLING') . '/api/billing-mahasiswa', $ebilling);
 
         // dd($response, $ebilling, $res);
 
@@ -99,23 +103,18 @@ class BankBtn
                 'trx_id' => $response['data']['trx_id'],
                 'va' => $response['data']['va'],
                 'expired' => $response['data']['expired_va'],
+                'rsp_ebilling' => json_encode($res) ?? NULL
             ]
         ];
     }
 
     public function updateva($pembayaran, $expired_va)
     {
-        return [
-            'rsp' => false,
-            'msg' => 'Sedang pengembangan!'
-        ];
-
-        $params = [];
         if ($pembayaran->jenis_pembayaran == 'pemkes') {
             $params = [
                 'apikey' => $this->apikey,
                 'demo' => $this->demo,
-                'expired_va' => 1, // expired_va
+                'expired_va' => $expired_va, // expired_va
                 'kode_payment' => '006',
                 'jenis_payment' => 'PEMKES Mahasiswa Baru',
                 'prefix_trx' => 'PKM',
@@ -128,7 +127,7 @@ class BankBtn
             $params = [
                 'apikey' => $this->apikey,
                 'demo' => $this->demo,
-                'expired_va' => 1, // expired_va
+                'expired_va' => $expired_va, // expired_va
                 'kode_payment' => '003',
                 'jenis_payment' => 'IPI Mahasiswa Baru',
                 'prefix_trx' => 'IPI',
@@ -152,8 +151,8 @@ class BankBtn
             ];
         }
 
-        $response = json_decode(post_data(env('URL_ECOLL') . '/btn/updateva.php', $params), TRUE);
-
+        $response = json_decode(post_data(env('URL_ECOLL') . '/btn/createva.php', $params), TRUE);
+        // dd($response);
         if (!$response['response']) {
             $this->message = $response['pesan'];
             return [
@@ -161,6 +160,27 @@ class BankBtn
                 'msg' => $this->message
             ];
         }
+
+        $no_identitas = $pembayaran->peserta->nomor_peserta;
+        if ($pembayaran->peserta?->npm) {
+            $no_identitas = $pembayaran->peserta->npm;
+        }
+
+        // get tahun akademik
+        $setup = json_decode(getdata_ebilling(env('URL_EBILLING') . '/api/tahun-pembayaran'), TRUE);
+
+        // send data va ke ebilling
+        $ebilling = [
+            "no_va" => $response['data']['va'],
+            "trx_id" => $response['data']['trx_id'],
+            "jenis_bayar" => $params['jenis_bayar'],
+            "nama_bank" => "BTN",
+            "nominal" => $params['nominal'],
+            "tgl_expire" => date('Y-m-d', strtotime($response['data']['expired_va'])),
+            "npm" => $no_identitas,
+            'tahun_akademik' => $setup['data']['tahun_akademik']
+        ];
+        $res = patchdata_ebilling(env('URL_EBILLING') . '/api/billing-mahasiswa/update', $ebilling);
 
         $this->message = 'Berhasil Update Virtual Account BANK BTN';
         return [
@@ -170,6 +190,7 @@ class BankBtn
                 'trx_id' => $response['data']['trx_id'],
                 'va' => $response['data']['va'],
                 'expired' => $response['data']['expired_va'],
+                'rsp_ebilling' => json_encode($res) ?? NULL
             ]
         ];
     }
