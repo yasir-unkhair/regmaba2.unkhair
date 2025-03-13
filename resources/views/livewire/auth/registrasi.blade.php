@@ -86,7 +86,7 @@
             aria-labelledby="role-tab">
             @if ($get)
                 <form wire:submit="confirmReg" method="post">
-                    <table class="table border border-black" style="font-size:13px;">
+                    <table class="table border border-black" style="font-size:15px;">
                         <tr>
                             <th class="text-right">Nomor Peserta :</th>
                             <td>{{ $get['nomor_peserta'] }}</td>

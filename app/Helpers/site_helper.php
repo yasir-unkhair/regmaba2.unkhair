@@ -80,7 +80,7 @@ if (!function_exists('list_dokumen_upload')) {
         $dokumen[] = [
             'urutan' => $urutan,
             'dokumen' => 'formulit-ukt',
-            'detail' => 'Scan Semua Halaman Formulir UKT dan Sudah Ditandatangani',
+            'detail' => 'Scan Semua Halaman 1 dan 2 pada Formulir UKT dan Sudah Ditandatangani',
             'wajib' => 'Y'
         ];
         $urutan++;

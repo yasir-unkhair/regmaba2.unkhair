@@ -53,7 +53,7 @@
                         </div>
                         <br>
 
-                        <p style="font-size:13px;">
+                        <p style="font-size:15px;">
                             <b>Silahkan lengkapi data-data yang diperlukan:</b><br>
                             1. &nbsp;Formulir UKT <br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1. &nbsp;Melengkapi
@@ -107,7 +107,7 @@
                         @endif
 
                         <hr>
-                        <p style="font-size:13px;">
+                        <p style="font-size:15px;">
                             Customer Service <b>{{ $pengaturan['nama-sub-aplikasi'] }} -
                                 {{ $pengaturan['nama-departemen'] }}</b> <br>
                             Hotline WA: <span class="text-primary">0813-4578-xxxx</span> <br>
