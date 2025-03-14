@@ -29,10 +29,10 @@
                         </dl>
                         <hr>
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label" style="font-size:13px"><b>Penetapan UKT
+                            <label for="recipient-name" class="col-form-label"><b>Penetapan UKT
                                     <span class="text-danger">*</span>
                                     :</b></label>
-                            <select wire:model="kategori_ukt" class="form-control" style="font-size:13px">
+                            <select wire:model="kategori_ukt" class="form-control">
                                 <option value="">-- Kategori UKT --</option>
                                 <option value="wawancara" {{ $kategori_ukt == 'wawancara' ? 'selected' : '' }}>
                                     Wawancara
@@ -52,10 +52,10 @@
 
                         @if ($get && strtolower($get->jalur) == 'mandiri')
                             <div class="form-group mt-2">
-                                <label for="recipient-name" class="col-form-label" style="font-size:13px"><b>Penetapan
+                                <label for="recipient-name" class="col-form-label"><b>Penetapan
                                         IPI <i class="text-danger">(Jalur
                                             Mandiri)</i> :</b></label>
-                                <select wire:model="kategori_ipi" class="form-control" style="font-size:13px">
+                                <select wire:model="kategori_ipi" class="form-control">
                                     <option value="">-- Kategori IPI --</option>
                                     @foreach ($listdata_ipi as $row)
                                         <option value="{{ $row->id }}"
