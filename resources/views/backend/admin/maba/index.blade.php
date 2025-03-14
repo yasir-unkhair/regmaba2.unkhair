@@ -85,8 +85,8 @@
                                         <th class="text-left">Nama Lengkap</th>
                                         <th class="text-left">Program Studi</th>
                                         <th class="text-left">UKT</th>
-                                        <th class="text-left">NPM</th>
-                                        <th class="text-left">Keterangan</th>
+                                        <th class="text-left">Status Bayar</th>
+                                        <th class="text-left">Ket.</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>

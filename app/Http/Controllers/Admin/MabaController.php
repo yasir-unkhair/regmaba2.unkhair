@@ -27,15 +27,21 @@ class MabaController extends Controller
                 ->orderBy('app_peserta.jalur', 'ASC')->orderBy('app_peserta.prodi_id', 'ASC')->orderBy('app_peserta.npm', 'ASC')->orderBy('app_peserta.nama_peserta', 'ASC');
             return DataTables::eloquent($peserta)
                 ->addIndexColumn()
+                ->editColumn('nama_peserta', function ($row) {
+                    $str = $row->nama_peserta;
+                    $str .= '<br>NPM: ' . $row->npm ?? '-';
+                    return $str;
+                })
                 ->editColumn('prodi', function ($row) {
                     $str = ($row->prodi?->jenjang_prodi) . ' - ' . ($row->prodi?->nama_prodi);
                     return $str;
                 })
                 ->editColumn('ukt', function ($row) {
                     $str = strtoupper($row->vonis_ukt);
-                    if (!in_array(strtolower($row->vonis_ukt), ['kip-k', 'wawancara'])) {
-                        $str .= '<br>' . ($row->bayar_ukt == 1 ? '<span class="text-success">Sudah Bayar</span>' : '<span class="text-danger">Belum Bayar</span>');
-                    }
+                    return $str;
+                })
+                ->editColumn('bayar_ukt', function ($row) {
+                    $str = $row->bayar_ukt == 1 ? '<span class="text-success">Lunas</span>' : '<span class="text-danger">Belum Lunas</span>';
                     return $str;
                 })
                 ->editColumn('proses', function ($row) {
@@ -66,7 +72,7 @@ class MabaController extends Controller
                         });
                     }
                 })
-                ->rawColumns(['prodi', 'ukt', 'jalur', 'proses'])
+                ->rawColumns(['nama_peserta','prodi', 'ukt', 'bayar_ukt', 'jalur', 'proses'])
                 ->make(true);
         }
 
@@ -85,7 +91,7 @@ class MabaController extends Controller
                     ['data' => 'nama_peserta', 'name' => 'nama_peserta', 'orderable' => 'true', 'searchable' => 'true'],
                     ['data' => 'prodi', 'name' => 'prodi', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'ukt', 'name' => 'ukt', 'orderable' => 'false', 'searchable' => 'false'],
-                    ['data' => 'npm', 'name' => 'npm', 'orderable' => 'false', 'searchable' => 'false'],
+                    ['data' => 'bayar_ukt', 'name' => 'bayar_ukt', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'proses', 'name' => 'proses', 'orderable' => 'false', 'searchable' => 'false'],
                 ]
             ]
