@@ -29,7 +29,7 @@ class MabaController extends Controller
                 ->addIndexColumn()
                 ->editColumn('nama_peserta', function ($row) {
                     $str = $row->nama_peserta;
-                    $str .= '<br>NPM: ' . $row->npm ?? '-';
+                    $str .= '<br>NPM: ' . ($row->npm ?? '-');
                     return $str;
                 })
                 ->editColumn('prodi', function ($row) {
