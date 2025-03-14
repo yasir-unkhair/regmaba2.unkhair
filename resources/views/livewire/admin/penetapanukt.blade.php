@@ -17,7 +17,7 @@
                                 {{ $verifikator }}
                                 <span class="float-right text-muted">
                                     <i class="fa fa-clock"></i> &nbsp;
-                                    <i>{{ tgl_indo($tgl_verifikasi) }}</i>
+                                    {{ $tgl_verifikasi->diffForHumans() }}
                                 </span>
                             </dd>
                             <hr>
