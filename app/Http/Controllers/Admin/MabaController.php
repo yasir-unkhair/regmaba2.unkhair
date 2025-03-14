@@ -52,9 +52,16 @@ class MabaController extends Controller
                     }
                 })
                 ->filter(function ($instance) use ($request) {
+                    $tampil = false;
                     if ($request->get('jalur')) {
                         $jalur = data_params($request->get('jalur'), 'jalur');
                         $instance->where('app_peserta.jalur', $jalur);
+                    
+                        $tampil = true;
+                    }
+
+                    if(!$tampil){
+                        $instance->where('app_peserta.jalur', '-');
                     }
 
                     if ($request->get('prodi_id')) {
