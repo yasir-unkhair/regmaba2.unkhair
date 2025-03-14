@@ -23,7 +23,7 @@ class MabaController extends Controller
                 ->setup($setup->id)
                 ->registrasi(true)
                 ->status([5])
-                ->where('b.bayar_ukt', 1)
+                // ->where('b.bayar_ukt', 1)
                 ->orderBy('app_peserta.jalur', 'ASC')->orderBy('app_peserta.prodi_id', 'ASC')->orderBy('app_peserta.npm', 'ASC')->orderBy('app_peserta.nama_peserta', 'ASC');
             return DataTables::eloquent($peserta)
                 ->addIndexColumn()
@@ -33,6 +33,9 @@ class MabaController extends Controller
                 })
                 ->editColumn('ukt', function ($row) {
                     $str = strtoupper($row->vonis_ukt);
+                    if (!in_array(strtolower($row->vonis_ukt), ['kip-k', 'wawancara'])) {
+                        $str .= '<br>' . ($row->bayar_ukt == 1 ? '<span class="text-success">Sudah Bayar</span>' : '<span class="text-danger">Belum Bayar</span>');
+                    }
                     return $str;
                 })
                 ->editColumn('proses', function ($row) {
