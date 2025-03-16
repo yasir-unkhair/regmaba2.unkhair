@@ -8,7 +8,7 @@ class BankBtn
 {
     private $message;
     private $apikey = '*#un1v3RS1T45Kh41Run*#*';
-    private $demo = true;
+    private $demo = false;
 
     public function createva($pembayaran, $expired_va)
     {
