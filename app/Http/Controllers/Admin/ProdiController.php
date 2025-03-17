@@ -24,7 +24,7 @@ class ProdiController extends Controller
                 ->editColumn('action', function ($row) {
                     $onclick = "edit('" . $row->id . "')";
                     
-                    //$update_biaya_studi = '<a href="' . route('admin.prodi.importbiayastudi', $row->id) . '" class="btn btn-sm btn-info">Update Biaya Studi</a>';
+                    $update_biaya_studi = '<a href="' . route('admin.prodi.importbiayastudi', $row->id) . '" class="btn btn-sm btn-info">Update Biaya Studi</a>';
                     $actionBtn = '
                     <center>
                         <a href="' . route('admin.prodi.biayastudi', encode_arr(['prodi_id' => $row->id])) . '" class="btn btn-sm btn-primary">Biaya Studi</a>
@@ -124,103 +124,105 @@ class ProdiController extends Controller
 
     public function import_biayastudi($id)
     {
-        $prodi = Prodi::with('biayastudi')->where('id', $id)->first();
+        try {
+            $prodi = Prodi::with('biayastudi')->where('id', $id)->first();
 
-        $mspst = DB::table('mspst')->where('KDPSTMSPST', $prodi->kode_prodi)->first();
-        if(!$mspst) {
-            die('Data tidak ditemukan');
-        }
-
-        $ukt = [
-            [
-                'kategori' => '1',
-                'nominal' => $mspst->k1
-            ],
-            [
-                'kategori' => '2',
-                'nominal' => $mspst->k2
-            ],
-            [
-                'kategori' => '3',
-                'nominal' => $mspst->k3
-            ],
-            [
-                'kategori' => '4',
-                'nominal' => $mspst->k4
-            ],
-            [
-                'kategori' => '5',
-                'nominal' => $mspst->k5
-            ],
-            [
-                'kategori' => '6',
-                'nominal' => $mspst->k6
-            ],
-            [
-                'kategori' => '7',
-                'nominal' => $mspst->k7
-            ],
-            [
-                'kategori' => '8',
-                'nominal' => $mspst->k8
-            ],
-        ];
-
-        $prodi->biayastudi()->where('jenis_biaya', 'ukt')->delete();
-        foreach ($ukt as $value) {
-            $prodi->biayastudi()->updateOrCreate(
+            $mspst = DB::table('mspst')->where('KDPSTMSPST', $prodi->kode_prodi)->first();
+            
+            $ukt = [
                 [
-                    'prodi_id' => $prodi->prodi_id,
-                    'jenis_biaya' => 'ukt',
-                    'kategori' => $value['kategori']
+                    'kategori' => '1',
+                    'nominal' => $mspst->k1
                 ],
                 [
-                    'prodi_id' => $prodi->prodi_id,
-                    'jenis_biaya' => 'ukt',
-                    'nominal' => preg_replace("/[^0-9]/", "", $value['nominal']),
-                    'kategori' => $value['kategori']
-                ]
-            );
-        }
-
-        // ipi
-        $ipi = [
-            [
-                'kategori' => '1',
-                'nominal' => $mspst->spi1
-            ],
-            [
-                'kategori' => '2',
-                'nominal' => $mspst->spi2
-            ],
-            [
-                'kategori' => '3',
-                'nominal' => $mspst->spi3
-            ]
-        ];
-
-        $prodi->biayastudi()->where('jenis_biaya', 'ipi')->delete();
-        foreach ($ipi as $value) {
-            $prodi->biayastudi()->updateOrCreate(
-                [
-                    'prodi_id' => $prodi->prodi_id,
-                    'jenis_biaya' => 'ipi',
-                    'kategori' => $value['kategori']
+                    'kategori' => '2',
+                    'nominal' => $mspst->k2
                 ],
                 [
-                    'prodi_id' => $prodi->prodi_id,
-                    'jenis_biaya' => 'ipi',
-                    'nominal' => preg_replace("/[^0-9]/", "", $value['nominal']),
-                    'kategori' => $value['kategori']
+                    'kategori' => '3',
+                    'nominal' => $mspst->k3
+                ],
+                [
+                    'kategori' => '4',
+                    'nominal' => $mspst->k4
+                ],
+                [
+                    'kategori' => '5',
+                    'nominal' => $mspst->k5
+                ],
+                [
+                    'kategori' => '6',
+                    'nominal' => $mspst->k6
+                ],
+                [
+                    'kategori' => '7',
+                    'nominal' => $mspst->k7
+                ],
+                [
+                    'kategori' => '8',
+                    'nominal' => $mspst->k8
+                ],
+            ];
+
+            $prodi->biayastudi()->where('jenis_biaya', 'ukt')->delete();
+            foreach ($ukt as $value) {
+                $prodi->biayastudi()->updateOrCreate(
+                    [
+                        'prodi_id' => $prodi->prodi_id,
+                        'jenis_biaya' => 'ukt',
+                        'kategori' => $value['kategori']
+                    ],
+                    [
+                        'prodi_id' => $prodi->prodi_id,
+                        'jenis_biaya' => 'ukt',
+                        'nominal' => preg_replace("/[^0-9]/", "", $value['nominal']),
+                        'kategori' => $value['kategori']
+                    ]
+                );
+            }
+
+            // ipi
+            $ipi = [
+                [
+                    'kategori' => '1',
+                    'nominal' => $mspst->spi1
+                ],
+                [
+                    'kategori' => '2',
+                    'nominal' => $mspst->spi2
+                ],
+                [
+                    'kategori' => '3',
+                    'nominal' => $mspst->spi3
                 ]
-            );
+            ];
+
+            $prodi->biayastudi()->where('jenis_biaya', 'ipi')->delete();
+            foreach ($ipi as $value) {
+                $prodi->biayastudi()->updateOrCreate(
+                    [
+                        'prodi_id' => $prodi->prodi_id,
+                        'jenis_biaya' => 'ipi',
+                        'kategori' => $value['kategori']
+                    ],
+                    [
+                        'prodi_id' => $prodi->prodi_id,
+                        'jenis_biaya' => 'ipi',
+                        'nominal' => preg_replace("/[^0-9]/", "", $value['nominal']),
+                        'kategori' => $value['kategori']
+                    ]
+                );
+            }
+
+            $prodi->update([
+                'kode_prodi_dikti' => $mspst->kode_prodi_dikti
+            ]);
+
+            alert()->success('Success', 'Biaya Studi Berhasil Diimport!');
+            return redirect(route('admin.prodi.index'));
+
+        } catch (\Throwable $th) {
+            echo $th->getMessage();   
         }
-
-        $prodi->update([
-            'kode_prodi_dikti' => $mspst->kode_prodi_dikti
-        ]);
-
-        alert()->success('Success', 'Biaya Studi Berhasil Diimport!');
-        return redirect(route('admin.prodi.index'));
     }
 }
