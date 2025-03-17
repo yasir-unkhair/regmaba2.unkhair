@@ -99,7 +99,7 @@ Route::group(['middleware' => 'isLogin'], function () {
         Route::controller(App\Http\Controllers\Admin\ProdiController::class)->group(function () {
             Route::get('/prodi/index', 'index')->name('admin.prodi.index');
             Route::get('/prodi/biayastudi/{params}', 'biayastudi')->name('admin.prodi.biayastudi');
-            // Route::get('/prodi/biayastudi-import', 'import_biayastudi')->name('admin.prodi.importbiayastudi');
+            Route::get('/prodi/biayastudi-import/{id}', 'import_biayastudi')->name('admin.prodi.importbiayastudi');
         });
         //
         Route::get('/setup/index', App\Livewire\Sistem\Setup::class)->name('admin.setup');
