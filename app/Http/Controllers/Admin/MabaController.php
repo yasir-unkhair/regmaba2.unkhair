@@ -41,8 +41,8 @@ class MabaController extends Controller
                     return $str;
                 })
                 ->editColumn('bayar_ukt', function ($row) {
-                    $str = $row->bayar_ukt == 1 ? '<span class="text-success">Lunas</span>' : '<span class="text-danger">Belum Lunas</span>';
-                    return $str;
+                    $str = $row->bayar_ukt ? '<span class="text-success">Lunas</span>' : '<span class="text-danger">Belum Lunas</span>';
+                    return $str . $row->bayar_ukt;
                 })
                 ->editColumn('proses', function ($row) {
                     if (strtolower($row->vonis_ukt) == 'kip-k') {
