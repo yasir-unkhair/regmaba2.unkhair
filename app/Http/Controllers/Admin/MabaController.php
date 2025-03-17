@@ -19,7 +19,7 @@ class MabaController extends Controller
         if ($request->ajax()) {
             $peserta = Pesertaukt::with(['prodi'])
                 ->join('app_peserta_has_verifikasiberkas AS b', 'app_peserta.id', '=', 'b.peserta_id')
-                ->select(['app_peserta.id', 'app_peserta.prodi_id', 'app_peserta.jalur', 'app_peserta.nomor_peserta', 'app_peserta.nama_peserta', 'app_peserta.npm', 'b.vonis_ukt'])
+                ->select(['app_peserta.id', 'app_peserta.prodi_id', 'app_peserta.jalur', 'app_peserta.nomor_peserta', 'app_peserta.nama_peserta', 'app_peserta.npm', 'b.vonis_ukt', 'b.bayar_ukt', 'b.tgl_vonis'])
                 ->setup($setup->id)
                 ->registrasi(true)
                 ->status([5])
@@ -42,7 +42,7 @@ class MabaController extends Controller
                 })
                 ->editColumn('bayar_ukt', function ($row) {
                     $str = $row->bayar_ukt ? '<span class="text-success">Lunas</span>' : '<span class="text-danger">Belum Lunas</span>';
-                    return $str . $row->bayar_ukt;
+                    return $str;
                 })
                 ->editColumn('proses', function ($row) {
                     if (strtolower($row->vonis_ukt) == 'kip-k') {
