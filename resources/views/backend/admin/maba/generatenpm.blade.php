@@ -57,7 +57,7 @@
                         @if ($peserta)
                             <br>
                             <div class="table-responsive">
-                                <table class="table border border-black" style="font-size:14px;">
+                                <table class="table border border-black" style="font-size:15px;">
                                     <tr>
                                         <td class="text-right bg-light" width="15%">Nomor Peserta :</td>
                                         <td width="35%">
