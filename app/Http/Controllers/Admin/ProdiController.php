@@ -36,7 +36,7 @@ class ProdiController extends Controller
                     return $row->kode_prodi . ' - ' . $row->nama_prodi;
                 })
                 ->editColumn('fakultas', function ($row) {
-                    return $row->fakultas->nama_fakultas;
+                    return $row->fakultas->nama_fakultas ?? '-';
                 })
                 ->filter(function ($instance) use ($request) {
                     if ($request->get('fakultas_id')) {
