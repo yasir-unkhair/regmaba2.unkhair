@@ -182,4 +182,20 @@ class WebController extends Controller
             exit();
         }
     }
+
+    public function download($params)
+    {
+        $params = decode_arr($params);
+        if(!$params) {
+            abort(404, 'Halaman tidak ditemukan!');
+            exit();
+        }
+
+        $file = public_path('files/' . $params['dokumen']);
+        if(file_exists($file)) {
+            return response()->download($file);
+        }
+
+        abort(404, 'File not found!');
+    }
 }

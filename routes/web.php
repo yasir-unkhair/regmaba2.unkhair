@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(App\Http\Controllers\WebController::class)->group(function () {
     Route::get('/', 'index')->name('frontend.site');
     Route::get('/beranda', 'index')->name('frontend.beranda');
-    Route::get('/download', 'download')->name('frontend.download');
+    Route::get('/download/{params}', 'download')->name('frontend.download');
     Route::get('/kategoriukt', 'kategoriukt')->name('frontend.kategoriukt');
     Route::get('/kontak', 'kontak')->name('frontend.kontak');
 

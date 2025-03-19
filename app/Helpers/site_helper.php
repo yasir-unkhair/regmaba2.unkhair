@@ -72,7 +72,7 @@ if (!function_exists('list_dokumen_upload')) {
         $dokumen[] = [
             'urutan' => $urutan,
             'dokumen' => 'surat-pernyataan',
-            'detail' => 'Surat Pernyataan Mahasiswa Persetujuan Penetapan Kelompok UKT. Format Surat <a href="' . route('frontend.download') . '" target="_blank" style="color:red"><u>[ Unduh disini ]</u></a>',
+            'detail' => 'Surat Pernyataan Mahasiswa Persetujuan Penetapan Kelompok UKT. Format Surat <a href="' . route('frontend.download', encode_arr(['dokumen' => 'Surat-pernyataan.docx'])) . '" target="_blank" style="color:red"><u>[ Unduh disini ]</u></a>',
             'wajib' => 'Y'
         ];
         $urutan++;
