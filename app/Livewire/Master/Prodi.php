@@ -11,6 +11,7 @@ class Prodi extends Component
 {
     public $id = '';
     public $kode_prodi = '';
+    public $kode_prodi_dikti = '';
     public $nama_prodi = '';
     public $fakultas_id = '';
     public $fakultas = [];
@@ -32,6 +33,7 @@ class Prodi extends Component
         $prodi = ModelsProdi::where('id', $prodi_id)->first();
         $this->id = $prodi->id;
         $this->kode_prodi = $prodi->kode_prodi;
+        $this->kode_prodi_dikti = $prodi->kode_prodi_dikti;
         $this->nama_prodi = $prodi->nama_prodi;
         $this->fakultas_id = $prodi->fakultas_id;
 
@@ -41,12 +43,14 @@ class Prodi extends Component
     public function save()
     {
         $this->validate([
+            'kode_prodi_dikti' => 'required',
             'nama_prodi' => 'required|string',
             'fakultas_id' => 'required'
         ]);
 
         ModelsProdi::where('id', $this->id)
             ->update([
+                'kode_prodi_dikti' => $this->kode_prodi_dikti,
                 'nama_prodi' => $this->nama_prodi,
                 'fakultas_id' => $this->fakultas_id,
             ]);
@@ -58,6 +62,7 @@ class Prodi extends Component
     {
         $this->id = "";
         $this->kode_prodi = "";
+        $this->kode_prodi_dikti = "";
         $this->nama_prodi = "";
         $this->fakultas_id = "";
 

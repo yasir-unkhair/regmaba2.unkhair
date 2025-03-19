@@ -12,13 +12,23 @@
                     </div>
                     <div class="modal-body">
                         <input type="hidden" wire:model="id">
-                        <div class="form-group">
-                            <label for="kode_prodi">Kode Prodi</label>
-                            <input type="text" class="form-control" id="kode_prodi" wire:model="kode_prodi"
-                                placeholder="Kode Prodi" readonly>
-                            @error('kode_prodi')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="kode_prodi">Kode Prodi</label>
+                                <input type="text" class="form-control" id="kode_prodi" wire:model="kode_prodi"
+                                    placeholder="Kode Prodi" readonly>
+                                @error('kode_prodi')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label for="kode_prodi">Kode DIKTI</label>
+                                <input type="text" class="form-control" id="kode_prodi_dikti"
+                                    wire:model="kode_prodi_dikti" placeholder="Kode DIKTI">
+                                @error('kode_prodi_dikti')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="kode_prodi">Nama Prodi</label>

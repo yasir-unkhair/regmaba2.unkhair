@@ -46,7 +46,8 @@ class ProdiController extends Controller
                     if (!empty($request->input('search.value'))) {
                         $instance->where(function ($w) use ($request) {
                             $search = $request->input('search.value');
-                            $w->orWhere('kode_prodi', 'LIKE', "%$search%")->orWhere('nama_prodi', 'LIKE', "%$search%");
+                            $w->orWhere('kode_prodi', 'LIKE', "%$search%")->orWhere('nama_prodi', 'LIKE', "%$search%")
+                                ->orWhere('kode_prodi_dikti', 'LIKE', "%$search%");
                         });
                     }
                 })

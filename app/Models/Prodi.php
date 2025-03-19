@@ -22,6 +22,7 @@ class Prodi extends Model
         'id',
         'fakultas_id',
         'kode_prodi',
+        'kode_prodi_dikti',
         'nama_prodi',
         'status',
         'jenjang_prodi'
