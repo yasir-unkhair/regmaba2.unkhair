@@ -174,7 +174,7 @@ class WebController extends Controller
                     <br>
                     <br>
                     <center>
-                        <iframe src='" . $berkas->url_berkas . "' width='100%' height='600px'></iframe>
+                        <iframe src='" . $berkas->url_berkas . "' width='90%' height='700px'></iframe>
                     </center>
                 </body>
             </html>
