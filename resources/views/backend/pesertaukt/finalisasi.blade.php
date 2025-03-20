@@ -114,96 +114,96 @@
                                     <table class="table border border-black mb-0">
                                         <tr>
                                             <td class="text-right" width="30%">Nama Ayah :</td>
-                                            <td width="70%">{{ $tab2->nama_ayah }}</td>
+                                            <td width="70%">{{ $tab2->nama_ayah ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Nama Ibu :</td>
-                                            <td>{{ $tab2->nama_ibu }}</td>
+                                            <td>{{ $tab2->nama_ibu ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Nama Wali :</td>
-                                            <td>{{ $tab2->nama_wali }}</td>
+                                            <td>{{ $tab2->nama_wali ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Keberadaan Orangtua :</td>
-                                            <td>{{ get_referensi($tab2->keberadaan_ortu) }}</td>
+                                            <td>{{ get_referensi($tab2->keberadaan_ortu ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Jumlah Kakak :</td>
-                                            <td>{{ $tab2->jml_kakak }}</td>
+                                            <td>{{ $tab2->jml_kakak ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Jumlah Adik :</td>
-                                            <td>{{ $tab2->jml_adik }}</td>
+                                            <td>{{ $tab2->jml_adik ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Jumlah Tanggungan Yang Sedang Kuliah :</td>
-                                            <td>{{ $tab2->jml_kuliah }}</td>
+                                            <td>{{ $tab2->jml_kuliah ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Jumlah Tanggungan Yang Sedang Sekolah :</td>
-                                            <td>{{ $tab2->jml_sekolah }}</td>
+                                            <td>{{ $tab2->jml_sekolah ?? '' }}</td>
                                         </tr>
                                         <tr class="border border-danger">
                                             <td colspan="2" class="p-0"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Pekerjaan Ayah :</td>
-                                            <td>{{ get_referensi($tab2->pekerjaan_ayah) }}</td>
+                                            <td>{{ get_referensi($tab2->pekerjaan_ayah ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Pangkat, Golongan, Jabatan Pekerjaan Ayah :</td>
-                                            <td>{{ $tab2->pangkat_ayah }}</td>
+                                            <td>{{ $tab2->pangkat_ayah ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Penghasilan Ayah :</td>
-                                            <td>Rp. {{ rupiah($tab2->penghasilan_ayah) }}</td>
+                                            <td>Rp. {{ rupiah($tab2->penghasilan_ayah ?? '') }}</td>
                                         </tr>
                                         <tr class="border border-danger">
                                             <td colspan="2" class="p-0"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Pekerjaan Ibu :</td>
-                                            <td>{{ get_referensi($tab2->pekerjaan_ibu) }}</td>
+                                            <td>{{ get_referensi($tab2->pekerjaan_ibu ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Pangkat, Golongan, Jabatan Pekerjaan Ibu :</td>
-                                            <td>{{ $tab2->pangkat_ibu }}</td>
+                                            <td>{{ $tab2->pangkat_ibu ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Penghasilan Ibu :</td>
-                                            <td>Rp. {{ rupiah($tab2->penghasilan_ibu) }}</td>
+                                            <td>Rp. {{ rupiah($tab2->penghasilan_ibu ?? '') }}</td>
                                         </tr>
                                         <tr class="border border-danger">
                                             <td colspan="2" class="p-0"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Luas Lahan Yang Dimiliki Orangtua :</td>
-                                            <td>{{ get_referensi($tab2->luas_lahan) }}</td>
+                                            <td>{{ get_referensi($tab2->luas_lahan ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Aset Lain Yang Dimiliki Orangtua :</td>
-                                            <td>{{ tampil_aset($tab2->aset_ortu) }}</td>
+                                            <td>{{ tampil_aset($tab2->aset_ortu ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Kepemilikan Rumah :</td>
-                                            <td>{{ get_referensi($tab2->kepemilikan_rumah) }}</td>
+                                            <td>{{ get_referensi($tab2->kepemilikan_rumah ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Kondisi Rumah :</td>
-                                            <td>{{ get_referensi($tab2->kondisi_rumah) }}</td>
+                                            <td>{{ get_referensi($tab2->kondisi_rumah ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Lokasi Tempat Tinggal :</td>
-                                            <td>{{ get_referensi($tab2->lokasi_rumah) }}</td>
+                                            <td>{{ get_referensi($tab2->lokasi_rumah ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Daya Listrik :</td>
-                                            <td>{{ get_referensi($tab2->daya_listrik) }}</td>
+                                            <td>{{ get_referensi($tab2->daya_listrik ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Bantuan Siswa Miskin (SMA/SMK/MA) :</td>
-                                            <td>{{ get_referensi($tab2->bantuan_siswa_miskin) }}</td>
+                                            <td>{{ get_referensi($tab2->bantuan_siswa_miskin ?? '') }}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -214,60 +214,60 @@
                                     <table class="table border border-black mb-0">
                                         <tr>
                                             <td class="text-right" width="30%">Biaya Studi Oleh :</td>
-                                            <td width="70%">{{ get_referensi($tab3->biaya_studi) }}</td>
+                                            <td width="70%">{{ get_referensi($tab3->biaya_studi ?? '') }}</td>
                                         </tr>
                                         <tr class="border border-danger">
                                             <td colspan="2" class="p-0"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Pekerjaan Anda :</td>
-                                            <td>{{ get_referensi($tab3->pekerjaan_sendiri) . (trim($tab3->detail_pekerjaan_sendiri) ? ', ' . $tab3->detail_pekerjaan_sendiri : '') }}
+                                            <td>{{ get_referensi($tab3->pekerjaan_sendiri ?? '') . (trim($tab3->detail_pekerjaan_sendiri ?? '') ? ', ' . $tab3->detail_pekerjaan_sendiri ?? '' : '') }}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Pangkat, Golongan, Jabatan Pekerjaan Anda :</td>
-                                            <td>{{ $tab3->pangkat_sendiri }}</td>
+                                            <td>{{ $tab3->pangkat_sendiri ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Luas Lahan Yang Anda Miliki :</td>
-                                            <td>{{ get_referensi($tab3->lahan_sendiri) }}</td>
+                                            <td>{{ get_referensi($tab3->lahan_sendiri ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Aset Lain Yang Anda Miliki :</td>
-                                            <td>{{ tampil_aset($tab3->aset_sendiri) . (trim($tab3->aset_lainnya) ? ', ' . $tab2->aset_lainnya : '') }}
+                                            <td>{{ tampil_aset($tab3->aset_sendiri ?? '') . (trim($tab3->aset_lainnya ?? '') ? ', ' . $tab2->aset_lainnya ?? '' : '') }}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Penghasilan Anda :</td>
-                                            <td>Rp. {{ rupiah($tab3->penghasilan_sendiri) }}</td>
+                                            <td>Rp. {{ rupiah($tab3->penghasilan_sendiri ?? '') }}</td>
                                         </tr>
                                         <tr class="border border-danger">
                                             <td colspan="2" class="p-0"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Wali Anda :</td>
-                                            <td>{{ get_referensi($tab3->wali) }}</td>
+                                            <td>{{ get_referensi($tab3->wali ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Pekerjaan Wali :</td>
-                                            <td>{{ get_referensi($tab3->pekerjaan_wali) }}</td>
+                                            <td>{{ get_referensi($tab3->pekerjaan_wali ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Pangkat, Golongan, Jabatan Pekerjaan Wali :</td>
-                                            <td>{{ $tab3->pangkat_wali }}</td>
+                                            <td>{{ $tab3->pangkat_wali ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Luas Lahan Yang Dimiliki Wali :</td>
-                                            <td>{{ get_referensi($tab3->lahan_wali) }}</td>
+                                            <td>{{ get_referensi($tab3->lahan_wali ?? '') }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Aset Lain Yang Dimiliki Wali :</td>
-                                            <td>{{ tampil_aset($tab3->aset_wali) . (trim($tab3->aset_wali_lainnya) ? ', ' . $tab3->aset_wali_lainnya : '') }}
+                                            <td>{{ tampil_aset($tab3->aset_wali ?? '') . (trim($tab3->aset_wali_lainnya ?? '') ? ', ' . $tab3->aset_wali_lainnya ?? '' : '') }}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">Penghasilan Wali :</td>
-                                            <td>Rp. {{ number_format($tab3->penghasilan_wali) }}</td>
+                                            <td>Rp. {{ number_format($tab3->penghasilan_wali ?? '') }}</td>
                                         </tr>
                                     </table>
                                 </div>

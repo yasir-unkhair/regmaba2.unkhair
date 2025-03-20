@@ -32,8 +32,10 @@ class FinalisasiController extends Controller
         // dd($peserta->formulirukt_selesai_input(), $peserta->akses_formulirukt());
 
         $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'prodi'])->where('id', session('peserta_id'))->first();
-        $kondisi = $peserta->kondisikeluarga->first();
-        $biaya = $peserta->pembiayaanstudi->first();
+        $kondisi = $peserta->kondisikeluarga;
+        $biaya = $peserta->pembiayaanstudi;
+
+        // dd($peserta, $kondisi->nama_ayah);
 
         $berkasku = PesertauktDokumen::where('peserta_id', $peserta->id);
         $berkasada = false;
