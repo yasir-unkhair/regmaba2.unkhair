@@ -132,6 +132,7 @@ class WebController extends Controller
 
                     <style>
                     .avatar {
+                        max-width: 100%;
                         /*    background-color: #7d7d7d;*/
                         border: 2px solid #7d7d7d;
                         padding: 2px;
@@ -142,7 +143,7 @@ class WebController extends Controller
                 <div class='container'>
                     <center>
                         <p>
-                            <img src='" . $berkas->url_berkas . "' alt='blgo image' class='avatar mt-5' style='width: 250px;'>
+                            <img src='" . $berkas->url_berkas . "' alt='blgo image' class='avatar mt-5'>
                         </p>
                     </center>
                 </div>
