@@ -29,14 +29,20 @@ class FinalisasiController extends Controller
             return redirect(route('peserta.dashboard'));
         }
 
+        // dd($peserta->formulirukt_selesai_input(), $peserta->akses_formulirukt());
+
         $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'prodi'])->where('id', session('peserta_id'))->first();
         $kondisi = $peserta->kondisikeluarga->first();
         $biaya = $peserta->pembiayaanstudi->first();
 
         $berkasku = PesertauktDokumen::where('peserta_id', $peserta->id);
+        $berkasada = false;
         if ($berkasku->count() > 0) {
             $berkasku = $berkasku->get()->toArray();
-        }else {
+            $berkasada = true;
+        }
+        
+        if(!$berkasada){
             alert()->error('Error', 'Anda belum Upload Berkas Bukti Dukung, Silahkan upload terlebih dahulu!');
             return redirect(route('peserta.berkasdukung'));
         }
