@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Pesertaukt;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pesertaukt;
-use App\Models\PesertauktDokumen;
 use Illuminate\Http\Request;
 
 class UploadBerkasDukungController extends Controller
@@ -17,14 +16,14 @@ class UploadBerkasDukungController extends Controller
             return redirect(route('peserta.dashboard'));
         }
 
-        $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi'])->where('id', session('peserta_id'))->first();
+        $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'berkasdukung'])->where('id', session('peserta_id'))->first();
         // dd($peserta, $peserta->berkasdukung);
-        $kondisi = $peserta->kondisikeluarga->first();
-        $biaya = $peserta->pembiayaanstudi->first();
+        $kondisi = $peserta->kondisikeluarga;
+        $biaya = $peserta->pembiayaanstudi;
 
-        $berkasku = PesertauktDokumen::where('peserta_id', $peserta->id);
+        $berkasku = $peserta->berkasdukung;
         if ($berkasku->count() > 0) {
-            $berkasku = $berkasku->get()->toArray();
+            $berkasku = $berkasku->toArray();
         }
 
         $dokumen = [];

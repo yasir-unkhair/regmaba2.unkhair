@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Pesertaukt;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pesertaukt;
-use App\Models\PesertauktDokumen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,16 +30,16 @@ class FinalisasiController extends Controller
 
         // dd($peserta->formulirukt_selesai_input(), $peserta->akses_formulirukt());
 
-        $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'prodi'])->where('id', session('peserta_id'))->first();
+        $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'berkasdukung', 'prodi'])->where('id', session('peserta_id'))->first();
         $kondisi = $peserta->kondisikeluarga;
         $biaya = $peserta->pembiayaanstudi;
 
         // dd($peserta, $kondisi->nama_ayah);
 
-        $berkasku = PesertauktDokumen::where('peserta_id', $peserta->id);
+        $berkasku = $peserta->berkasdukung;
         $berkasada = false;
         if ($berkasku->count() > 0) {
-            $berkasku = $berkasku->get()->toArray();
+            $berkasku = $berkasku->toArray();
             $berkasada = true;
         }
         

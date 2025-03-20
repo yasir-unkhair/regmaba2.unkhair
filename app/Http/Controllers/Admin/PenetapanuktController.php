@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Fakultas;
 use App\Models\Pesertaukt;
-use App\Models\PesertauktDokumen;
 use App\Models\PesertauktVerifikasiBerkas;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -98,13 +97,13 @@ class PenetapanuktController extends Controller
     {
         $params = decode_arr($params);
         // dd($params);
-        $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'verifikasiberkas', 'prodi'])->where('id', $params['peserta_id'])->first();
+        $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'berkasdukung', 'verifikasiberkas', 'prodi'])->where('id', $params['peserta_id'])->first();
         $kondisi = $peserta->kondisikeluarga;
         $biaya = $peserta->pembiayaanstudi;
         
-        $berkasku = PesertauktDokumen::where('peserta_id', $peserta->id);
+        $berkasku = $peserta->berkasdukung;
         if ($berkasku->count() > 0) {
-            $berkasku = $berkasku->get()->toArray();
+            $berkasku = $berkasku->toArray();
         }
 
         $dokumen = [];

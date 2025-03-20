@@ -12,24 +12,26 @@ class DashboardController extends Controller
     public function index()
     {
         $setup = get_setup();
-        $peserta = Pesertaukt::where('setup_id', $setup->id)->registrasi(true)->status([3, 4, 5])->get();
-
+        
         $jml_snbp = 0;
         $jml_snbt = 0;
         $jml_mandiri = 0;
 
-        foreach ($peserta as $row) {
-            $jalur = strtolower($row->jalur);
-            if ($jalur == 'snbp') {
-                $jml_snbp++;
-            }
+        if(session('role')){
+            $peserta = Pesertaukt::where('setup_id', $setup->id)->registrasi(true)->status([3, 4, 5])->get();
+            foreach ($peserta as $row) {
+                $jalur = strtolower($row->jalur);
+                if ($jalur == 'snbp') {
+                    $jml_snbp++;
+                }
 
-            if ($jalur == 'snbt') {
-                $jml_snbt++;
-            }
+                if ($jalur == 'snbt') {
+                    $jml_snbt++;
+                }
 
-            if ($jalur == 'mandiri') {
-                $jml_mandiri++;
+                if ($jalur == 'mandiri') {
+                    $jml_mandiri++;
+                }
             }
         }
 

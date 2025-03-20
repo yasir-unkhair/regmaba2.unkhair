@@ -142,7 +142,7 @@ class WebController extends Controller
                 <div class='container'>
                     <center>
                         <p>
-                            <img src='" . $berkas->url_berkas . "' alt='blgo image' class='avatar mt-5'>
+                            <img src='" . $berkas->url_berkas . "' alt='blgo image' class='avatar mt-5' style='width: 250px;'>
                         </p>
                     </center>
                 </div>

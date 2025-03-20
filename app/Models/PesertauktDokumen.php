@@ -45,7 +45,7 @@ class PesertauktDokumen extends Model
 
     public function peserta()
     {
-        return $this->hasOne(Pesertaukt::class, 'id', 'peserta_id');
+        return $this->belongsTo(Pesertaukt::class, 'id', 'peserta_id');
     }
 
     public function berkas()

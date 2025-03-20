@@ -23,7 +23,7 @@
         <!-- Main content -->
         <section class="content pl-2 pr-2">
             <div class="container-fluid">
-                <livewire:Admin.PlottingVerifikator params="{{ $params }}">
+                <livewire:admin.plotting-verifikator params="{{ $params }}" />
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->

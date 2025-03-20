@@ -154,7 +154,7 @@ class Pesertaukt extends Model
 
     public function berkasdukung()
     {
-        return $this->hasOne(PesertauktDokumen::class, 'peserta_id', 'id');
+        return $this->hasMany(PesertauktDokumen::class, 'peserta_id', 'id');
     }
 
     public function verifikasiberkas()
@@ -164,7 +164,7 @@ class Pesertaukt extends Model
 
     public function pembayaran()
     {
-        return $this->hasOne(PesertauktPembayaran::class, 'peserta_id', 'id');
+        return $this->hasMany(PesertauktPembayaran::class, 'peserta_id', 'id');
     }
 
     public function prosesdata()

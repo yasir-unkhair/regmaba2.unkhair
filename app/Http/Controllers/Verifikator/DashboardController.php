@@ -12,13 +12,15 @@ class DashboardController extends Controller
     public function index()
     {
         $setup = get_setup();
-        $peserta = User::where('id', auth()->user()->id)->first();
+        $verifikator = User::where('id', auth()->user()->id)->first();
 
+        $peserta = $verifikator->verifikasipeserta()->where('app_peserta.setup_id', $setup->id)->where('app_peserta.registrasi', true)->whereIn('app_peserta.status', [3, 4, 5])->get();
+        
         $jml_snbp = 0;
         $jml_snbt = 0;
         $jml_mandiri = 0;
 
-        foreach ($peserta->verifikasipeserta()->where('app_peserta.setup_id', $setup->id)->where('app_peserta.registrasi', true)->whereIn('app_peserta.status', [3, 4, 5])->get() as $row) {
+        foreach ($peserta as $row) {
             $jalur = strtolower($row->jalur);
             if ($jalur == 'snbp') {
                 $jml_snbp++;
@@ -40,6 +42,8 @@ class DashboardController extends Controller
             'total' => ($jml_snbp + $jml_snbt + $jml_mandiri),
             'tahun' => $setup->tahun
         ];
+
+        // dd($new, $old, $data);
 
         return view('backend.verifikator.dashboard', $data);
     }
