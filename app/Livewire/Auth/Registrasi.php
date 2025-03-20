@@ -215,13 +215,15 @@ class Registrasi extends Component
             }
 
             if (!$err) {
+                $email = str_replace(" ", "", trim($this->email));
+
                 $peserta->update([
-                    'email' => $this->email,
+                    'email' => $email,
                     'pass' => randomString(5)
                 ]);
 
                 SendMail::dispatch([
-                    'email' => $this->email,
+                    'email' => $email,
                     'get' => $get,
                     'content' => 'registrasi'
                 ])->delay(Carbon::now()->addSecond(5));
