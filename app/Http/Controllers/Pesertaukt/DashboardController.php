@@ -40,8 +40,8 @@ class DashboardController extends Controller
         }
 
         $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'prodi'])->where('id', session('peserta_id'))->first();
-        $kondisi = $peserta->kondisikeluarga->first();
-        $biaya = $peserta->pembiayaanstudi->first();
+        $kondisi = $peserta->kondisikeluarga;
+        $biaya = $peserta->pembiayaanstudi;
         
         $berkasku = PesertauktDokumen::where('peserta_id', $peserta->id);
         if ($berkasku->count() > 0) {

@@ -99,8 +99,8 @@ class PenetapanuktController extends Controller
         $params = decode_arr($params);
         // dd($params);
         $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'verifikasiberkas', 'prodi'])->where('id', $params['peserta_id'])->first();
-        $kondisi = $peserta->kondisikeluarga->first();
-        $biaya = $peserta->pembiayaanstudi->first();
+        $kondisi = $peserta->kondisikeluarga;
+        $biaya = $peserta->pembiayaanstudi;
         
         $berkasku = PesertauktDokumen::where('peserta_id', $peserta->id);
         if ($berkasku->count() > 0) {
