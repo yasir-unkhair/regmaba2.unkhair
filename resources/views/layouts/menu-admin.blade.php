@@ -120,13 +120,13 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{ route('admin.penetapanukt.laporan') }}"
                         class="nav-link {{ routeIs(['admin.penetapanukt.laporan']) ? 'active' : '' }}">
                         <i class="fas fa-angle-double-right nav-icon" aria-hidden="true" style="font-size: 11px;"></i>
                         <p>Laporan Peserta UKT</p>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a href="{{ route('admin.maba.index') }}"
@@ -139,8 +139,7 @@
                 <li class="nav-item">
                     <a href="{{ route('admin.maba.generatenpm') }}"
                         class="nav-link {{ routeIs(['admin.maba.generatenpm', 'admin.maba.generatenpm-params']) ? 'active' : '' }}">
-                        <i class="fas fa-angle-double-right nav-icon" aria-hidden="true"
-                            style="font-size: 11px;"></i>
+                        <i class="fas fa-angle-double-right nav-icon" aria-hidden="true" style="font-size: 11px;"></i>
                         <p>Generate NPM</p>
                     </a>
                 </li>
@@ -172,15 +171,14 @@
                         <p>Penugasan</p>
                     </a>
                 </li>
-
-                <li class="nav-item">
-                    <a href="" class="nav-link {{ routeIs(['']) ? 'active' : '' }}">
-                        <i class="fas fa-angle-double-right nav-icon" aria-hidden="true"
-                            style="font-size: 11px;"></i>
-                        <p>Laporan</p>
-                    </a>
-                </li>
             </ul>
+        </li>
+
+        <li class="nav-item {{ routeIs('verifikator.pesertaukt.laporan') ? 'active' : '' }}">
+            <a href="" class="nav-link {{ routeIs('verifikator.pesertaukt.laporan') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-book"></i>
+                <p>Laporan</p>
+            </a>
         </li>
     @endif
 

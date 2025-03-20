@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pesertaukt;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pesertaukt;
+use App\Models\PesertauktDokumen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,10 +29,17 @@ class FinalisasiController extends Controller
             return redirect(route('peserta.dashboard'));
         }
 
-        $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'berkasdukung', 'prodi'])->where('id', session('peserta_id'))->first();
+        $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'prodi'])->where('id', session('peserta_id'))->first();
         $kondisi = $peserta->kondisikeluarga->first();
         $biaya = $peserta->pembiayaanstudi->first();
-        $berkasku = $peserta->berkasdukung->get()->toArray();
+
+        $berkasku = PesertauktDokumen::where('peserta_id', $peserta->id);
+        if ($berkasku->count() > 0) {
+            $berkasku = $berkasku->get()->toArray();
+        }else {
+            alert()->error('Error', 'Anda belum Upload Berkas Bukti Dukung, Silahkan upload terlebih dahulu!');
+            return redirect(route('peserta.berkasdukung'));
+        }
 
         $dokumen = [];
         foreach (list_dokumen_upload($kondisi->keberadaan_ortu, $biaya->biaya_studi) as $row) {

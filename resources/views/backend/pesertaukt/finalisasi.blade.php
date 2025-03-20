@@ -44,7 +44,7 @@
                         <div class="tab-content">
                             <div class="active tab-pane" id="data-diri" role="tabpanel">
                                 <div class="table-responsive mb-0">
-                                    <table class="table border border-black mb-0" style="font-size:15px;">
+                                    <table class="table border border-black mb-0">
                                         <tr>
                                             <td class="text-right" width="30%">NIK :</td>
                                             <td width="70%">{{ $tab1->nik }}</td>
@@ -111,7 +111,7 @@
 
                             <div class="tab-pane" id="kondisi-keluarga" role="tabpanel">
                                 <div class="table-responsive mb-0">
-                                    <table class="table border border-black mb-0" style="font-size:15px;">
+                                    <table class="table border border-black mb-0">
                                         <tr>
                                             <td class="text-right" width="30%">Nama Ayah :</td>
                                             <td width="70%">{{ $tab2->nama_ayah }}</td>
@@ -211,7 +211,7 @@
 
                             <div class="tab-pane" id="pembiayaan-studi" role="tabpanel">
                                 <div class="table-responsive mb-0">
-                                    <table class="table border border-black mb-0" style="font-size:15px;">
+                                    <table class="table border border-black mb-0">
                                         <tr>
                                             <td class="text-right" width="30%">Biaya Studi Oleh :</td>
                                             <td width="70%">{{ get_referensi($tab3->biaya_studi) }}</td>
