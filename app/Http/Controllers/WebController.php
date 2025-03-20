@@ -170,7 +170,7 @@ class WebController extends Controller
                     }
                     </style>
                 </head>
-                <body>
+                <body class='pb-5'>
                     <center>
                         <iframe src='" . $berkas->url_berkas . "' width='850' height='600'></iframe>
                     </center>
