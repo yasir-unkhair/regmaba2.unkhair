@@ -75,6 +75,21 @@ class ProdiController extends Controller
         return view('backend.admin.prodi', $data);
     }
 
+    public function byfakultas(Request $request){
+        if($request->ajax()){
+            if($request->fakultas_id)
+            {
+                $prodi = Prodi::where('fakultas_id', $request->fakultas_id)->orderBy('nama_prodi', 'ASC')->get();
+                return response()->json($prodi);
+            }
+            else
+            {
+                $prodi = Prodi::orderBy('fakultas_id', 'ASC')->orderBy('jenjang_prodi', 'ASC')->orderBy('nama_prodi', 'ASC')->get();
+                return response()->json($prodi);
+            }
+        }
+    }
+
     public function biayastudi($params)
     {
         $params = decode_arr($params);

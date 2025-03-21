@@ -102,6 +102,7 @@ Route::group(['middleware' => 'isLogin'], function () {
 
         Route::controller(App\Http\Controllers\Admin\ProdiController::class)->group(function () {
             Route::get('/prodi/index', 'index')->name('admin.prodi.index');
+            Route::get('/prodi/byfakultas', 'byfakultas')->name('admin.prodi.byfakultas');
             Route::get('/prodi/importsimak', 'importSimak')->name('admin.prodi.importsimak');
             Route::get('/prodi/biayastudi/{params}', 'biayastudi')->name('admin.prodi.biayastudi');
             Route::get('/prodi/biayastudi-import/{id}', 'import_biayastudi')->name('admin.prodi.importbiayastudi');

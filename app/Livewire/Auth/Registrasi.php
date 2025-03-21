@@ -23,7 +23,7 @@ class Registrasi extends Component
     public $get = NULL;
 
     // batas waktu bisa ganti email
-    public $menit_mak = 10;
+    public $menit_mak = 15;
 
     public function mount($params = NULL)
     {
@@ -228,7 +228,7 @@ class Registrasi extends Component
                     'content' => 'registrasi'
                 ])->delay(Carbon::now()->addSecond(5));
 
-                alert()->success('Success', 'Silahkan cek inbox/spam pada E-Mail anda dan setelah itu lakukan aktivasi akun.');
+                alert()->success('Success', 'Silahkan cek inbox/spam pada E-Mail anda, Pegiriman Informasi Akun membutuhkan waktu beberapa menit, Jika informasi akun sudah masuk segera lakukan ATIVASI AKUN.');
                 return $this->redirect(route('auth.registrasi'));
             }
         }
