@@ -45,7 +45,9 @@
                     </label>
                 </div>
                 <div class="forgot-phone text-right f-right">
-                    {{-- <a href="#" class="text-right f-w-600" class="text-danger">Reset Password?</a> --}}
+                    <a href="{{ route('auth.reset') }}" class="text-right f-w-600 text-danger">
+                        Reset Password?
+                    </a>
                 </div>
             </div>
         </div>

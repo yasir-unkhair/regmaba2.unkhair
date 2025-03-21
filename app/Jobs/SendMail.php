@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\NotifResetpassword;
 use App\Mail\PenetapanUktMail;
 use App\Mail\RegisterMail;
 use Illuminate\Bus\Queueable;
@@ -50,6 +51,10 @@ class SendMail implements ShouldQueue, ShouldBeUnique
 
             case 'penetapanukt':
                 Mail::to($this->email)->send(new PenetapanUktMail($this->peserta));
+                break;
+
+            case 'reset-password':
+                Mail::to($this->email)->send(new NotifResetpassword($this->peserta));
                 break;
 
             default:

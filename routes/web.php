@@ -40,6 +40,8 @@ Livewire::setScriptRoute(function ($handle) {
 Route::get('/login', App\Livewire\Auth\Login::class)->name('auth.login');
 Route::get('/registrasi', App\Livewire\Auth\Registrasi::class)->name('auth.registrasi');
 Route::get('/registrasi/{params}', App\Livewire\Auth\Registrasi::class)->name('auth.registrasi.response');
+Route::get('/reset', App\Livewire\Auth\ResetPassword::class)->name('auth.reset');
+Route::get('/reset/{params}', App\Livewire\Auth\ResetPassword::class)->name('auth.reset.response');
 
 Route::group(['middleware' => 'isLogin'], function () {
 
