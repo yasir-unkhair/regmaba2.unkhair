@@ -36,13 +36,13 @@ class WebController extends Controller
             // exit();
 
             // update password user login
-            if($get->user_id){    
+            if($get->user_id && data_params($params, 'password')){    
                 User::where('id', $get->user_id)->update([
-                    'password' => Hash::make($get->pass)
+                    'password' => Hash::make(data_params($params, 'password'))
                 ]);
+                alert()->success('Success', 'Akun Anda Sudah Aktif. Silahkan Login akun tertera di E-mail anda.');
             }
 
-            alert()->success('Success', 'Akun Anda Sudah Aktif. Silahkan Login akun tertera di E-mail anda.');
             return redirect()->route('auth.login');
         }
 
