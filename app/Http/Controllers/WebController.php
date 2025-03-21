@@ -32,8 +32,18 @@ class WebController extends Controller
         $peserta = Pesertaukt::where('id', data_params($params, 'id'));
         $get = $peserta->first();
         if ($get->registrasi) {
-            abort(403, 'Akun Anda Sudah Aktivasi. Silahkan Login akun tertera di E-mail anda.');
-            exit();
+            // abort(403, 'Akun Anda Sudah Aktivasi. Silahkan Login akun tertera di E-mail anda.');
+            // exit();
+
+            // update password user login
+            if($get->user_id){    
+                User::where('id', $get->user_id)->update([
+                    'password' => Hash::make($get->pass)
+                ]);
+            }
+
+            alert()->success('Success', 'Akun Anda Sudah Aktif. Silahkan Login akun tertera di E-mail anda.');
+            return redirect()->route('auth.login');
         }
 
         $setup = get_setup();
