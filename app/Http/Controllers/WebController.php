@@ -32,7 +32,7 @@ class WebController extends Controller
         $peserta = Pesertaukt::where('id', data_params($params, 'id'));
         $get = $peserta->first();
         if ($get->registrasi) {
-            abort(403, 'Anda Sudah Melakukan Aktivasi');
+            abort(403, 'Akun Anda Sudah Aktivasi. Silahkan Login akun tertera di E-mail anda.');
             exit();
         }
 
