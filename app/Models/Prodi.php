@@ -33,6 +33,13 @@ class Prodi extends Model
         return $this->hasOne(Fakultas::class, 'id', 'fakultas_id');
     }
 
+    public function scopejenjang($query, $value)
+    {
+        if ($value) {
+            $query->whereIn('jenjang_prodi', $value);
+        }
+    }
+
     public function scopepencarian($query, $value)
     {
         if ($value) {

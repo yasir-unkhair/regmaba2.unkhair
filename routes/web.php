@@ -87,6 +87,10 @@ Route::group(['middleware' => 'isLogin'], function () {
                 Route::post('/maba/carimaba', 'carimaba')->name('admin.maba.carimaba');
                 Route::get('/maba/actgeneratenpm/{params}', 'actgeneratenpm')->name('admin.maba.actgeneratenpm');
             });
+
+            Route::controller(App\Http\Controllers\Admin\LaporanController::class)->group(function () {
+                Route::get('/laporan/index', 'index')->name('admin.laporan.index');
+            });
         });
 
         Route::get('/informasi/index', App\Livewire\Postingan\Informasi::class)->name('admin.informasi.index');

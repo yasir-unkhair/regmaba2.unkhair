@@ -25,14 +25,14 @@ class WebController extends Controller
     public function aktivasi_registrasi($params)
     {
         if (!$params || !data_params($params, 'nomor_peserta')) {
-            abort(403);
+            abort(404, 'Halaman Tidak Ditemukan');
             exit();
         }
 
         $peserta = Pesertaukt::where('id', data_params($params, 'id'));
         $get = $peserta->first();
         if ($get->registrasi) {
-            abort(403);
+            abort(403, 'Anda Sudah Melakukan Aktivasi');
             exit();
         }
 

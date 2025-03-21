@@ -174,8 +174,9 @@
             </ul>
         </li>
 
-        <li class="nav-item {{ routeIs('verifikator.pesertaukt.laporan') ? 'active' : '' }}">
-            <a href="" class="nav-link {{ routeIs('verifikator.pesertaukt.laporan') ? 'active' : '' }}">
+        <li class="nav-item {{ Route::is('admin.laporan.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.laporan.index') }}"
+                class="nav-link {{ Route::is('admin.laporan.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-book"></i>
                 <p>Laporan</p>
             </a>
