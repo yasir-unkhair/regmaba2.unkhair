@@ -67,8 +67,8 @@
                                             <label for="fakultas" class="form-label">Registrasi</label>
                                             <select class="form-control" id="registrasi">
                                                 <option value="">-- Filter --</option>
-                                                <option value="1">Sudah Registrasi</option>
-                                                <option value="0">Belum Registrasi</option>
+                                                <option value="Y">Sudah Registrasi</option>
+                                                <option value="N">Belum Registrasi</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3">

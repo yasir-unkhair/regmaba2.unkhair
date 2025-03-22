@@ -59,7 +59,8 @@ class LaporanController extends Controller
                     }
 
                     if ($request->get('registrasi')) {
-                        $instance->where('app_peserta.registrasi', $request->get('registrasi'));
+                        $registrasi = $request->get('registrasi') == 'Y' ? 1 : 0;
+                        $instance->where('app_peserta.registrasi', $registrasi);
                         $filter = true;
                     }
                     
