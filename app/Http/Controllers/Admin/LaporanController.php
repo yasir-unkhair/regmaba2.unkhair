@@ -42,9 +42,6 @@ class LaporanController extends Controller
                 ->editColumn('verifikator', function ($row) {
                     return $row->verifikasiberkas?->verifikator?->name ?? '-';
                 })
-                ->editColumn('keterangan', function ($row) {
-                    return '-';
-                })
                 ->filter(function ($instance) use ($request) {
                     $filter = false;
                     if ($request->get('setup_id')) {
@@ -97,7 +94,7 @@ class LaporanController extends Controller
                         });
                     }
                 })
-                ->rawColumns(['tahun', 'prodi', 'jalur', 'status', 'keterangan', 'verifikator'])
+                ->rawColumns(['tahun', 'prodi', 'jalur', 'status', 'verifikator'])
                 ->make(true);
         }
         
@@ -116,14 +113,14 @@ class LaporanController extends Controller
                 'url' => route('admin.laporan.index'),
                 'id_table' => 'id-datatable',
                 'columns' => [
-                    ['data' => 'tahun', 'name' => 'tahun', 'orderable' => 'false', 'searchable' => 'false'],
+                    ['data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'nomor_peserta', 'name' => 'nomor_peserta', 'orderable' => 'false', 'searchable' => 'true'],
                     ['data' => 'nama_peserta', 'name' => 'nama_peserta', 'orderable' => 'true', 'searchable' => 'true'],
                     ['data' => 'prodi', 'name' => 'prodi', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'jalur', 'name' => 'jalur', 'orderable' => 'false', 'searchable' => 'false'],
+                    ['data' => 'tahun', 'name' => 'tahun', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'status', 'name' => 'status', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'verifikator', 'name' => 'verifikator', 'orderable' => 'false', 'searchable' => 'false'],
-                    ['data' => 'keterangan', 'name' => 'keterangan', 'orderable' => 'false', 'searchable' => 'false'],
                 ]
             ]
         ];

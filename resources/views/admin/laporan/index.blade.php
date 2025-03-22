@@ -145,14 +145,14 @@
                                 id="{{ $datatable2['id_table'] }}">
                                 <thead>
                                     <tr>
-                                        <th class="text-left" style="width:5%">Tahun</th>
-                                        <th class="text-left">No. Peserta</th>
+                                        <th class="text-left" style="width:3%">#</th>
+                                        <th class="text-left" style="width:12%">No. Peserta</th>
                                         <th class="text-left">Nama Lengkap</th>
                                         <th class="text-left">Program Studi</th>
                                         <th class="text-left">Jalur</th>
+                                        <th class="text-left">Tahun</th>
                                         <th class="text-left">UKT</th>
                                         <th class="text-left">Verifikator</th>
-                                        <th class="text-left">Keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
