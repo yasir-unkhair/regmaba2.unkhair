@@ -144,8 +144,8 @@
                         </div>
 
 
-                        <div class="table-responsive p-0 mb-2" style="font-size: 12px">
-                            <table class="table table-condensed table-bordered" style="width: 100%; font-size: 12px"
+                        <div class="table-responsive p-0 mb-2" style="font-size: 14px;">
+                            <table class="table table-condensed table-bordered table-mini" style="width: 100%;"
                                 id="{{ $datatable2['id_table'] }}">
                                 <thead>
                                     <tr>
