@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Dashboard</h1>
+                        <h1 class="m-0">Penugasan Verifikator</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -42,16 +42,16 @@
                                     <li class="list-group-item">
                                         <b>Jalur </b>
                                         <span class="float-right badge bg-info"
-                                            style="font-size:11px;">{{ $jalur }}</span>
+                                            style="font-size:14px;">{{ $jalur }}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Tahun </b>
+                                        <b>Tahun Penerimaan</b>
                                         <span class="float-right badge bg-success"
-                                            style="font-size:11px;">{{ $tahun }}</span>
+                                            style="font-size:14px;">{{ $tahun }}</span>
                                     </li>
                                     <li class="list-group-item">
                                         <b>Jumlah Peserta</b>
-                                        <a class="float-right badge bg-warning" style="font-size:11px;">
+                                        <a class="float-right badge bg-warning" style="font-size:14px;">
                                             {{ $jml_peserta }}
                                         </a>
                                     </li>

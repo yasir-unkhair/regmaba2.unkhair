@@ -89,7 +89,7 @@ class PembayaranController extends Controller
                     $actionBtn = '
                     <center>
                         <a href="' . route('peserta.pembayaran.detail', encode_arr(['pembayaran_id' => $row->id])) . '" class="btn btn-sm btn-info" title="Detail Pembayaran">
-                            <i class="fa fa-list"></i>
+                            <i class="fa fa-list"> Detail</i>
                         </a>
                     </center>';
 

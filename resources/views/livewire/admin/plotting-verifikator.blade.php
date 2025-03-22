@@ -17,17 +17,17 @@
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
                             <b>Jalur </b>
-                            <span class="float-right badge bg-info" style="font-size:11px;">{{ $jalur }}</span>
+                            <span class="float-right badge bg-info" style="font-size:14px;">{{ $jalur }}</span>
                         </li>
                         <li class="list-group-item">
                             <b>Tahun </b>
                             <span class="float-right badge bg-success"
-                                style="font-size:11px;">{{ $tahun }}</span>
+                                style="font-size:14px;">{{ $tahun }}</span>
                         </li>
                         <li class="list-group-item">
                             <b>Jumlah Peserta</b>
                             <a href="{{ route('admin.verifikator.daftarpeserta', encode_arr(['verifikator_id' => $user->id, 'jalur' => $jalur])) }}"
-                                class="float-right badge bg-warning" style="font-size:11px;">
+                                class="float-right badge bg-warning" style="font-size:14px;">
                                 {{ $jml_peserta }}
                             </a>
                         </li>

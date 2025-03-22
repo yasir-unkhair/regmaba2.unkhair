@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\PesertaUkt as ExportsPesertaUkt;
 use App\Http\Controllers\Controller;
 use App\Models\Fakultas;
 use App\Models\Pesertaukt;
@@ -10,6 +11,7 @@ use App\Models\Setup;
 use App\Models\User;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class LaporanController extends Controller
@@ -18,7 +20,7 @@ class LaporanController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            
+
             $peserta = Pesertaukt::with(['setup', 'prodi', 'verifikasiberkas'])
                 ->orderBy('app_peserta.jalur', 'ASC')->orderBy('app_peserta.prodi_id', 'ASC')->orderBy('app_peserta.nama_peserta', 'ASC');
 
@@ -60,10 +62,16 @@ class LaporanController extends Controller
                         $instance->where('app_peserta.registrasi', $registrasi);
                         $filter = true;
                     }
-                    
+
                     if ($request->get('status_peserta')) {
-                        $status = explode(':', $request->get('status_peserta'));
-                        $instance->whereIn('app_peserta.status', $status);
+                        if ($request->get('status_peserta') == '1') {
+                            $instance->where('app_peserta.update_data_diri', 1)
+                                ->where('app_peserta.update_kondisi_keluarga', 1)
+                                ->where('app_peserta.update_pembiayaan_studi', 1);
+                        } else {
+                            $status = explode(':', $request->get('status_peserta'));
+                            $instance->whereIn('app_peserta.status', $status);
+                        }
                         $filter = true;
                     }
 
@@ -83,7 +91,7 @@ class LaporanController extends Controller
                         });
                     }
 
-                    if(!$filter) {
+                    if (!$filter) {
                         $instance->where('app_peserta.setup_id', '-');
                     }
 
@@ -97,7 +105,7 @@ class LaporanController extends Controller
                 ->rawColumns(['tahun', 'prodi', 'jalur', 'status', 'verifikator'])
                 ->make(true);
         }
-        
+
         $setup = Setup::orderBy('tahun', 'DESC')->get();
         $fakultas = Fakultas::where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
         // $prodi = Prodi::jenjang(['S1', 'D3'])->orderBy('fakultas_id', 'ASC')->orderBy('nama_prodi', 'ASC')->get();
@@ -125,5 +133,15 @@ class LaporanController extends Controller
             ]
         ];
         return view('admin.laporan.index', $data);
+    }
+
+    public function export(Request $request)
+    {
+        if ($request->btn == 'excel') {
+            $setup = Setup::where('id', $request->setup_id)->first();
+            return Excel::download(new ExportsPesertaUkt($request->all()), time() . ' - laporan peserta ' . $setup->tahun . '.xlsx');
+        }
+
+        abort(404, 'Halaman tidak ditemukan!');
     }
 }

@@ -79,10 +79,8 @@ class VerifikatorController extends Controller
                     if (request()->get('jalur')) {
                         $jalur = data_params(request()->get('jalur'), 'jalur');
                         $actionBtn = '
-                            <div class="btn-group btn-block">
-                                <a href="' . route('admin.verifikator.daftarpeserta', encode_arr(['verifikator_id' => $row->id, 'jalur' => $jalur])) . '" class="btn btn-sm btn-success" title="Daftar Peserta"><i class="fa fa-list"></i> Daftar</a>
-                                <a href="' . route('admin.verifikator.plotting', encode_arr(['verifikator_id' => $row->id, 'jalur' => $jalur])) . '" class="btn btn-sm btn-warning" title="Penugasan Verifikator"><i class="fa fa-user-plus"></i> Penugasan</a>
-                            </div>
+                            <a href="' . route('admin.verifikator.daftarpeserta', encode_arr(['verifikator_id' => $row->id, 'jalur' => $jalur])) . '" class="btn btn-sm btn-success" title="Daftar Peserta"><i class="fa fa-list"></i> Daftar</a>
+                            <a href="' . route('admin.verifikator.plotting', encode_arr(['verifikator_id' => $row->id, 'jalur' => $jalur])) . '" class="btn btn-sm btn-warning" title="Penugasan Verifikator"><i class="fa fa-user-plus"></i> Penugasan</a>
                         ';
                     }
                     return $actionBtn;

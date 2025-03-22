@@ -207,7 +207,9 @@ return [
 
         Ixudra\Curl\CurlServiceProvider::class,
 
-        ComLaude\Amqp\AmqpServiceProvider::class
+        ComLaude\Amqp\AmqpServiceProvider::class,
+
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -225,7 +227,9 @@ return [
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Curl' => Ixudra\Curl\Facades\Curl::class,
-        'Amqp' => ComLaude\Amqp\Facades\Amqp::class
+        'Amqp' => ComLaude\Amqp\Facades\Amqp::class,
+
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];

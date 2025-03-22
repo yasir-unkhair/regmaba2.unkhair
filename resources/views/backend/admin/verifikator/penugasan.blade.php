@@ -58,9 +58,9 @@
                                         <th class="text-left" style="width:5%">#</th>
                                         <th class="text-left">Nama Verifikator</th>
                                         <th class="text-left">Jalur</th>
-                                        <th class="text-left">Tahun</th>
+                                        <th class="text-left">Tahun Penerimaan</th>
                                         <th class="text-left">Jml. Peserta</th>
-                                        <th class="text-left" style="width:15%">Aksi</th>
+                                        <th class="text-left" style="width:20%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>

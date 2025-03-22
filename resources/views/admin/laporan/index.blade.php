@@ -39,11 +39,12 @@
                         <div class="collapse" id="collapseExample">
                             <fieldset class="border p-2 mb-3 shadow-sm">
                                 <legend class="float-none w-auto p-2">Filter Data</legend>
-                                <form class="ml-2">
+                                <form action="{{ route('admin.laporan.export') }}" method="POST" class="ml-2">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="tahun" class="form-label">Tahun Penerimaan</label>
-                                            <select class="form-control" id="setup_id">
+                                            <select class="form-control" id="setup_id" name="setup_id">
                                                 <option value="">-- Semua Tahun --</option>
                                                 @foreach ($setup as $row)
                                                     <option value="{{ $row->id }}">
@@ -54,7 +55,7 @@
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="jalur" class="form-label">Jalur Masuk</label>
-                                            <select name="jalur" class="form-control" id="jalur">
+                                            <select name="jalur" class="form-control" id="jalur" name="jalur">
                                                 <option value="">-- Semua Jalur --</option>
                                                 @foreach ($referensi as $ref)
                                                     <option value="{{ encode_arr(['jalur' => $ref->referensi]) }}"
@@ -65,7 +66,7 @@
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="fakultas" class="form-label">Registrasi</label>
-                                            <select class="form-control" id="registrasi">
+                                            <select class="form-control" id="registrasi" name="registrasi">
                                                 <option value="">-- Filter --</option>
                                                 <option value="Y">Sudah Registrasi</option>
                                                 <option value="N">Belum Registrasi</option>
@@ -73,7 +74,7 @@
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="fakultas" class="form-label">Status Peserta</label>
-                                            <select class="form-control" id="status_peserta">
+                                            <select class="form-control" id="status_peserta" name="status_peserta">
                                                 <option value="">-- Filter --</option>
                                                 <option value="1">Melengkapi Formulir UKT</option>
                                                 <option value="2:3:4:5">Upload Berkas Dukung</option>
@@ -86,7 +87,8 @@
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="fakultas" class="form-label">Fakultas</label>
-                                            <select class="form-control" id="fakultas_id" onchange="getprodi(this.value)">
+                                            <select class="form-control" id="fakultas_id" onchange="getprodi(this.value)"
+                                                name="fakultas_id">
                                                 <option value="">-- Semua Fakultas --</option>
                                                 @foreach ($fakultas as $row)
                                                     <option value="{{ $row->id }}">
@@ -97,13 +99,13 @@
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="prodi" class="form-label">Program Studi</label>
-                                            <select class="form-control" id="prodi_id">
+                                            <select class="form-control" id="prodi_id" name="prodi_id">
                                                 <option value="">-- Semua Program Studi --</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="status" class="form-label">Penetapan UKT</label>
-                                            <select class="form-control" id="vonis">
+                                            <select class="form-control" id="vonis" name="vonis">
                                                 <option value="">-- Semua UKT --</option>
                                                 @foreach (listRekomendasi('rekomendasi') as $row)
                                                     <option value="{{ $row }}">
@@ -114,7 +116,7 @@
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="status" class="form-label">Verifikator</label>
-                                            <select class="form-control" id="verfikator_id">
+                                            <select class="form-control" id="verfikator_id" name="verfikator_id">
                                                 <option value="">-- Semua Verifikator --</option>
                                                 @foreach ($verfikator as $row)
                                                     <option value="{{ $row->id }}">
@@ -125,15 +127,17 @@
                                         </div>
                                     </div>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-success mr-2" id="btn-tampilkan">
+                                        <button type="button" class="btn btn-info mr-2" id="btn-tampilkan">
                                             <i class="fa fa-search"></i> Tampilkan Laporan
                                         </button>
-                                        <a href="button" class="btn btn-info mr-2 disabled">
+                                        <button type="submit" name="btn" value="excel" id="btn-excel"
+                                            class="btn btn-success mr-2">
                                             <i class="fa fa-file-excel"></i> Cetak Excel
-                                        </a>
-                                        <a href="" class="btn btn-danger disabled">
+                                        </button>
+                                        <button type="submit" name="btn" value="pdf" id="btn-pdf"
+                                            class="btn btn-danger">
                                             <i class="fa fa-file-pdf"></i> Cetak PDF
-                                        </a>
+                                        </button>
                                     </div>
                                 </form>
                             </fieldset>
@@ -197,8 +201,12 @@
                     ]
                 });
 
+                $('#btn-excel').attr("disabled", true);
+                $('#btn-pdf').attr("disabled", true);
+
                 $('#btn-tampilkan').click(function() {
                     table.draw();
+                    $('#btn-excel').attr("disabled", false);
                 });
 
                 getprodi();
