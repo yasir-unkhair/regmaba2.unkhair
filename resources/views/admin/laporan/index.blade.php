@@ -72,11 +72,14 @@
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <label for="fakultas" class="form-label">Finalisasi</label>
-                                            <select class="form-control" id="finalisasi">
+                                            <label for="fakultas" class="form-label">Status Peserta</label>
+                                            <select class="form-control" id="status_peserta">
                                                 <option value="">-- Filter --</option>
-                                                <option value="1">Sudah Finalisasi</option>
-                                                <option value="0">Belum Finalisasi</option>
+                                                <option value="1">Melengkapi Formulir UKT</option>
+                                                <option value="2:3:4:5">Upload Berkas Dukung</option>
+                                                <option value="3:4:5">Finalisasi</option>
+                                                <option value="4:5">Verifikasi Berkas</option>
+                                                <option value="5">Penetapan UKT</option>
                                             </select>
                                         </div>
                                     </div>
@@ -96,17 +99,12 @@
                                             <label for="prodi" class="form-label">Program Studi</label>
                                             <select class="form-control" id="prodi_id">
                                                 <option value="">-- Semua Program Studi --</option>
-                                                {{-- @foreach ($prodi as $row)
-                                                    <option value="{{ $row->id }}">
-                                                        {{ $row->nama_prodi }} ({{ $row->jenjang_prodi }})
-                                                    </option>
-                                                @endforeach --}}
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <label for="status" class="form-label">Status UKT</label>
+                                            <label for="status" class="form-label">Penetapan UKT</label>
                                             <select class="form-control" id="vonis">
-                                                <option value="">-- Semua Status UKT --</option>
+                                                <option value="">-- Semua UKT --</option>
                                                 @foreach (listRekomendasi('rekomendasi') as $row)
                                                     <option value="{{ $row }}">
                                                         {{ $row == 'wawancara' ? 'Wawancara' : strtoupper($row) }}
@@ -180,7 +178,7 @@
                             d.setup_id = $('#setup_id').val(),
                                 d.jalur = $('#jalur').val(),
                                 d.registrasi = $('#registrasi').val(),
-                                d.finalisasi = $('#finalisasi').val(),
+                                d.status_peserta = $('#status_peserta').val(),
                                 d.fakultas_id = $('#fakultas_id').val(),
                                 d.prodi_id = $('#prodi_id').val(),
                                 d.vonis = $('#vonis').val(),

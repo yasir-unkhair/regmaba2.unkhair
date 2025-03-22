@@ -63,8 +63,9 @@ class LaporanController extends Controller
                         $filter = true;
                     }
                     
-                    if ($request->get('finalisasi')) {
-                        $instance->whereIn('app_peserta.status', [3,4,5]);
+                    if ($request->get('status_peserta')) {
+                        $status = explode(':', $request->get('status_peserta'));
+                        $instance->whereIn('app_peserta.status', $status);
                         $filter = true;
                     }
 
@@ -101,12 +102,12 @@ class LaporanController extends Controller
         
         $setup = Setup::orderBy('tahun', 'DESC')->get();
         $fakultas = Fakultas::where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
-        $prodi = Prodi::jenjang(['S1', 'D3'])->orderBy('fakultas_id', 'ASC')->orderBy('nama_prodi', 'ASC')->get();
+        // $prodi = Prodi::jenjang(['S1', 'D3'])->orderBy('fakultas_id', 'ASC')->orderBy('nama_prodi', 'ASC')->get();
         $verfikator = User::role(['verifikator'])->orderBy('name', 'ASC')->get();
         $data = [
             'judul' => 'Laporan UKT',
             'fakultas' => $fakultas,
-            'prodi' => $prodi,
+            // 'prodi' => $prodi,
             'referensi' => master_referensi('Jalur Penerimaan'),
             'setup' => $setup,
             'verfikator' => $verfikator,
