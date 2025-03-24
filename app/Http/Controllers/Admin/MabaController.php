@@ -56,11 +56,11 @@ class MabaController extends Controller
                     if ($request->get('jalur')) {
                         $jalur = data_params($request->get('jalur'), 'jalur');
                         $instance->where('app_peserta.jalur', $jalur);
-                    
+
                         $tampil = true;
                     }
 
-                    if(!$tampil){
+                    if (!$tampil) {
                         $instance->where('app_peserta.jalur', '-');
                     }
 
@@ -79,7 +79,7 @@ class MabaController extends Controller
                         });
                     }
                 })
-                ->rawColumns(['nama_peserta','prodi', 'ukt', 'bayar_ukt', 'jalur', 'proses'])
+                ->rawColumns(['nama_peserta', 'prodi', 'ukt', 'bayar_ukt', 'jalur', 'proses'])
                 ->make(true);
         }
 
@@ -143,7 +143,8 @@ class MabaController extends Controller
 
         $peserta = Pesertaukt::with('verifikasiberkas')->where('nomor_peserta', $request->nomor_peserta)->first();
         if (!$peserta->verifikasiberkas?->vonis_ukt) {
-            return redirect(route('admin.maba.generatenpm'))->with(['message' => 'danger|Peserta dengan Identitas ' . $request->nomor_peserta . ' belum dilakukan verifikasi!']);
+            alert()->error('Error!', 'Peserta dengan Identitas ' . $request->nomor_peserta . ' belum dilakukan Penetapan UKT!');
+            return redirect(route('admin.maba.generatenpm'));
         } else {
             return redirect(route('admin.maba.generatenpm-params', encode_arr(['peserta_id' => $peserta->id])));
         }
