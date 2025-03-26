@@ -169,11 +169,29 @@
         <!-- /.content -->
     </div>
 
+    @push('style')
+        <style>
+            table.dataTable {
+                width: 100% !important;
+                table-layout: auto;
+                /* Membuat lebar tabel fleksibel */
+            }
+
+            table.dataTable th,
+            table.dataTable td {
+                white-space: nowrap;
+                /* Mencegah teks memanjang ke bawah */
+            }
+        </style>
+    @endpush
+
     @push('script')
         <script type="text/javascript">
             var table;
             $(function() {
                 table = $("#{{ $datatable2['id_table'] }}").DataTable({
+                    autoWidth: true,
+                    scrollX: true, // Aktifkan horizontal scroll jika tabel terlalu lebar
                     processing: true,
                     serverSide: true,
                     ajax: {
