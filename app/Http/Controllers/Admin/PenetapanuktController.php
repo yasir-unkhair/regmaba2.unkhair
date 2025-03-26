@@ -7,6 +7,7 @@ use App\Models\Fakultas;
 use App\Models\Pesertaukt;
 use App\Models\PesertauktVerifikasiBerkas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class PenetapanuktController extends Controller
@@ -15,7 +16,12 @@ class PenetapanuktController extends Controller
     {
         $setup = get_setup();
         if ($request->ajax()) {
-            $peserta = Pesertaukt::with(['prodi', 'verifikasiberkas'])->setup($setup->id)->registrasi(true)->status([3, 4, 5])->orderBy('jalur', 'ASC')->orderBy('prodi_id', 'ASC')->orderBy('nama_peserta', 'ASC');
+            $peserta = Pesertaukt::with(['prodi', 'verifikasiberkas'])
+                ->setup($setup->id)
+                ->registrasi(true)
+                ->status([3, 4, 5])
+                ->orderBy(DB::raw('FIELD(jalur, "SNBP", "SNPT", "MANDIRI")'), 'ASC')
+                ->orderBy('prodi_id', 'ASC')->orderBy('nama_peserta', 'ASC');
             return DataTables::eloquent($peserta)
                 ->addIndexColumn()
                 ->editColumn('action', function ($row) {
@@ -33,19 +39,22 @@ class PenetapanuktController extends Controller
                     </center>';
                     return $actionBtn;
                 })
+                ->editColumn('ket_jalur', function ($row) {
+                    return $row->jalur;
+                })
                 ->editColumn('prodi', function ($row) {
                     $str = ($row->prodi?->jenjang_prodi) . ' - ' . ($row->prodi?->nama_prodi);
                     return $str;
                 })
                 ->editColumn('rekomendasi', function ($row) {
-                    $str = '<span class="text-danger">Belum verifikasi</span>';
+                    $str = '<span class="text-danger">Nihil!</span>';
                     if ($row->verifikasiberkas?->rekomendasi) {
                         $str = ($row->verifikasiberkas?->rekomendasi) == 'wawancara' ? 'Wawancara' : strtoupper($row->verifikasiberkas?->rekomendasi ?? '');
                     }
                     return $str;
                 })
                 ->editColumn('status', function ($row) {
-                    $str = ($row->verifikasiberkas?->vonis_ukt) ?  strtoupper($row->verifikasiberkas?->vonis_ukt) : '<span class="text-danger">Belum penetapan!</span>';
+                    $str = ($row->verifikasiberkas?->vonis_ukt) ?  strtoupper($row->verifikasiberkas?->vonis_ukt) : '<span class="text-danger">Nihil!</span>';
                     return $str;
                 })
                 ->filter(function ($instance) use ($request) {
@@ -54,8 +63,14 @@ class PenetapanuktController extends Controller
                         $instance->where('app_peserta.jalur', $jalur);
                     }
 
+                    if ($request->get('fakultas_id')) {
+                        $instance->where('app_peserta.fakultas_id', $request->get('fakultas_id'));
+                    }
+
                     if ($request->get('prodi_id')) {
-                        $instance->where('app_peserta.prodi_id', $request->get('prodi_id'));
+                        if ($request->get('prodi_id') != 'all') {
+                            $instance->where('app_peserta.prodi_id', $request->get('prodi_id'));
+                        }
                     }
 
                     if (!empty($request->input('search.value'))) {
@@ -65,11 +80,11 @@ class PenetapanuktController extends Controller
                         });
                     }
                 })
-                ->rawColumns(['prodi', 'rekomendasi', 'status', 'action'])
+                ->rawColumns(['ket_jalur', 'prodi', 'rekomendasi', 'status', 'action'])
                 ->make(true);
         }
 
-        $fakultas = Fakultas::with('prodi')->where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
+        $fakultas = Fakultas::where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
         $data = [
             'judul' => 'Penetapan UKT',
             'fakultas' => $fakultas,
@@ -83,6 +98,7 @@ class PenetapanuktController extends Controller
                     ['data' => 'nomor_peserta', 'name' => 'nomor_peserta', 'orderable' => 'false', 'searchable' => 'true'],
                     ['data' => 'nama_peserta', 'name' => 'nama_peserta', 'orderable' => 'true', 'searchable' => 'true'],
                     ['data' => 'prodi', 'name' => 'prodi', 'orderable' => 'false', 'searchable' => 'false'],
+                    ['data' => 'ket_jalur', 'name' => 'ket_jalur', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'rekomendasi', 'name' => 'rekomendasi', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'status', 'name' => 'status', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'action', 'name' => 'action', 'orderable' => 'false', 'searchable' => 'false'],
@@ -100,7 +116,7 @@ class PenetapanuktController extends Controller
         $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'berkasdukung', 'verifikasiberkas', 'prodi'])->where('id', $params['peserta_id'])->first();
         $kondisi = $peserta->kondisikeluarga;
         $biaya = $peserta->pembiayaanstudi;
-        
+
         $berkasku = $peserta->berkasdukung;
         if ($berkasku->count() > 0) {
             $berkasku = $berkasku->toArray();

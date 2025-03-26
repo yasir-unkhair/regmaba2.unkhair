@@ -32,13 +32,12 @@
                     <div class="card-body">
                         <fieldset class="border p-2 mb-3 shadow-sm">
                             <legend class="float-none w-auto p-2">Filter Data</legend>
-                            <form class="form-horizontal ml-2">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Pilih Jalur
-                                        Masuk</label>
-                                    <div class="col-sm-2">
-                                        <select name="jalur" class="form-control" id="jalur">
-                                            <option value="">-- Pilih --</option>
+                            <form class="ml-2">
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="jalur" class="form-label">Jalur Masuk</label>
+                                        <select name="jalur" class="form-control" id="jalur" name="jalur">
+                                            <option value="">-- Semua Jalur --</option>
                                             @foreach ($referensi as $ref)
                                                 <option value="{{ encode_arr(['jalur' => $ref->referensi]) }}"
                                                     {{ data_params(old('jalur'), 'jalur') == $ref->referensi ? 'selected' : '' }}>
@@ -46,19 +45,21 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-5">
-                                        <select class="form-control" id="prodi_id">
-                                            <option value="">-- Filter Program Studi --</option>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="fakultas" class="form-label">Fakultas</label>
+                                        <select class="form-control" id="fakultas_id" name="fakultas_id">
+                                            <option value="">-- Semua --</option>
                                             @foreach ($fakultas as $row)
-                                                <optgroup label="{{ $row->nama_fakultas }}">
-                                                    @foreach ($row->prodi()->orderBy('jenjang_prodi', 'ASC')->get() as $prodi)
-                                                        <option value="{{ $prodi->id }}">
-                                                            {{ $prodi->jenjang_prodi }} -
-                                                            {{ $prodi->nama_prodi }}
-                                                        </option>
-                                                    @endforeach
-                                                </optgroup>
+                                                <option value="{{ $row->id }}">
+                                                    {{ $row->nama_fakultas }}
+                                                </option>
                                             @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-5 mb-3">
+                                        <label for="prodi" class="form-label">Program Studi</label>
+                                        <select class="form-control" id="prodi_id" name="prodi_id">
+                                            <option value="all">-- Semua --</option>
                                         </select>
                                     </div>
                                 </div>
@@ -98,6 +99,7 @@
                         url: "{{ $datatable2['url'] }}",
                         data: function(d) {
                             d.jalur = $('#jalur').val(),
+                                d.fakultas_id = $('#fakultas_id').val(),
                                 d.prodi_id = $('#prodi_id').val()
                         }
                     },
@@ -114,13 +116,45 @@
                 });
 
                 $('#jalur').change(function() {
-                    table.draw();
+                    table.ajax.reload();
+                });
+
+                $('#fakultas_id').change(function() {
+                    getprodi($(this).val());
+                    $('#prodi_id').val(null);
+                    table.ajax.reload();
                 });
 
                 $('#prodi_id').change(function() {
-                    table.draw();
+                    table.ajax.reload();
                 });
             });
+
+            function getprodi(fakultas_id = '') {
+                $.ajax({
+                    url: "{{ route('admin.prodi.byfakultas') }}",
+                    type: "GET",
+                    data: {
+                        fakultas_id: fakultas_id
+                    },
+                    success: function(response) {
+                        var list_option = '';
+                        // Kosongkan dulu select agar tidak ada duplikasi
+                        $('#prodi_id').empty();
+                        $('#prodi_id').append('<option value="all">-- Semua Program Studi --</option>');
+                        $('#prodi_id').append('');
+                        $.each(response, function(index, prodi) {
+                            list_option += '<option value="' + prodi.id + '">' +
+                                prodi.nama_prodi +
+                                ' (' + prodi.jenjang_prodi + ')' +
+                                '</option>';
+                        });
+
+                        $('#prodi_id').append(list_option);
+                        // console.log(list_option);
+                    }
+                });
+            }
         </script>
     @endpush
 @endsection

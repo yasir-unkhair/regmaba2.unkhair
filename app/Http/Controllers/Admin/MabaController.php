@@ -44,12 +44,8 @@ class MabaController extends Controller
                     $str = $row->bayar_ukt ? '<span class="text-success">Lunas</span>' : '<span class="text-danger">Belum Lunas</span>';
                     return $str;
                 })
-                ->editColumn('proses', function ($row) {
-                    if (strtolower($row->vonis_ukt) == 'kip-k') {
-                        return 'Manual';
-                    } else {
-                        return 'Otomatis';
-                    }
+                ->editColumn('ket_jalur', function ($row) {
+                    return $row->jalur;
                 })
                 ->filter(function ($instance) use ($request) {
                     $tampil = false;
@@ -60,12 +56,14 @@ class MabaController extends Controller
                         $tampil = true;
                     }
 
-                    if (!$tampil) {
-                        $instance->where('app_peserta.jalur', '-');
+                    if ($request->get('fakultas_id')) {
+                        $instance->where('app_peserta.fakultas_id', $request->get('fakultas_id'));
                     }
 
                     if ($request->get('prodi_id')) {
-                        $instance->where('app_peserta.prodi_id', $request->get('prodi_id'));
+                        if ($request->get('prodi_id') != 'all') {
+                            $instance->where('app_peserta.prodi_id', $request->get('prodi_id'));
+                        }
                     }
 
                     if ($request->get('vonis')) {
@@ -79,11 +77,11 @@ class MabaController extends Controller
                         });
                     }
                 })
-                ->rawColumns(['nama_peserta', 'prodi', 'ukt', 'bayar_ukt', 'jalur', 'proses'])
+                ->rawColumns(['nama_peserta', 'prodi', 'ukt', 'bayar_ukt', 'ket_jalur'])
                 ->make(true);
         }
 
-        $fakultas = Fakultas::with('prodi')->where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
+        $fakultas = Fakultas::where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
         $data = [
             'judul' => 'Daftar Maba ' . $setup->tahun,
             'fakultas' => $fakultas,
@@ -97,9 +95,9 @@ class MabaController extends Controller
                     ['data' => 'nomor_peserta', 'name' => 'nomor_peserta', 'orderable' => 'false', 'searchable' => 'true'],
                     ['data' => 'nama_peserta', 'name' => 'nama_peserta', 'orderable' => 'true', 'searchable' => 'true'],
                     ['data' => 'prodi', 'name' => 'prodi', 'orderable' => 'false', 'searchable' => 'false'],
+                    ['data' => 'ket_jalur', 'name' => 'ket_jalur', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'ukt', 'name' => 'ukt', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'bayar_ukt', 'name' => 'bayar_ukt', 'orderable' => 'false', 'searchable' => 'false'],
-                    ['data' => 'proses', 'name' => 'proses', 'orderable' => 'false', 'searchable' => 'false'],
                 ]
             ]
         ];

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Fakultas;
 use App\Models\Pesertaukt;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
@@ -38,6 +39,21 @@ class DataPesertaController extends Controller
                         $instance->where('jalur', $jalur);
                     }
 
+                    if ($request->get('registrasi')) {
+                        $registrasi = $request->get('registrasi') == 'Y' ? 1 : 0;
+                        $instance->where('app_peserta.registrasi', $registrasi);
+                    }
+
+                    if ($request->get('fakultas_id')) {
+                        $instance->where('app_peserta.fakultas_id', $request->get('fakultas_id'));
+                    }
+
+                    if ($request->get('prodi_id')) {
+                        if ($request->get('prodi_id') != 'all') {
+                            $instance->where('app_peserta.prodi_id', $request->get('prodi_id'));
+                        }
+                    }
+
                     if (!empty($request->input('search.value'))) {
                         $instance->where(function ($w) use ($request) {
                             $search = $request->input('search.value');
@@ -49,10 +65,12 @@ class DataPesertaController extends Controller
                 ->make(true);
         }
 
+        $fakultas = Fakultas::where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
         $data = [
             'judul' => 'Data Peserta',
             'referensi' => master_referensi('Jalur Penerimaan', ['id', 'referensi']),
             'setup' => $setup,
+            'fakultas' => $fakultas,
             'datatable2' => [
                 'url' => route('admin.datapeserta.index'),
                 'id_table' => 'id-datatable',
@@ -74,7 +92,7 @@ class DataPesertaController extends Controller
     {
         $setup = get_setup();
         $data = [
-            'judul' => 'Upload Data Peserta',
+            'judul' => 'Import Data Peserta',
             'setup' => $setup,
             'jalur' => data_params($jalur, 'jalur')
         ];

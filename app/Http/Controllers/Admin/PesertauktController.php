@@ -34,8 +34,14 @@ class PesertauktController extends Controller
                         $instance->where('jalur', $jalur);
                     }
 
+                    if ($request->get('fakultas_id')) {
+                        $instance->where('app_peserta.fakultas_id', $request->get('fakultas_id'));
+                    }
+
                     if ($request->get('prodi_id')) {
-                        $instance->where('app_peserta.prodi_id', $request->get('prodi_id'));
+                        if ($request->get('prodi_id') != 'all') {
+                            $instance->where('app_peserta.prodi_id', $request->get('prodi_id'));
+                        }
                     }
 
                     if (!empty($request->input('search.value'))) {
@@ -49,7 +55,7 @@ class PesertauktController extends Controller
                 ->make(true);
         }
 
-        $fakultas = Fakultas::with('prodi')->where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
+        $fakultas = Fakultas::where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
         $data = [
             'judul' => 'Peserta UKT',
             'fakultas' => $fakultas,
