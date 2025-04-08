@@ -157,6 +157,7 @@ Route::group(['middleware' => 'isLogin'], function () {
 
             Route::controller(App\Http\Controllers\Pesertaukt\PembayaranController::class)->group(function () {
                 Route::get('/pembayaran/index', 'index')->name('peserta.pembayaran');
+                Route::get('/pembayaran/datatable-getpembayaran', 'datatable_getpembayaran')->name('peserta.datatable-getpembayaran');
                 Route::get('/pembayaran/detail/{params}', 'detail')->name('peserta.pembayaran.detail');
                 Route::get('/pembayaran/cetak/{id}', 'cetak')->name('peserta.pembayaran.cetak');
             });

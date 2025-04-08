@@ -49,6 +49,6 @@ class PesertauktPembayaran extends Model
 
     public function peserta()
     {
-        return $this->belongsTo(Pesertaukt::class, 'id', 'peserta_id');
+        return $this->belongsTo(Pesertaukt::class, 'peserta_id');
     }
 }

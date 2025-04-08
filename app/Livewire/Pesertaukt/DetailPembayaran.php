@@ -55,7 +55,7 @@ class DetailPembayaran extends Component
     public function generateva($params, $act = 'create')
     {
         $pembayaran = PesertauktPembayaran::with('peserta')->where('id', data_params($params, 'pembayaran_id'))->first();
-
+        // dd($pembayaran);
         $setup = get_setup();
         $batas_pembayaran_ukt = NULL;
         // jalur snbp

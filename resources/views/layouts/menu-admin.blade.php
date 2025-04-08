@@ -298,6 +298,14 @@
             </li>
         @endif
 
+        <li class="nav-item {{ routeIs(['peserta.pembayaran', 'peserta.pembayaran.detail']) ? 'active' : '' }}">
+            <a href="{{ route('peserta.pembayaran') }}"
+                class="nav-link {{ routeIs(['peserta.pembayaran', 'peserta.pembayaran.detail']) ? 'active' : '' }}">
+                <i class="nav-icon fas fa-money"></i>
+                <p> Pembayaran</p>
+            </a>
+        </li>
+
         <!-- menu status ukt akan muncul jika sudah di vonis -->
         @if ($get_status == 5)
             <li class="nav-item {{ routeIs(['peserta.statusukt']) ? 'active' : '' }}">
@@ -305,14 +313,6 @@
                     class="nav-link {{ routeIs(['peserta.statusukt']) ? 'active' : '' }}">
                     <i class="nav-icon fas fa-id-card"></i>
                     <p> Status UKT</p>
-                </a>
-            </li>
-
-            <li class="nav-item {{ routeIs(['peserta.pembayaran', 'peserta.pembayaran.detail']) ? 'active' : '' }}">
-                <a href="{{ route('peserta.pembayaran') }}"
-                    class="nav-link {{ routeIs(['peserta.pembayaran', 'peserta.pembayaran.detail']) ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-money"></i>
-                    <p> Pembayaran</p>
                 </a>
             </li>
         @endif

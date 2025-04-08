@@ -44,8 +44,14 @@ class PesertauktController extends Controller
                         $instance->where('app_peserta.jalur', $jalur);
                     }
 
+                    if ($request->get('fakultas_id')) {
+                        $instance->where('app_peserta.fakultas_id', $request->get('fakultas_id'));
+                    }
+
                     if ($request->get('prodi_id')) {
-                        $instance->where('app_peserta.prodi_id', $request->get('prodi_id'));
+                        if ($request->get('prodi_id') != 'all') {
+                            $instance->where('app_peserta.prodi_id', $request->get('prodi_id'));
+                        }
                     }
 
                     if (!empty($request->input('search.value'))) {
@@ -59,7 +65,7 @@ class PesertauktController extends Controller
                 ->make(true);
         }
 
-        $fakultas = Fakultas::with('prodi')->where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
+        $fakultas = Fakultas::where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
 
         $data = [
             'judul' => 'Peserta UKT',
@@ -150,7 +156,7 @@ class PesertauktController extends Controller
                 })
                 ->editColumn('rekomendasi', function ($row) {
                     $str = ($row->rekomendasi) == 'wawancara' ? 'Wawancara' : strtoupper($row->rekomendasi);
-                    return $str;
+                    return $str ? $str : '<span class="text-danger">Nihil!</span>';
                 })
                 ->editColumn('tgl_verifikasi', function ($row) {
                     $str = tgl_indo($row->tgl_verifikasi);
@@ -162,8 +168,14 @@ class PesertauktController extends Controller
                         $instance->where('app_peserta.jalur', $jalur);
                     }
 
+                    if ($request->get('fakultas_id')) {
+                        $instance->where('app_peserta.fakultas_id', $request->get('fakultas_id'));
+                    }
+
                     if ($request->get('prodi_id')) {
-                        $instance->where('app_peserta.prodi_id', $request->get('prodi_id'));
+                        if ($request->get('prodi_id') != 'all') {
+                            $instance->where('app_peserta.prodi_id', $request->get('prodi_id'));
+                        }
                     }
 
                     if ($request->get('rekomendasi')) {
@@ -177,11 +189,11 @@ class PesertauktController extends Controller
                         });
                     }
                 })
-                ->rawColumns(['ket_jalur', 'prodi', 'keterangan', 'tgl_verifikasi'])
+                ->rawColumns(['ket_jalur', 'prodi', 'keterangan', 'tgl_verifikasi', 'rekomendasi'])
                 ->make(true);
         }
 
-        $fakultas = Fakultas::with('prodi')->where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
+        $fakultas = Fakultas::where('nama_fakultas', '!=', 'PASCASARJANA')->orderBy('nama_fakultas', 'ASC')->get();
 
         $data = [
             'judul' => 'Laporan Verifikasi',
