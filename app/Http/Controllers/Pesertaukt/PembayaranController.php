@@ -124,11 +124,9 @@ class PembayaranController extends Controller
                 ->addIndexColumn()
                 ->editColumn('action', function ($row) use ($vonis_ukt) {
                     $actionBtn = '
-                    <center>
-                        <a href="' . route('peserta.pembayaran.detail', encode_arr(['pembayaran_id' => $row->id])) . '" class="btn btn-sm btn-info" title="Detail Pembayaran">
-                            <i class="fa fa-list"> Detail</i>
-                        </a>
-                    </center>';
+                    <a href="' . route('peserta.pembayaran.detail', encode_arr(['pembayaran_id' => $row->id])) . '" class="btn btn-sm btn-info" title="Detail Pembayaran">
+                        <i class="fa fa-eye"> Detail</i>
+                    </a>';
 
                     if (strtoupper($vonis_ukt) == 'KIP-K' && $row->jenis_pembayaran == 'ukt') {
                         $actionBtn = "";

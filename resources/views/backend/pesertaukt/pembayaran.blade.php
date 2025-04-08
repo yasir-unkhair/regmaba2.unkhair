@@ -36,7 +36,7 @@
                                 id="{{ $datatable['id_table'] }}">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                         <th>Daftar Tagihan</th>
                                         <th class="text-center">Bank</th>
                                         <th class="text-right">Nominal (Rp.)</th>
