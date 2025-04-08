@@ -141,7 +141,7 @@
         <tr style='font-size:12px;font-weight:bold;'>
             <td style='width:100%;' font-color:'red';>
                 <br />
-                Silakan lakukan pembayaran menggunakan Nomor Billing {{ $pembayaran->va }} melalui channel BTN
+                Silahkan lakukan pembayaran menggunakan Nomor Billing {{ $pembayaran->va }} melalui channel BTN
                 sebelum tanggal jatuh tempo {{ tgl_indo($pembayaran->expired, false) }}.
                 <br />
             </td>
