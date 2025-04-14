@@ -28,8 +28,7 @@ class PembayaranController extends Controller
                     2. Pemeriksaan Virus, Tes Buta Warna Rp. 75.000,<br>
                     3. Pemeriksaan Narkoba 3 Parameter Rp. 250.000,<br>
                     4. Pemeriksaan HbSAg Rp. 150.000,<br>
-                    5. Pemeriksaan MMPI Rp, 400.000,<br>
-                    6. Administrasi Rp. 10.000
+                    5. Pemeriksaan MMPI Rp, 400.000
                 </p>';
 
             $pembayaran[] = [
@@ -37,15 +36,14 @@ class PembayaranController extends Controller
                 'kategori_ukt' => '',
                 'detail_pembayaran' => 'Pemeriksaan Kesehatan Mahasiswa Baru ' . $peserta->setup->tahun . $ket,
                 'bank' => 'BTN',
-                'amount' => '960000'
+                'amount' => '950000'
             ];
         } else {
             $ket = '
                 <p>
                     1. Pemeriksaan Dokter Umum Fisik Lengkap Rp. 75.000,<br>
                     2. Pemeriksaan Virus, Tes Buta Warna Rp. 75.000,<br>
-                    3. Pemeriksaan Narkoba 3 Parameter Rp. 250.000,<br>
-                    4. Administrasi Rp. 10.000
+                    3. Pemeriksaan Narkoba 3 Parameter Rp. 250.000
                 </p>';
 
             $pembayaran[] = [
@@ -53,7 +51,7 @@ class PembayaranController extends Controller
                 'kategori_ukt' => '',
                 'detail_pembayaran' => 'Pemeriksaan Kesehatan Mahasiswa Baru ' . $peserta->setup->tahun . $ket,
                 'bank' => 'BTN',
-                'amount' => '410000',
+                'amount' => '400000',
             ];
         }
 
