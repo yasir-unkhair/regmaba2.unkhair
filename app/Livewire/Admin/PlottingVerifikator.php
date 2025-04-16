@@ -45,6 +45,7 @@ class PlottingVerifikator extends Component
 
         $listdata = Pesertaukt::with(['prodi', 'verifikasiberkas'])
             ->setup($setup->id)
+            ->registrasi(true)
             // ->status([3, 4, 5])
             ->prodi($this->prodi_id)
             ->pencarian($this->pencarian)
