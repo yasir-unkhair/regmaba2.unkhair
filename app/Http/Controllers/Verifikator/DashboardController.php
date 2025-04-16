@@ -14,8 +14,12 @@ class DashboardController extends Controller
         $setup = get_setup();
         $verifikator = User::where('id', auth()->user()->id)->first();
 
-        $peserta = $verifikator->verifikasipeserta()->where('app_peserta.setup_id', $setup->id)->where('app_peserta.registrasi', true)->whereIn('app_peserta.status', [3, 4, 5])->get();
-        
+        $peserta = $verifikator->verifikasipeserta()
+            ->where('app_peserta.setup_id', $setup->id)
+            ->where('app_peserta.registrasi', true)
+            // ->whereIn('app_peserta.status', [3, 4, 5])
+            ->get();
+
         $jml_snbp = 0;
         $jml_snbt = 0;
         $jml_mandiri = 0;

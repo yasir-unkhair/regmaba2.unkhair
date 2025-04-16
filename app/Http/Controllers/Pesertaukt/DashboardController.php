@@ -24,17 +24,24 @@ class DashboardController extends Controller
     public function resume()
     {
         $peserta = auth()->user();
-        if (!$peserta->formulirukt_selesai_input()) {
-            alert()->error('Error', 'Anda belum melengkapi Formulir UKT, Silahkan lengkapi terlebih dahulu!');
-            return redirect(route('peserta.dashboard'));
+
+        $status_peserta = $peserta->status_peserta();
+
+        // jika peserta belum di vonis, maka notif akan muncul terus.
+        if ($status_peserta != 5) {
+            if (!$peserta->formulirukt_selesai_input()) {
+                alert()->error('Error', 'Anda belum melengkapi Formulir UKT, Silahkan lengkapi terlebih dahulu!');
+                return redirect(route('peserta.dashboard'));
+            }
         }
 
-        if ($peserta->status_peserta() == 1) {
+
+        if ($status_peserta == 1) {
             alert()->error('Error', 'Anda belum Upload Berkas Bukti Dukung, Silahkan upload terlebih dahulu!');
             return redirect(route('peserta.berkasdukung'));
         }
 
-        if ($peserta->status_peserta() == 2) {
+        if ($status_peserta == 2) {
             alert()->error('Error', 'Segera melakukan finalisasi agar data pengajuan anda segera di proses verifikasi oleh panitia.');
             return redirect(route('peserta.finalisai'));
         }
@@ -42,7 +49,7 @@ class DashboardController extends Controller
         $peserta = Pesertaukt::with(['kondisikeluarga', 'pembiayaanstudi', 'prodi'])->where('id', session('peserta_id'))->first();
         $kondisi = $peserta->kondisikeluarga;
         $biaya = $peserta->pembiayaanstudi;
-        
+
         $berkasku = PesertauktDokumen::where('peserta_id', $peserta->id);
         if ($berkasku->count() > 0) {
             $berkasku = $berkasku->get()->toArray();

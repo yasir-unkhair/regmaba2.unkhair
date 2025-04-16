@@ -12,13 +12,17 @@ class DashboardController extends Controller
     public function index()
     {
         $setup = get_setup();
-        
+
         $jml_snbp = 0;
         $jml_snbt = 0;
         $jml_mandiri = 0;
 
-        if(session('role')){
-            $peserta = Pesertaukt::where('setup_id', $setup->id)->registrasi(true)->status([3, 4, 5])->get();
+        if (session('role')) {
+            $peserta = Pesertaukt::where('setup_id', $setup->id)
+                ->registrasi(true)
+                // ->status([3, 4, 5])
+                ->get();
+
             foreach ($peserta as $row) {
                 $jalur = strtolower($row->jalur);
                 if ($jalur == 'snbp') {

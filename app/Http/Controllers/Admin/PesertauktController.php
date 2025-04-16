@@ -14,7 +14,14 @@ class PesertauktController extends Controller
     {
         $setup = get_setup();
         if ($request->ajax()) {
-            $peserta = Pesertaukt::with(['prodi', 'verifikasiberkas'])->setup($setup->id)->registrasi(true)->status([3, 4, 5])->orderBy('jalur', 'ASC')->orderBy('prodi_id', 'ASC')->orderBy('nama_peserta', 'ASC');
+            $peserta = Pesertaukt::with(['prodi', 'verifikasiberkas'])
+                ->setup($setup->id)
+                ->registrasi(true)
+                // ->status([3, 4, 5])
+                ->orderBy('jalur', 'ASC')
+                ->orderBy('prodi_id', 'ASC')
+                ->orderBy('nama_peserta', 'ASC');
+
             return DataTables::eloquent($peserta)
                 ->addIndexColumn()
                 ->editColumn('ket_jalur', function ($row) {

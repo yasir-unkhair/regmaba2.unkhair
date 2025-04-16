@@ -19,9 +19,10 @@ class PenetapanuktController extends Controller
             $peserta = Pesertaukt::with(['prodi', 'verifikasiberkas'])
                 ->setup($setup->id)
                 ->registrasi(true)
-                ->status([3, 4, 5])
+                // ->status([3, 4, 5])
                 ->orderBy(DB::raw('FIELD(jalur, "SNBP", "SNPT", "MANDIRI")'), 'ASC')
                 ->orderBy('prodi_id', 'ASC')->orderBy('nama_peserta', 'ASC');
+
             return DataTables::eloquent($peserta)
                 ->addIndexColumn()
                 ->editColumn('action', function ($row) {
