@@ -17,9 +17,11 @@
                         <select wire:model="rekomendasi" class="form-control" id="rekomendasi">
                             <option value="">-- Pilih Status UKT --</option>
                             @foreach (listRekomendasi('rekomendasi', $rekomendasi) as $row)
-                                <option value="{{ $row }}" {{ $row == $rekomendasi ? 'selected' : '' }}>
-                                    {{ $row == 'wawancara' ? 'Wawancara' : strtoupper($row) }}
-                                </option>
+                                @if (in_array($row, $list_rekomendasi))
+                                    <option value="{{ $row }}" {{ $row == $rekomendasi ? 'selected' : '' }}>
+                                        {{ $row == 'wawancara' ? 'Wawancara' : strtoupper($row) }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @error('rekomendasi')

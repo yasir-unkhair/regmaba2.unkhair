@@ -69,7 +69,7 @@
                         <!-- /.card -->
 
                         <!-- About Me Box -->
-                        <livewire:Verifikator.VerifikasiPesertaukt peserta_id="{{ $tab1->id }}">
+                        <livewire:verifikator.verifikasi-pesertaukt peserta_id="{{ $tab1->id }}">
                             <!-- /.card -->
                     </div>
                     <!-- /.col -->

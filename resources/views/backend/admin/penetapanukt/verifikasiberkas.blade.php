@@ -69,8 +69,8 @@
                         <!-- /.card -->
 
                         <!-- About Me Box -->
-                        <livewire:Admin.VerifikasiPesertaukt peserta_id="{{ $tab1->id }}">
-                            <!-- /.card -->
+                        <livewire:admin.verifikasi-pesertaukt peserta_id="{{ $tab1->id }}" />
+                        <!-- /.card -->
                     </div>
                     <!-- /.col -->
                     <div class="col-md-9">
