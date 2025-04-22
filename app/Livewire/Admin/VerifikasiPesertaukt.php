@@ -15,6 +15,10 @@ class VerifikasiPesertaukt extends Component
     public $rekomendasi;
     public $catatan;
 
+    public $verifikator_id;
+
+    public $vonis_ukt;
+
     public $kip;
 
     public $list_rekomendasi = [];
@@ -24,6 +28,8 @@ class VerifikasiPesertaukt extends Component
         $this->get = PesertauktVerifikasiBerkas::where('peserta_id', $peserta_id)->first();
         $this->rekomendasi = $this->get->rekomendasi ?? NULL;
         $this->catatan = $this->get->catatan ?? NULL;
+        $this->vonis_ukt = $this->get->vonis_ukt ?? NULL;
+        $this->verifikator_id = $this->get->verifikator_id ?? NULL;
 
         $this->peserta = Pesertaukt::where('id', $peserta_id)->first();
         $this->kip = $this->peserta->kip ?? NULL;
@@ -71,7 +77,7 @@ class VerifikasiPesertaukt extends Component
         } else {
             PesertauktVerifikasiBerkas::create([
                 'peserta_id' => $this->peserta->id,
-                'verifikator_id' => auth()->user()->id,
+                // 'verifikator_id' => auth()->user()->id,
                 'rekomendasi' => $this->rekomendasi,
                 'catatan' => $this->catatan,
                 'verifies_id' => auth()->user()->id,

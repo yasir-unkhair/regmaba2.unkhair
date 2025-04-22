@@ -13,6 +13,8 @@ class VerifikasiPesertaukt extends Component
     public $rekomendasi;
     public $catatan;
 
+    public $vonis_ukt;
+
     public $kip;
 
     public $list_rekomendasi = [];
@@ -23,6 +25,8 @@ class VerifikasiPesertaukt extends Component
         $this->rekomendasi = $this->get->rekomendasi;
         $this->catatan = $this->get->catatan;
         $this->kip = $this->get->peserta->kip;
+
+        $this->vonis_ukt = $this->get->vonis_ukt ?? NULL;
 
         array_push($this->list_rekomendasi, 'wawancara');
         if (trim($this->kip)) {

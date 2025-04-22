@@ -6,10 +6,11 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Status/Rekomendasi <sup class="text-danger">*</sup></strong>
+                <strong><i class="fas fa-book mr-1"></i> Rekomendasi <sup class="text-danger">*</sup></strong>
 
                 <p class="text-muted">
-                    @if ($rekomendasi)
+                    {{-- jika baakp sudah vonis ukt, maka form disabled --}}
+                    @if ($vonis_ukt)
                         <p class="text-muted">
                             {{ strtoupper($rekomendasi) }}
                         </p>
@@ -35,21 +36,21 @@
                 <strong><i class="fas fa-edit mr-1"></i> Catatan <sup class="text-danger">*</sup></strong>
 
                 <p class="text-muted">
-                    @if ($rekomendasi)
+                    @if ($vonis_ukt)
                         <p class="text-muted">
                             {{ $catatan }}
                         </p>
                     @else
                         <textarea wire:model="catatan"
                             class="form-control @error('catatan') form-control-danger @enderror border border-black p-2" rows="3"
-                            placeholder="Apa catatan yang anda berikan?" {{ $rekomendasi ? 'readonly' : '' }}>{{ $catatan }}</textarea>
+                            placeholder="Apa catatan yang anda berikan?" {{ $vonis_ukt ? 'readonly' : '' }}>{{ $catatan }}</textarea>
                         @error('catatan')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     @endif
                 </p>
 
-                @if (!$rekomendasi)
+                @if (!$vonis_ukt)
                     <button type="submit" class="btn btn-block btn-primary" wire:loading.attr="disabled"
                         wire:target="save">
                         <span wire:loading.remove wire.target="save">
