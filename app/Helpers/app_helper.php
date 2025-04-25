@@ -333,3 +333,14 @@ if (!function_exists('get_image')) {
         return 'data:image/' . $type . ';base64,' . base64_encode($data);
     }
 }
+
+if (!function_exists('format_rupiah')) {
+    function format_rupiah($value)
+    {
+        $value = trim($value);
+        if ($value && is_numeric($value)) {
+            return number_format($value, 0, ',', '.');
+        }
+        return 0;
+    }
+}

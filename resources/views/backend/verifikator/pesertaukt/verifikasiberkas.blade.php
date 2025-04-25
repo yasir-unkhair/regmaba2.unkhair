@@ -209,7 +209,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="text-right">Penghasilan Ayah :</td>
-                                                    <td>Rp. {{ number_format($tab2->penghasilan_ayah) }}</td>
+                                                    <td>Rp. {{ format_rupiah($tab2->penghasilan_ayah) }}</td>
                                                 </tr>
                                                 <tr class="border border-danger">
                                                     <td colspan="2" class="p-0"></td>
@@ -224,7 +224,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="text-right">Penghasilan Ibu :</td>
-                                                    <td>Rp. {{ number_format($tab2->penghasilan_ibu) }}</td>
+                                                    <td>Rp. {{ format_rupiah($tab2->penghasilan_ibu) }}</td>
                                                 </tr>
                                                 <tr class="border border-danger">
                                                     <td colspan="2" class="p-0"></td>
@@ -319,7 +319,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="text-right">Penghasilan Wali :</td>
-                                                    <td>Rp. {{ number_format($tab3->penghasilan_wali) }}</td>
+                                                    <td>Rp. {{ format_rupiah($tab3->penghasilan_wali) }}</td>
                                                 </tr>
                                             </table>
                                         </div>
