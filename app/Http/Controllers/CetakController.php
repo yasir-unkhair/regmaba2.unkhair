@@ -62,7 +62,7 @@ class CetakController extends Controller
 
         $pdf->Image(public_path('images/dikbud.jpg'), 2, 0.5, 2, 2.2);
         $pdf->Image(public_path('images/logo.jpg'), 17, 0.5, 2, 2.2);
-        $pdf->SetFont("Arial", "", 13);
+        $pdf->SetFont("Arial", "", 12);
         $pdf->Cell(19, 0.5, 'KEMENTERIAN PENDIDIKAN TINGGI, SAINS DAN TEKNOLOGI', '', 0, 'C');
         $pdf->Ln();
         $pdf->SetFont("Arial", "B", 11);
@@ -472,7 +472,7 @@ class CetakController extends Controller
 
         $pdf->Image(public_path('images/dikbud.jpg'), 2, 0.5, 2, 2.2);
         $pdf->Image(public_path('images/logo.jpg'), 17, 0.5, 2, 2.2);
-        $pdf->SetFont("Arial", "", 13);
+        $pdf->SetFont("Arial", "", 12);
         $pdf->Cell(19, 0.5, 'KEMENTERIAN PENDIDIKAN TINGGI, SAINS DAN TEKNOLOGI', '', 0, 'C');
         $pdf->Ln();
         $pdf->SetFont("Arial", "B", 11);
