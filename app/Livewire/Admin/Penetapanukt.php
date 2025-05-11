@@ -102,8 +102,8 @@ class Penetapanukt extends Component
         $params = decode_arr($params);
         $this->get = Pesertaukt::with('verifikasiberkas')->where('id', $params['peserta_id'])->first();
 
-        $this->listdata_ukt = ProdiBiayastudi::byprodi($this->get->prodi_id)->jenisbiaya('ukt')->orderBy('kategori', 'ASC')->get();
-        $this->listdata_ipi = ProdiBiayastudi::byprodi($this->get->prodi_id)->jenisbiaya('ipi')->orderBy('kategori', 'ASC')->get();
+        $this->listdata_ukt = ProdiBiayastudi::byprodi($this->get->prodi_id)->where('nominal', '>', 0)->jenisbiaya('ukt')->orderBy('kategori', 'ASC')->get();
+        $this->listdata_ipi = ProdiBiayastudi::byprodi($this->get->prodi_id)->where('nominal', '>', 0)->where('jenis_biaya', '!=', 'ukt')->jenisbiaya('ipi')->orderBy('kategori', 'ASC')->get();
 
         $this->verifikator = $this->get->verifikasiberkas?->verifikator?->name;
         $this->tgl_verifikasi = $this->get->verifikasiberkas?->tgl_verifikasi;
