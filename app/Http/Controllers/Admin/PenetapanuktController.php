@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Fakultas;
 use App\Models\Pesertaukt;
+use App\Models\PesertauktPembayaran;
 use App\Models\PesertauktVerifikasiBerkas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -228,5 +229,13 @@ class PenetapanuktController extends Controller
         ];
 
         return view('backend.admin.penetapanukt.laporan', $data);
+    }
+
+    public function resend_payment()
+    {
+        $pembayaran = PesertauktPembayaran::with('peserta:id,nomor_peserta,nama_peserta')
+            ->where('jenis_pembayaran', 'ukt')->whereIsNotNull('trx_id')->get();
+
+        dd($pembayaran);
     }
 }

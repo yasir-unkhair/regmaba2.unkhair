@@ -72,6 +72,9 @@ Route::group(['middleware' => 'isLogin'], function () {
                 Route::get('/penetapanukt/index', 'index')->name('admin.penetapanukt.index');
                 Route::get('/penetapanukt/listdokumen/{params}', 'listdokumen')->name('admin.penetapanukt.listdokumen');
                 Route::get('/penetapanukt/laporan', 'laporan')->name('admin.penetapanukt.laporan');
+
+                // tambahan
+                Route::get('/penetapanukt/resend-payment', 'resend_payment');
             });
 
             Route::controller(App\Http\Controllers\Admin\VerifikatorController::class)->group(function () {
