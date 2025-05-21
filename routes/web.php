@@ -74,7 +74,7 @@ Route::group(['middleware' => 'isLogin'], function () {
                 Route::get('/penetapanukt/laporan', 'laporan')->name('admin.penetapanukt.laporan');
 
                 // tambahan
-                Route::get('/penetapanukt/resend-payment', 'resend_payment');
+                Route::get('/penetapanukt/resendpayment', 'resend_payment');
             });
 
             Route::controller(App\Http\Controllers\Admin\VerifikatorController::class)->group(function () {

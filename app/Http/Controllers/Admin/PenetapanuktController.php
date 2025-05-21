@@ -234,8 +234,37 @@ class PenetapanuktController extends Controller
     public function resend_payment()
     {
         $pembayaran = PesertauktPembayaran::with('peserta:id,nomor_peserta,nama_peserta')
-            ->where('jenis_pembayaran', 'ukt')->whereIsNotNull('trx_id')->get();
+            ->where('jenis_pembayaran', 'ukt')->whereNotNull('trx_id')->get();
 
-        dd($pembayaran);
+        $setup = json_decode(getdata_ebilling(env('URL_EBILLING') . '/api/tahun-pembayaran'), TRUE);
+
+        $num = 1;
+        $result = [];
+        foreach ($pembayaran as $row) {
+            // send data va ke ebilling
+            $ebilling = [
+                "no_va" => $row->va,
+                "trx_id" => $row->trx_id,
+                "jenis_bayar" => 'umb',
+                "nama_bank" => "BTN",
+                "nominal" => $row->amount,
+                "tgl_expire" => $row->expired,
+                "npm" => $row->peserta->nomor_peserta,
+                'tahun_akademik' => $setup['data']['tahun_akademik']
+            ];
+            $res = patchdata_ebilling(env('URL_EBILLING') . '/api/billing-mahasiswa/update', $ebilling);
+            PesertauktPembayaran::where('id', $row->id)->update(['rsp_ebilling' => json_encode($res) ?? NULL]);
+
+            $result[$num] = [
+                "no_va" => $row->va,
+                "trx_id" => $row->trx_id,
+                'nomor_peserta' => $row->peserta->nomor_peserta,
+                'nama_peserta' => $row->peserta->nama_peserta,
+                'response' => json_encode($res) ?? NULL,
+            ];
+            $num++;
+        }
+
+        return response()->json($result);
     }
 }
