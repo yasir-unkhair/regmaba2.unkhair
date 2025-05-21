@@ -253,14 +253,14 @@ class PenetapanuktController extends Controller
                 'tahun_akademik' => $setup['data']['tahun_akademik']
             ];
             $res = patchdata_ebilling(env('URL_EBILLING') . '/api/billing-mahasiswa/update', $ebilling);
-            PesertauktPembayaran::where('id', $row->id)->update(['rsp_ebilling' => json_encode($res) ?? NULL]);
+            PesertauktPembayaran::where('id', $row->id)->update(['rsp_ebilling' => $res ?? NULL]);
 
             $result[$num] = [
                 "no_va" => $row->va,
                 "trx_id" => $row->trx_id,
                 'nomor_peserta' => $row->peserta->nomor_peserta,
                 'nama_peserta' => $row->peserta->nama_peserta,
-                'response' => json_encode($res) ?? NULL,
+                'response' => $res ?? NULL,
             ];
             $num++;
         }
