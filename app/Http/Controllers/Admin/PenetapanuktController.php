@@ -233,6 +233,8 @@ class PenetapanuktController extends Controller
 
     public function resend_payment()
     {
+        abort(505);
+
         $pembayaran = PesertauktPembayaran::with('peserta:id,nomor_peserta,nama_peserta')
             ->where('jenis_pembayaran', 'ukt')->whereNotNull('trx_id')->get();
 
