@@ -31,7 +31,8 @@
                     </div>
                     <div class="card-body">
 
-                        <livewire:pesertaukt.detail-pembayaran params="{{ $params }}">
+                        <div class="alert alert-info">Mohon maaf atas ketidaknyamanan ini, kami sedang maintanance</div>
+                        {{-- <livewire:pesertaukt.detail-pembayaran params="{{ $params }}"> --}}
 
                     </div>
                 </div>
