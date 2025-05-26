@@ -183,6 +183,43 @@
         </li>
     @endif
 
+    @if (auth()->user()->hasRole(['operator-bakp']) && in_array(session('role'), ['operator-bakp']))
+        <li class="nav-item {{ routeIs('admin.dashboard') ? 'active' : '' }}">
+            <a href="{{ route('admin.dashboard') }}"
+                class="nav-link {{ routeIs('admin.dashboard') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p> Dashboard</p>
+            </a>
+        </li>
+        <li
+            class="nav-item {{ routeIs(['admin.pesertaukt.index', 'admin.penetapanukt.index', 'admin.penetapanukt.listdokumen', 'admin.penetapanukt.laporan', 'admin.maba.index', 'admin.maba.generatenpm', 'admin.maba.generatenpm-params']) ? 'menu-open' : '' }}">
+            <a href="#"
+                class="nav-link {{ routeIs(['admin.pesertaukt.index', 'admin.penetapanukt.index', 'admin.penetapanukt.listdokumen', 'admin.penetapanukt.laporan', 'admin.maba.index', 'admin.maba.generatenpm', 'admin.maba.generatenpm-params']) ? 'active' : '' }}">
+                <i class="nav-icon fas fa-users"></i>
+                <p> Kelola Peserta UKT <i class="right fas fa-angle-left"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('admin.maba.index') }}"
+                        class="nav-link {{ routeIs(['admin.maba.index']) ? 'active' : '' }}">
+                        <i class="fas fa-angle-double-right nav-icon" aria-hidden="true"
+                            style="font-size: 11px;"></i>
+                        <p>Daftar Maba NPM</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('admin.maba.generatenpm') }}"
+                        class="nav-link {{ routeIs(['admin.maba.generatenpm', 'admin.maba.generatenpm-params']) ? 'active' : '' }}">
+                        <i class="fas fa-angle-double-right nav-icon" aria-hidden="true"
+                            style="font-size: 11px;"></i>
+                        <p>Generate NPM</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    @endif
+
     @if (auth()->user()->hasRole(['verifikator']) && in_array(session('role'), ['verifikator']))
         <li class="nav-item {{ routeIs('verifikator.dashboard') ? 'active' : '' }}">
             <a href="{{ route('verifikator.dashboard') }}"

@@ -56,7 +56,7 @@ Route::group(['middleware' => 'isLogin'], function () {
     Route::prefix('admin/')->group(function () {
         Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
-        Route::group(['middleware' => ['role:admin']], function () {
+        Route::group(['middleware' => ['role:admin|operator-bakp']], function () {
             // route module informasi
             Route::controller(App\Http\Controllers\Admin\DataPesertaController::class)->group(function () {
                 Route::get('/peserta/index', 'index')->name('admin.datapeserta.index');
