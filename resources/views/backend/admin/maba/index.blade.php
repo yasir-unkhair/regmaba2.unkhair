@@ -157,6 +157,11 @@
                     $('#prodi_id').val(null);
                     table.ajax.reload();
                 });
+
+                $('#prodi_id').change(function() {
+                    table.ajax.reload();
+                });
+
                 $('#vonis').change(function() {
                     table.ajax.reload();
                 });
