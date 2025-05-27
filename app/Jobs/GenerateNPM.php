@@ -36,9 +36,35 @@ class GenerateNPM implements ShouldQueue
         if (empty(trim($peserta->npm))) { // update npm
             $support = new AppSupport();
             $npm = $support->GenerateNpm($peserta->setup_id, $tahun, $kode_prefix);
+
+            // ambil tahun pembayaran di ebilling
+            $setup = json_decode(getdata_ebilling(env('URL_EBILLING') . '/api/tahun-pembayaran'), TRUE);
+
+            // send npm ke ebilling
+            $ebilling = [
+                "detail" => [
+                    "npm" => $npm,
+                    "tgl_generate" => now()
+                ],
+                "npm" => $peserta->nomor_peserta,
+                "tahun_akademik" => $setup['data']['tahun_akademik'],
+                "jenis_bayar" => "umb"
+            ];
+            $res = json_decode(patchdata_ebilling(env('URL_EBILLING') . '/api/billing-mahasiswa/update-detail', $ebilling), true);
+
+            $rsp_ebilling = [
+                'response' => $res['response'],
+                'message' => $res['message']
+            ];
+
+            if ($res['response']) {
+                $rsp_ebilling += $ebilling['detail'];
+            }
+
             $peserta->update([
                 'npm' => $npm,
-                'tgl_generate' => now()
+                'tgl_generate' => now(),
+                'rsp_ebilling' => json_encode($rsp_ebilling)
             ]);
         }
 
