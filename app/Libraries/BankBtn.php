@@ -65,9 +65,9 @@ class BankBtn
         }
 
         $no_identitas = $pembayaran->peserta->nomor_peserta;
-        if ($pembayaran->peserta?->npm) {
-            $no_identitas = $pembayaran->peserta->npm;
-        }
+        // if ($pembayaran->peserta?->npm) {
+        //     $no_identitas = $pembayaran->peserta->npm;
+        // }
 
         // get tahun akademik
         $setup = json_decode(getdata_ebilling(env('URL_EBILLING') . '/api/tahun-pembayaran'), TRUE);
@@ -162,9 +162,9 @@ class BankBtn
         }
 
         $no_identitas = $pembayaran->peserta->nomor_peserta;
-        if ($pembayaran->peserta?->npm) {
-            $no_identitas = $pembayaran->peserta->npm;
-        }
+        // if ($pembayaran->peserta?->npm) {
+        //     $no_identitas = $pembayaran->peserta->npm;
+        // }
 
         // get tahun akademik
         $setup = json_decode(getdata_ebilling(env('URL_EBILLING') . '/api/tahun-pembayaran'), TRUE);

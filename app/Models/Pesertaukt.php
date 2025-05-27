@@ -86,6 +86,7 @@ class Pesertaukt extends Model
         'registrasi',
         'npm',
         'tgl_generate',
+        'rsp_ebilling',
         'created_at',
         'updated_at',
     ];
