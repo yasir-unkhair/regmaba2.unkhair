@@ -157,7 +157,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-right">Penghasilan Ayah :</td>
-                                            <td>Rp. {{ rupiah($tab2->penghasilan_ayah ?? '') }}</td>
+                                            <td>Rp. {{ rupiah($tab2->penghasilan_ayah ?? 0) }}</td>
                                         </tr>
                                         <tr class="border border-danger">
                                             <td colspan="2" class="p-0"></td>
@@ -172,7 +172,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-right">Penghasilan Ibu :</td>
-                                            <td>Rp. {{ rupiah($tab2->penghasilan_ibu ?? '') }}</td>
+                                            <td>Rp. {{ rupiah($tab2->penghasilan_ibu ?? 0) }}</td>
                                         </tr>
                                         <tr class="border border-danger">
                                             <td colspan="2" class="p-0"></td>
@@ -239,7 +239,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-right">Penghasilan Anda :</td>
-                                            <td>Rp. {{ rupiah($tab3->penghasilan_sendiri ?? '') }}</td>
+                                            <td>Rp. {{ rupiah($tab3->penghasilan_sendiri ?? 0) }}</td>
                                         </tr>
                                         <tr class="border border-danger">
                                             <td colspan="2" class="p-0"></td>
@@ -267,7 +267,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-right">Penghasilan Wali :</td>
-                                            <td>Rp. {{ number_format($tab3->penghasilan_wali ?? '') }}</td>
+                                            <td>Rp. {{ number_format($tab3->penghasilan_wali ?? 0) }}</td>
                                         </tr>
                                     </table>
                                 </div>
