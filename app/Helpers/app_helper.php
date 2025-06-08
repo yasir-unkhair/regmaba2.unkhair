@@ -302,7 +302,7 @@ if (!function_exists('listRekomendasi')) {
 if (!function_exists('rupiah')) {
     function rupiah($nilai, $format = TRUE)
     {
-        if (!$nilai) {
+        if (!trim($nilai)) {
             return '0';
         }
 

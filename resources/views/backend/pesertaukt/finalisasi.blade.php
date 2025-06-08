@@ -267,7 +267,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-right">Penghasilan Wali :</td>
-                                            <td>Rp. {{ number_format($tab3->penghasilan_wali ?? 0) }}</td>
+                                            <td>Rp. {{ rupiah($tab3->penghasilan_wali ?? 0) }}</td>
                                         </tr>
                                     </table>
                                 </div>
