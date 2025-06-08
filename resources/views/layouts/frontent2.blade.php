@@ -95,9 +95,9 @@
                             <a href="{{ route('auth.registrasi') }}" class="btn btn-lg btn-warning text-light ml-2">
                                 Registrasi <i class="fa fa-user-plus"></i>
                             </a>
-                            {{-- <a href="#"
-                                    class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i
-                                        class="bi bi-play-circle"></i><span>Video Panduan</span></a> --}}
+                            <a href="https://www.youtube.com/watch?v=4fuTAsf1zUU"
+                                class="btn btn-md btn-danger glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i
+                                    class="fa fa-youtube-play"></i><span>Video Panduan Registrasi</span></a>
                         </div>
                     </div>
                     <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
