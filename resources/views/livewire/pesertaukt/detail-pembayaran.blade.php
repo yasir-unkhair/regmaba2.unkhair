@@ -119,5 +119,11 @@
                 Please wait...
             </span>
         </button>
+
+        <div class="alert warna-warning" role="alert">
+            <b>Mohon diperhatikan!!</b>, Jika anda selesai melakukan pembayaran, sangat tidak direkomendasikan
+            untuk melakukan
+            <b>Request VA Ulang.</b>
+        </div>
     @endif
 </div>
