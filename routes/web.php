@@ -113,52 +113,19 @@ Route::group(['middleware' => 'isLogin'], function () {
             Route::get('/prodi/biayastudi/{params}', 'biayastudi')->name('admin.prodi.biayastudi');
             Route::get('/prodi/biayastudi-import/{id}', 'import_biayastudi')->name('admin.prodi.importbiayastudi');
         });
+
+        Route::controller(App\Http\Controllers\Admin\SetPelunasan::class)->group(function () {
+            Route::get('/bypass/pelunasan', 'index')->name('admin.setpelunasan.index');
+            Route::post('/bypass/carimaba', 'carimaba')->name('admin.pelunasan.carimaba');
+            Route::get('/bypass/actsetlunas/{id}', 'actsetlunas')->name('admin.pelunasan.actsetlunas');
+        });
+
         //
         Route::get('/setup/index', App\Livewire\Sistem\Setup::class)->name('admin.setup');
         Route::get('/roles/index', App\Livewire\Sistem\Roles::class)->name('admin.roles');
         Route::get('/pengguna/index', App\Livewire\Sistem\Pengguna::class)->name('admin.pengguna');
         Route::get('/pengguna/import', App\Livewire\Sistem\ImportUserSimak::class)->name('admin.pengguna.import');
         Route::get('/referensi/index', App\Livewire\Sistem\Referensi::class)->name('admin.referensi');
-
-        Route::get('send-npm', function () {
-
-            $setup = json_decode(getdata_ebilling(env('URL_EBILLING') . '/api/tahun-pembayaran'), TRUE);
-
-            $peserta = \App\Models\Pesertaukt::whereNotNull('npm')->whereNotNull('rsp_ebilling')->get();
-            $n = 1;
-            foreach ($peserta as $pst) {
-                if (!$pst->rsp_ebilling) {
-                    // send npm ke ebilling
-                    $ebilling = [
-                        "detail" => [
-                            "npm" => $pst->npm,
-                            "tgl_generate" => $pst->tgl_generate
-                        ],
-                        "npm" => $pst->nomor_peserta,
-                        "tahun_akademik" => $setup['data']['tahun_akademik'],
-                        "jenis_bayar" => "umb"
-                    ];
-                    $res = json_decode(patchdata_ebilling(env('URL_EBILLING') . '/api/billing-mahasiswa/update-detail', $ebilling), true);
-
-                    $rsp_ebilling = [
-                        'response' => $res['response'],
-                        'message' => $res['message']
-                    ];
-
-                    if ($res['response']) {
-                        $rsp_ebilling += $ebilling['detail'];
-                    }
-
-                    \App\Models\Pesertaukt::where('id', $pst->id)->update([
-                        'rsp_ebilling' => json_encode($rsp_ebilling)
-                    ]);
-
-                    $n++;
-                }
-            }
-
-            dd($n . ' successfullyy...');
-        });
     });
 
     // route user verifikator

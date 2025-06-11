@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Pesertaukt;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\GenerateNPM;
 use App\Models\Pesertaukt;
 use App\Models\PesertauktPembayaran;
+use App\Models\ProsesData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -142,7 +144,8 @@ class PembayaranController extends Controller
                     return '<div class="text-right">' . rupiah($row->amount) . '</spam>';
                 })
                 ->editColumn('status', function ($row) {
-                    return status_pembayaran($row->lunas);
+                    $lunas = ($row->lunas && $row->tgl_pelunasan) ? 1 : 0;
+                    return status_pembayaran($lunas);
                 })
                 ->filter(function ($instance) use ($request) {
                     if (!empty($request->input('search.value'))) {
@@ -164,6 +167,39 @@ class PembayaranController extends Controller
             'judul' => 'Detail Pembayaran',
             'params' => $params
         ];
+
+        $pembayaran = PesertauktPembayaran::with('peserta')->where('id', data_params($params, 'pembayaran_id'))->first();
+        if ($pembayaran->trx_id && $pembayaran->lunas) {
+
+            if (!$pembayaran->tgl_pelunasan) {
+                $pembayaran->update([
+                    'tgl_pelunasan' => now()
+                ]);
+            }
+
+            if ($pembayaran->jenis_pembayaran == 'ukt') {
+                // update notif lunas ukt di verifikasi_peserta
+                $pembayaran->peserta->verifikasiberkas->update([
+                    'bayar_ukt' => 1
+                ]);
+            }
+
+            if ($pembayaran->jenis_pembayaran == 'ukt' && empty(trim($pembayaran->peserta?->npm))) {
+
+                //set notif
+                ProsesData::updateOrCreate([
+                    'source' => $pembayaran->peserta->id,
+                    'queue' => 'generate-npm'
+                ], [
+                    'source' => $pembayaran->peserta->id,
+                    'queue' => 'generate-npm'
+                ]);
+
+                // generate npm
+                dispatch(new GenerateNPM($pembayaran->peserta->id));
+            }
+        }
+
         return view('backend.pesertaukt.detailpembayaran', $data);
     }
 
