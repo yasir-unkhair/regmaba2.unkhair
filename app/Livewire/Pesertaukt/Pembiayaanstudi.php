@@ -47,7 +47,7 @@ class Pembiayaanstudi extends Component
         $get_status = auth()->user()->status_peserta();
         $akses_formulir = auth()->user()->akses_formulirukt();
         if (!in_array($get_status, [null, 1, 2]) || !$akses_formulir) {
-            abort(403);
+            abort(403, 'Pengisian formulir telah berakhir!');
             exit();
         }
 
