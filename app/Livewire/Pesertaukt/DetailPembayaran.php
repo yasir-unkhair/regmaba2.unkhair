@@ -92,6 +92,10 @@ class DetailPembayaran extends Component
                     if ($act == 'create') {
                         $res = $bank->createva($pembayaran, $expired_va);
                     } else {
+
+                        // $cek = $bank->cekpembayaran($pembayaran);
+                        // dd($cek);
+
                         $res = $bank->updateva($pembayaran, $expired_va);
                     }
                     break;

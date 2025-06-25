@@ -68,13 +68,13 @@ if (!function_exists('range_tanggal')) {
 if (!function_exists('format_tanggal')) {
     function format_tanggal($tgl)
     {
-        if (!$tgl) {
+        if (!trim($tgl)) {
             return '';
         }
 
         $pecah = explode(" ", $tgl);
         if (count($pecah) > 1) {
-            return tgl_indo(ltrim($pecah[0])) . ' ' . date('H:i', strtotime(rtrim($pecah[1])));
+            return tgl_indo(ltrim($pecah[0]), false) . ' ' . date('H:i', strtotime(rtrim($pecah[1])));
         }
         return tgl_indo(trim($tgl));
     }

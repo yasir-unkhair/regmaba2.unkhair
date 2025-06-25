@@ -13,9 +13,38 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $peserta = Pesertaukt::where('id', session('peserta_id'))->first();
+
+        $setup = get_setup();
+
+        $tgl_registrasi = "";
+        $tgl_pengisian = "";
+        $tgl_pembayaran = "";
+
+        if ($peserta->jalur == 'SNBP') {
+            $tgl_registrasi = $setup->registrasi_snbp;
+            $tgl_pengisian = $setup->pengisian_snbp;
+            $tgl_pembayaran = $setup->pembayaran_snbp;
+        }
+
+        if ($peserta->jalur == 'SNBT') {
+            $tgl_registrasi = $setup->registrasi_snbt;
+            $tgl_pengisian = $setup->pengisian_snbt;
+            $tgl_pembayaran = $setup->pembayaran_snbt;
+        }
+
+        if ($peserta->jalur == 'MANDIRI') {
+            $tgl_registrasi = $setup->registrasi_mandiri;
+            $tgl_pengisian = $setup->pengisian_mandiri;
+            $tgl_pembayaran = $setup->pembayaran_mandiri;
+        }
+
+
         $data = [
             'judul' => 'Dashboard',
-            'peserta' => $peserta
+            'peserta' => $peserta,
+            'tgl_registrasi' => $tgl_registrasi,
+            'tgl_pengisian' => $tgl_pengisian,
+            'tgl_pembayaran' => $tgl_pembayaran
         ];
 
         return view('backend.pesertaukt.dashboard', $data);

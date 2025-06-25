@@ -194,6 +194,27 @@ class BankBtn
             ]
         ];
     }
+
+    public function cekpembayaran($pembayaran)
+    {
+        // $params = [
+        //     'apikey' => $this->apikey,
+        //     'trx_id' => 'UMB791437650',
+        //     'va' => '94895007711551894'
+        // ];
+
+        $response = json_decode(post_data(env('URL_ECOLL') . '/btn/cekpembayaran.php', $params), TRUE);
+        dd($response);
+        if (!$response['response']) {
+            $this->message = $response['pesan'];
+            return [
+                'rsp' => false,
+                'msg' => $this->message
+            ];
+        }
+    }
+
+
     public function getMessage()
     {
         return $this->message;

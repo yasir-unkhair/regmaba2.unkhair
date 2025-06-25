@@ -53,67 +53,182 @@
                         </div>
                         <br>
 
-                        <p style="font-size:15px;">
-                            <b>Silahkan lengkapi data-data yang diperlukan:</b><br>
-                            1. &nbsp;Formulir UKT <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1. &nbsp;Melengkapi
-                            <a href="{{ route('peserta.datadiri') }}" class="text-primary">Data Diri</a>
-                            {!! $peserta->update_data_diri
-                                ? '<span class="text-success"><i class="fa fa-check"></i></span>'
-                                : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}
-                            <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2. &nbsp;Melengkapi
-                            <a href="{{ route('peserta.kondisikeluarga') }}" class="text-primary">Kondisi Keluarga</a>
-                            {!! $peserta->update_kondisi_keluarga
-                                ? '<span class="text-success"><i class="fa fa-check"></i></span>'
-                                : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}
-                            <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.3. &nbsp;Melengkapi
-                            <a href="{{ route('peserta.pembiayaanstudi') }}" class="text-primary">Pembiayaan Studi</a>
-                            {!! $peserta->update_pembiayaan_studi
-                                ? '<span class="text-success"><i class="fa fa-check"></i></span>'
-                                : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}
-                            <br>
-                            2. &nbsp;<a href="" class="text-primary">Upload Berkas Dukung
-                                {!! in_array($peserta->status, [2, 3, 4, 5])
-                                    ? '<span class="text-success"><i class="fa fa-check"></i></span>'
-                                    : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}</a>
-                            <br>
-                            3. &nbsp;<a href="" class="text-primary">Finalisasi
-                                {!! in_array($peserta->status, [3, 4, 5])
-                                    ? '<span class="text-success"><i class="fa fa-check"></i></span>'
-                                    : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}</a>
-                            <br>
-                            4. &nbsp;<a href="#" class="text-primary">Verifikasi Berkas
-                                {!! in_array($peserta->status, [4, 5])
-                                    ? '<span class="text-success"><i class="fa fa-check"></i></span>'
-                                    : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}</a>
-                            <br>
-                            5. &nbsp;<a href="#" class="text-primary">Penetapan UKT
-                                {!! in_array($peserta->status, [5])
-                                    ? '<span class="text-success"><i class="fa fa-check"></i></span>'
-                                    : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}</a>
-                            <br>
-                        </p>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <p style="font-size:15px;">
+                                    <b>Silahkan lengkapi data-data yang diperlukan:</b><br>
+                                    1. &nbsp;Formulir UKT <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1. &nbsp;Melengkapi
+                                    <a href="{{ route('peserta.datadiri') }}" class="text-primary">Data Diri</a>
+                                    {!! $peserta->update_data_diri
+                                        ? '<span class="text-success"><i class="fa fa-check"></i></span>'
+                                        : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}
+                                    <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2. &nbsp;Melengkapi
+                                    <a href="{{ route('peserta.kondisikeluarga') }}" class="text-primary">Kondisi
+                                        Keluarga</a>
+                                    {!! $peserta->update_kondisi_keluarga
+                                        ? '<span class="text-success"><i class="fa fa-check"></i></span>'
+                                        : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}
+                                    <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.3. &nbsp;Melengkapi
+                                    <a href="{{ route('peserta.pembiayaanstudi') }}" class="text-primary">Pembiayaan
+                                        Studi</a>
+                                    {!! $peserta->update_pembiayaan_studi
+                                        ? '<span class="text-success"><i class="fa fa-check"></i></span>'
+                                        : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}
+                                    <br>
+                                    2. &nbsp;<a href="" class="text-primary">Upload Berkas Dukung
+                                        {!! in_array($peserta->status, [2, 3, 4, 5])
+                                            ? '<span class="text-success"><i class="fa fa-check"></i></span>'
+                                            : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}</a>
+                                    <br>
+                                    3. &nbsp;<a href="" class="text-primary">Finalisasi
+                                        {!! in_array($peserta->status, [3, 4, 5])
+                                            ? '<span class="text-success"><i class="fa fa-check"></i></span>'
+                                            : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}</a>
+                                    <br>
+                                    4. &nbsp;<a href="#" class="text-primary">Verifikasi Berkas
+                                        {!! in_array($peserta->status, [4, 5])
+                                            ? '<span class="text-success"><i class="fa fa-check"></i></span>'
+                                            : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}</a>
+                                    <br>
+                                    5. &nbsp;<a href="#" class="text-primary">Penetapan UKT
+                                        {!! in_array($peserta->status, [5])
+                                            ? '<span class="text-success"><i class="fa fa-check"></i></span>'
+                                            : '<span class="text-muted"><i class="fa fa-spinner"></i></span>' !!}</a>
+                                    <br>
+                                </p>
 
-                        @if ($peserta->status == 2)
-                            <div class="callout callout-warning warna-warning">
-                                <button type="button" class="close" data-dismiss="alert"
-                                    aria-hidden="true">&times;</button>
-                                <h5><i class="icon fas fa-exclamation-triangle"></i> Informasi!</h5>
-                                Segera melakukan finalisasi agar data pengajuan anda segera di proses verifikasi oleh
-                                panitia.
+                                @if ($peserta->status == 2)
+                                    <div class="callout callout-warning warna-warning">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">&times;</button>
+                                        <h5><i class="icon fas fa-exclamation-triangle"></i> Informasi!</h5>
+                                        Segera melakukan finalisasi agar data pengajuan anda segera di proses verifikasi
+                                        oleh
+                                        panitia.
+                                    </div>
+                                @endif
+
+                                <hr>
+                                <p style="font-size:15px;">
+                                    Customer Service <b>{{ $pengaturan['nama-sub-aplikasi'] }} -
+                                        {{ $pengaturan['nama-departemen'] }}</b> <br>
+                                    Hotline WA: <span class="text-primary">0813-4578-xxxx</span> <br>
+                                    Email: <span class="text-primary">-</span> <br>
+                                    Website: <a href="" class="text-primary">www.unkhair.ac.id/</a>
+                                </p>
                             </div>
-                        @endif
 
-                        <hr>
-                        <p style="font-size:15px;">
-                            Customer Service <b>{{ $pengaturan['nama-sub-aplikasi'] }} -
-                                {{ $pengaturan['nama-departemen'] }}</b> <br>
-                            Hotline WA: <span class="text-primary">0813-4578-xxxx</span> <br>
-                            Email: <span class="text-primary">-</span> <br>
-                            Website: <a href="" class="text-primary">www.unkhair.ac.id/</a>
-                        </p>
+                            <div class="col-md-5">
+                                <span><b>Timeline Pemberkasan UKT:</b></span>
+                                <!-- The timeline -->
+                                <div class="timeline timeline-inverse mt-2">
+                                    <!-- timeline time label -->
+                                    <div>
+                                        <i class="fas fa-user-plus bg-primary"></i>
+
+                                        <div class="timeline-item">
+                                            <h3 class="timeline-header"><b>1. Registrasi Akun</b></h3>
+
+                                            <div class="timeline-body">
+                                                @if (trim($tgl_registrasi))
+                                                    {{ format_tanggal(pecah_jadwal($tgl_registrasi, 0)) }} -
+                                                    {{ format_tanggal(pecah_jadwal($tgl_registrasi, 1)) }}
+
+                                                    @php
+                                                        $str_durasi = '';
+                                                        $str = status_jadwal($tgl_registrasi, 'string');
+                                                        if ($str == 'segera') {
+                                                            $str_durasi .=
+                                                                '<span class="badge badge-warning ml-2">Segera..</span>';
+                                                        } elseif ($str == 'dalam-proses') {
+                                                            $str_durasi .=
+                                                                '<span class="badge badge-success ml-2">Sedang berlangsung..</span>';
+                                                        } elseif ($str == 'selesai') {
+                                                            $str_durasi .=
+                                                                '<span class="badge badge-danger ml-2">Telah berakhir!</span>';
+                                                        }
+                                                        echo $str_durasi;
+                                                    @endphp
+                                                @else
+                                                    -
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END timeline item -->
+                                    <!-- timeline item -->
+                                    <div>
+                                        <i class="fas fa-book bg-info"></i>
+
+                                        <div class="timeline-item">
+                                            <h3 class="timeline-header"><b>2. Pengisian Formulir UKT</b></h3>
+
+                                            <div class="timeline-body">
+                                                @if (trim($tgl_pengisian))
+                                                    {{ format_tanggal(pecah_jadwal($tgl_pengisian, 0)) }} -
+                                                    {{ format_tanggal(pecah_jadwal($tgl_pengisian, 1)) }}
+
+                                                    @php
+                                                        $str_durasi = '';
+                                                        $str = status_jadwal($tgl_pengisian, 'string');
+                                                        if ($str == 'segera') {
+                                                            $str_durasi .=
+                                                                '<span class="badge badge-warning ml-2">Segera..</span>';
+                                                        } elseif ($str == 'dalam-proses') {
+                                                            $str_durasi .=
+                                                                '<span class="badge badge-success ml-2">Sedang berlangsung..</span>';
+                                                        } elseif ($str == 'selesai') {
+                                                            $str_durasi .=
+                                                                '<span class="badge badge-danger ml-2">Telah berakhir!</span>';
+                                                        }
+                                                        echo $str_durasi;
+                                                    @endphp
+                                                @else
+                                                    -
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END timeline item -->
+                                    <!-- timeline item -->
+                                    <div>
+                                        <i class="fas fa-money bg-warning"></i>
+
+                                        <div class="timeline-item">
+                                            <h3 class="timeline-header"><b>3. Pembayaran UKT</b></h3>
+
+                                            <div class="timeline-body">
+                                                @if (trim($tgl_pembayaran))
+                                                    {{ format_tanggal(pecah_jadwal($tgl_pembayaran, 0)) }} -
+                                                    {{ format_tanggal(pecah_jadwal($tgl_pembayaran, 1)) }}
+
+                                                    @php
+                                                        $str_durasi = '';
+                                                        $str = status_jadwal($tgl_pembayaran, 'string');
+                                                        if ($str == 'segera') {
+                                                            $str_durasi .=
+                                                                '<span class="badge badge-warning ml-2">Segera..</span>';
+                                                        } elseif ($str == 'dalam-proses') {
+                                                            $str_durasi .=
+                                                                '<span class="badge badge-success ml-2">Sedang berlangsung..</span>';
+                                                        } elseif ($str == 'selesai') {
+                                                            $str_durasi .=
+                                                                '<span class="badge badge-danger ml-2">Telah berakhir!</span>';
+                                                        }
+                                                        echo $str_durasi;
+                                                    @endphp
+                                                @else
+                                                    -
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
