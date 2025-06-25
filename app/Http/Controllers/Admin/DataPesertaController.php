@@ -162,8 +162,8 @@ class DataPesertaController extends Controller
                         }
                     }
                 }],
-                'npsn' => ['required'],
-                'sekolah_asal' => ['required']
+                // 'npsn' => ['required'],
+                // 'sekolah_asal' => ['required']
             ], [
                 'nomor_peserta.required' => 'Nomor Peserta jangan dikosongkan!',
                 'nomor_peserta.numeric' => 'Nomor Peserta harus berbentuk angka!',
@@ -176,9 +176,8 @@ class DataPesertaController extends Controller
                 'kode_prodi.required' => 'Kode Prodi jangan dikosongkan!',
                 'kode_prodi.exists' => 'Kode Prodi tidak dikenali!',
 
-                'npsn.required' => 'NPSN jangan dikosongkan!',
-
-                'sekolah_asal.required' => 'Sekolah Asal jangan dikosongkan!',
+                // 'npsn.required' => 'NPSN jangan dikosongkan!',
+                // 'sekolah_asal.required' => 'Sekolah Asal jangan dikosongkan!',
             ]);
 
             if ($validator->fails()) {
