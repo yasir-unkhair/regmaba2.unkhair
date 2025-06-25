@@ -251,7 +251,7 @@
                 }
                 var count = 0;
                 for (var i = 0; i < data.length; i++) {
-                    if (data[i].nomor_peserta && data[i].nisn && data[i].nama_peserta && data[i].kode_prodi && data[i].npsn) {
+                    if (data[i].nomor_peserta && data[i].nisn && data[i].nama_peserta && data[i].kode_prodi) {
                         count++;
                     }
                 }
