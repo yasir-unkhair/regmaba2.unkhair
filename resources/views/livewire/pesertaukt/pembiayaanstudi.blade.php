@@ -81,7 +81,7 @@
                                 Anda</label>
                             <div class="col-sm-10">
                                 <input type="text" wire:model="pangkat_sendiri" class="form-control"
-                                    placeholder="Pangkat, Golongan, Jabatan">
+                                    placeholder="Pangkat, Golongan, Jabatan" maxlength="50">
                                 @error('pangkat_sendiri')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -171,7 +171,7 @@
                                 Wali</label>
                             <div class="col-sm-10">
                                 <input type="text" wire:model="pangkat_wali" class="form-control"
-                                    placeholder="Pangkat, Golongan, Jabatan">
+                                    placeholder="Pangkat, Golongan, Jabatan" maxlength="50">
                                 @error('pangkat_wali')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror

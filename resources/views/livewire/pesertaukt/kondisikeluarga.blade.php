@@ -143,7 +143,7 @@
                                 Ayah</label>
                             <div class="col-sm-10">
                                 <input type="text" wire:model="pangkat_ayah" class="form-control"
-                                    placeholder="Pangkat, Golongan, Jabatan">
+                                    placeholder="Pangkat, Golongan, Jabatan" maxlength="50">
                                 @error('pangkat_ayah')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -185,7 +185,7 @@
                                 Ibu</label>
                             <div class="col-sm-10">
                                 <input type="text" wire:model="pangkat_ibu" class="form-control"
-                                    placeholder="Pangkat, Golongan, Jabatan">
+                                    placeholder="Pangkat, Golongan, Jabatan" maxlength="50">
                                 @error('pangkat_ibu')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
