@@ -83,7 +83,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-left" style="width:5%">#</th>
-                                        <th class="text-left">No. Peserta</th>
+                                        <th class="text-left">NPM</th>
                                         <th class="text-left">Nama Lengkap</th>
                                         <th class="text-left">Program Studi</th>
                                         <th class="text-left">Jalur</th>

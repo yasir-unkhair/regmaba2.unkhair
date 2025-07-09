@@ -27,9 +27,11 @@ class MabaController extends Controller
                 ->orderBy('app_peserta.jalur', 'ASC')->orderBy('app_peserta.prodi_id', 'ASC')->orderBy('app_peserta.npm', 'ASC')->orderBy('app_peserta.nama_peserta', 'ASC');
             return DataTables::eloquent($peserta)
                 ->addIndexColumn()
+                ->editColumn('npm_peserta', function ($row) {
+                    return ($row->npm ?? '-');
+                })
                 ->editColumn('nama_peserta', function ($row) {
                     $str = $row->nama_peserta;
-                    $str .= '<br>NPM: ' . ($row->npm ?? '-');
                     return $str;
                 })
                 ->editColumn('prodi', function ($row) {
@@ -73,11 +75,13 @@ class MabaController extends Controller
                     if (!empty($request->input('search.value'))) {
                         $instance->where(function ($w) use ($request) {
                             $search = $request->input('search.value');
-                            $w->orWhere('app_peserta.nomor_peserta', 'LIKE', "%$search%")->orWhere('app_peserta.nama_peserta', 'LIKE', "%$search%");
+                            $w->orWhere('app_peserta.nomor_peserta', 'LIKE', "%$search%")
+                                ->orWhere('app_peserta.nama_peserta', 'LIKE', "%$search%")
+                                ->orWhere('app_peserta.npm', 'LIKE', "%$search%");
                         });
                     }
                 })
-                ->rawColumns(['nama_peserta', 'prodi', 'ukt', 'bayar_ukt', 'ket_jalur'])
+                ->rawColumns(['npm_peserta', 'nama_peserta', 'prodi', 'ukt', 'bayar_ukt', 'ket_jalur'])
                 ->make(true);
         }
 
@@ -92,7 +96,7 @@ class MabaController extends Controller
                 'id_table' => 'id-datatable',
                 'columns' => [
                     ['data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'orderable' => 'false', 'searchable' => 'false'],
-                    ['data' => 'nomor_peserta', 'name' => 'nomor_peserta', 'orderable' => 'false', 'searchable' => 'true'],
+                    ['data' => 'npm_peserta', 'name' => 'npm_peserta', 'orderable' => 'false', 'searchable' => 'true'],
                     ['data' => 'nama_peserta', 'name' => 'nama_peserta', 'orderable' => 'true', 'searchable' => 'true'],
                     ['data' => 'prodi', 'name' => 'prodi', 'orderable' => 'false', 'searchable' => 'false'],
                     ['data' => 'ket_jalur', 'name' => 'ket_jalur', 'orderable' => 'false', 'searchable' => 'false'],
