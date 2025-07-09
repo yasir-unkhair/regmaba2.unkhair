@@ -49,7 +49,15 @@
                     <span class="form-bar"></span>
                     @error('nisn')
                         <span class="text-danger">{!! $message !!}</span>
+                        <br>
                     @enderror
+                    <span style="color: #FFA500">
+                        NISN tidak ditemukan..?? <br>
+                        Pastikan Anda sudah memasukkan NISN dengan benar. <br>
+                        Jika NISN Anda <u><b>diawali angka 0</b></u>, silahkan <u><b>hapus angka 0</b></u> tersebut dan
+                        coba masukkan
+                        <u><b>tanpa angka 0 di depan</b></u>.
+                    </span>
                 </div>
                 <div class="row m-t-30 mb-2">
                     <div class="col-md-12">
