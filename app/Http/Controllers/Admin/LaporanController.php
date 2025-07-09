@@ -85,6 +85,13 @@ class LaporanController extends Controller
                         $filter = true;
                     }
 
+                    if ($request->get('vonis')) {
+                        $instance->whereHas('verifikasiberkas', function ($q) use ($request) {
+                            $q->where('vonis_ukt', $request->get('vonis'));
+                        });
+                        $filter = true;
+                    }
+
                     if ($request->get('verfikator_id')) {
                         $instance->whereHas('verifikasiberkas', function ($q) use ($request) {
                             $q->where('verifikator_id', $request->get('verfikator_id'));
