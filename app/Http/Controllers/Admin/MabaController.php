@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\GenerateNPM;
 use App\Models\Fakultas;
 use App\Models\Pesertaukt;
+use App\Models\PesertauktPembayaran;
 use App\Models\ProsesData;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -156,6 +157,15 @@ class MabaController extends Controller
     {
         $peserta_id = data_params($params, 'peserta_id');
         if ($params && $peserta_id) {
+
+            // set pelunasan ukt
+            $pembyaran = PesertauktPembayaran::where('peserta_id', $peserta_id)->where('jenis_pembayaran', 'ukt')->first();
+            if (!$pembyaran->lunas) {
+                $pembyaran->update([
+                    'lunas' => 1,
+                    'tgl_pelunasan' => now()
+                ]);
+            }
 
             // set notif
             ProsesData::updateOrCreate([

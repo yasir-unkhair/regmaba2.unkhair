@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\GenerateNPM;
 use App\Models\Pesertaukt;
 use App\Models\PesertauktPembayaran;
+use App\Models\ProsesData;
 use Illuminate\Http\Request;
 
 class SetPelunasan extends Controller
@@ -48,9 +50,28 @@ class SetPelunasan extends Controller
             abort(404, 'Halaman tidak ditemukan!');
         }
 
-        $pembyaran = PesertauktPembayaran::where('id', $id_pembayaran)->update([
-            'lunas' => 1
+        $pembyaran = PesertauktPembayaran::with('peserta')->where('id', $id_pembayaran)->first();
+        $pembyaran->update([
+            'lunas' => 1,
+            'tgl_pelunasan' => now()
         ]);
+
+        if ($pembayaran->jenis_pembayaran == 'ukt' && empty(trim($pembayaran->peserta?->npm))) {
+            if ($pembayaran->peserta?->id) {
+                //set notif
+                ProsesData::updateOrCreate([
+                    'source' => $pembayaran->peserta->id,
+                    'queue' => 'generate-npm'
+                ], [
+                    'source' => $pembayaran->peserta->id,
+                    'queue' => 'generate-npm'
+                ]);
+
+                // generate npm
+                dispatch(new GenerateNPM($pembayaran->peserta->id));
+            }
+        }
+
 
         alert()->success('Success', 'Pelunasan berhasil di bypass!');
         return redirect(route('admin.setpelunasan.index'));
