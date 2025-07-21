@@ -116,7 +116,8 @@ class Penetapanukt extends Component
 
         if (strtolower($this->get->jalur) == 'mandiri') {
             $this->vonis_ipi = (int) $this->get->verifikasiberkas?->vonis_ipi;
-            $this->kategori_ipi = ProdiBiayastudi::byprodi($this->get->prodi_id)->jenisbiaya('ipi')->where('kategori', $this->vonis_ipi)->first()->id;
+            $ipi = ProdiBiayastudi::byprodi($this->get->prodi_id)->jenisbiaya('ipi')->where('kategori', $this->vonis_ipi)->first();
+            $this->kategori_ipi = $ipi?->id;
             $this->nominal_ipi = $this->get->verifikasiberkas?->nominal_ipi;
         }
         $this->dispatch('open-modal');
