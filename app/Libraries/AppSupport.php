@@ -2,6 +2,9 @@
 
 namespace App\Libraries;
 
+use App\Jobs\GenerateNPM;
+use App\Models\PesertauktPembayaran;
+use App\Models\ProsesData;
 use Illuminate\Support\Facades\DB;
 
 class AppSupport
@@ -35,6 +38,50 @@ class AppSupport
         }
 
         return $npm;
+    }
+
+    public function CekPembayaran($peserta_id = NULL)
+    {
+        $pembyaran = PesertauktPembayaran::with('peserta')->where('peserta_id', $peserta_id)->get();
+        if ($pembyaran->count() > 0) {
+            foreach ($pembyaran as $row) {
+                if (!$row->lunas && $row->trx_id != NULL) {
+                    // cek va di ecoll
+                    $rsp = json_decode(get_data(env('URL_ECOLL') . '/cekva.php?trx_id=' . $row->trx_id), TRUE);
+                    if ($rsp && $rsp['response'] == true) {
+                        // update set lunas pembayaran
+                        $row->update([
+                            'lunas' => 1,
+                            'tgl_pelunasan' => now()
+                        ]);
+
+                        if ($row->jenis_pembayaran == 'ukt') {
+                            // update notif lunas ukt di verifikasi_peserta
+                            $row->peserta->verifikasiberkas->update([
+                                'bayar_ukt' => 1
+                            ]);
+
+                            if (empty(trim($row->peserta?->npm))) {
+                                if ($row->peserta?->id) {
+                                    //set notif
+                                    ProsesData::updateOrCreate([
+                                        'source' => $row->peserta->id,
+                                        'queue' => 'generate-npm'
+                                    ], [
+                                        'source' => $row->peserta->id,
+                                        'queue' => 'generate-npm'
+                                    ]);
+
+                                    // generate npm
+                                    dispatch(new GenerateNPM($row->peserta->id));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public function getMessage()

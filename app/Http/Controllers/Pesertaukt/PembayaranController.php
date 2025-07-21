@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pesertaukt;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\GenerateNPM;
+use App\Libraries\AppSupport;
 use App\Models\Pesertaukt;
 use App\Models\PesertauktPembayaran;
 use App\Models\ProsesData;
@@ -18,6 +19,11 @@ class PembayaranController extends Controller
     //
     public function index(Request $request)
     {
+        // cek pembayaran
+        $lib = new AppSupport();
+        $lib->CekPembayaran(session('peserta_id'));
+
+
         $peserta = Pesertaukt::with(['verifikasiberkas', 'prodi', 'setup'])->where('id', session('peserta_id'))->first();
         $pembayaran = [];
 

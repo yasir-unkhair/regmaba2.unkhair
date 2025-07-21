@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pesertaukt;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\AppSupport;
 use App\Models\Pesertaukt;
 use App\Models\PesertauktDokumen;
 use Illuminate\Http\Request;
@@ -46,6 +47,10 @@ class DashboardController extends Controller
             'tgl_pengisian' => $tgl_pengisian,
             'tgl_pembayaran' => $tgl_pembayaran
         ];
+
+        // cek pembayaran
+        $lib = new AppSupport();
+        $lib->CekPembayaran($peserta->id);
 
         return view('backend.pesertaukt.dashboard', $data);
     }
