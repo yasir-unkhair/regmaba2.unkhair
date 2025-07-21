@@ -64,7 +64,7 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                @dump($kategori_ipi)
+                                {{-- @dump($kategori_ipi) --}}
                                 @error('kategori_ipi')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
