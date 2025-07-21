@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
+use function Laravel\Prompts\error;
+
 class Penetapanukt extends Component
 {
     public $get;
@@ -27,6 +29,7 @@ class Penetapanukt extends Component
 
     public function render()
     {
+        abort(505, 'Sedang perbaikan sistem!');
         return view('livewire.admin.penetapanukt');
     }
 
