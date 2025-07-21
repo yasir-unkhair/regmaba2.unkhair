@@ -7,6 +7,7 @@ use App\Jobs\GenerateNPM;
 use App\Models\Fakultas;
 use App\Models\Pesertaukt;
 use App\Models\PesertauktPembayaran;
+use App\Models\PesertauktVerifikasiBerkas;
 use App\Models\ProsesData;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -48,6 +49,11 @@ class MabaController extends Controller
 
                     if ($row->bayar_ukt || $row->npm) {
                         $str = '<span class="text-success">Lunas</span>';
+
+                        // update notif bayar_ukt
+                        if (!$row->bayar_ukt) {
+                            PesertauktVerifikasiBerkas::where('peserta_id', $row->id)->update(['bayar_ukt' => 1]);
+                        }
                     }
                     return $str;
                 })
