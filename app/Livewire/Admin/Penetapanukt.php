@@ -104,8 +104,8 @@ class Penetapanukt extends Component
     #[On('modal-penetapanukt')]
     public function modal_penetapanukt($params)
     {
-        abort(404, 'Sedang perbaikan sistem!');
-        // die;
+        die('sedang perbaikan sistem!');
+
         $params = decode_arr($params);
         $this->get = Pesertaukt::with('verifikasiberkas')->where('id', $params['peserta_id'])->first();
 
