@@ -59,7 +59,7 @@
                                     <option value="">-- Kategori IPI --</option>
                                     @foreach ($listdata_ipi as $row)
                                         <option value="{{ $row->id }}"
-                                            {{ $kategori_ipi == $row->id ? 'selected' : '' }}>
+                                            {{ $kategori_ipi == $row->kategori ? 'selected' : '' }}>
                                             {{ 'UKT-' . $row->kategori . ' (Rp. ' . rupiah($row->nominal) . ')' }}
                                         </option>
                                     @endforeach
