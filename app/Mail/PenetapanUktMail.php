@@ -13,12 +13,14 @@ class PenetapanUktMail extends Mailable
     use Queueable, SerializesModels;
 
     protected $contents = NULL;
+    protected $judul = '';
     /**
      * Create a new message instance.
      */
-    public function __construct($contents)
+    public function __construct($contents, $judul)
     {
         $this->contents = $contents;
+        $this->judul = $judul;
     }
 
     /**
@@ -27,7 +29,7 @@ class PenetapanUktMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Hasil Penetapan UKT',
+            subject: $this->judul,
         );
     }
 
@@ -38,7 +40,7 @@ class PenetapanUktMail extends Mailable
     {
         return new Content(
             view: 'mails.statusukt',
-            with: ['peserta' => $this->contents]
+            with: ['peserta' => $this->contents, 'judul' => $this->judul],
         );
     }
 

@@ -40,7 +40,7 @@
                                 <option value="kip-k" {{ $kategori_ukt == 'kip-k' ? 'selected' : '' }}>KIP-K</option>
                                 @foreach ($listdata_ukt as $row)
                                     <option value="{{ $row->id }}"
-                                        {{ $kategori_ukt == 'k' . $row->kategori ? 'selected' : '' }}>
+                                        {{ $kategori_ukt == $row->id ? 'selected' : '' }}>
                                         {{ 'UKT-' . $row->kategori . ' (Rp. ' . rupiah($row->nominal) . ')' }}
                                     </option>
                                 @endforeach

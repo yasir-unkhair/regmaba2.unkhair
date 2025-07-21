@@ -50,7 +50,11 @@ class SendMail implements ShouldQueue, ShouldBeUnique
                 break;
 
             case 'penetapanukt':
-                Mail::to($this->email)->send(new PenetapanUktMail($this->peserta));
+                Mail::to($this->email)->send(new PenetapanUktMail($this->peserta, 'Hasil Penetapan UKT'));
+                break;
+
+            case 'update-penetapanukt':
+                Mail::to($this->email)->send(new PenetapanUktMail($this->peserta, 'Perubahan Penetapan UKT'));
                 break;
 
             case 'reset-password':
