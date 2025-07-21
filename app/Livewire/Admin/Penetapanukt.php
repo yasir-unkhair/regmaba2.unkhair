@@ -21,6 +21,7 @@ class Penetapanukt extends Component
     public $listdata_ipi = [];
 
     public $kategori_ukt;
+    public $kategori_ipi;
     public $vonis_ipi = 1;
     public $nominal_ipi = 0;
 
@@ -132,7 +133,7 @@ class Penetapanukt extends Component
         $this->catatan = NULL;
         $this->rekomendasi = NULL;
         $this->kategori_ukt = NULL;
-        $this->kategori_ipi = NULL;
+        $this->vonis_ipi = NULL;
 
         $this->dispatch('close-modal');
     }
