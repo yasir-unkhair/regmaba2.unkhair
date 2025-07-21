@@ -29,7 +29,7 @@ class Penetapanukt extends Component
 
     public function render()
     {
-        abort(505, 'Sedang perbaikan sistem!');
+        // abort(505, 'Sedang perbaikan sistem!');
         return view('livewire.admin.penetapanukt');
     }
 
@@ -104,6 +104,8 @@ class Penetapanukt extends Component
     #[On('modal-penetapanukt')]
     public function modal_penetapanukt($params)
     {
+        abort(505, 'Sedang perbaikan sistem!');
+
         $params = decode_arr($params);
         $this->get = Pesertaukt::with('verifikasiberkas')->where('id', $params['peserta_id'])->first();
 
