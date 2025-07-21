@@ -77,7 +77,7 @@
                                         <td class="text-right bg-light" colspan="3">Selain Tagihan UKT, Anda Juga
                                             Dikenakan
                                             Biaya IPI :</td>
-                                        <td>Rp. {{ number_format($peserta->verifikasiberkas?->biaya_ipi) }}</td>
+                                        <td>Rp. {{ number_format($peserta->verifikasiberkas?->nominal_ipi) }}</td>
                                     </tr>
                                 @endif
                             </table>
