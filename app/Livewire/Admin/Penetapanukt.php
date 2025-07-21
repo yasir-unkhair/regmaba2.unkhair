@@ -21,7 +21,7 @@ class Penetapanukt extends Component
     public $listdata_ipi = [];
 
     public $kategori_ukt;
-    public $kategori_ipi;
+    public $vonis_ipi = 1;
     public $nominal_ipi = 0;
 
     public function render()
@@ -114,7 +114,7 @@ class Penetapanukt extends Component
         $this->kategori_ukt = $this->get->verifikasiberkas?->vonis_ukt;
 
         if (strtolower($this->get->jalur) == 'mandiri') {
-            $this->kategori_ipi = $this->get->verifikasiberkas?->vonis_ipi;
+            $this->vonis_ipi = $this->get->verifikasiberkas?->vonis_ipi;
             $this->nominal_ipi = $this->get->verifikasiberkas?->nominal_ipi;
         }
         $this->dispatch('open-modal');
