@@ -56,19 +56,26 @@ class SetPelunasan extends Controller
             'tgl_pelunasan' => now()
         ]);
 
-        if ($pembayaran->jenis_pembayaran == 'ukt' && empty(trim($pembayaran->peserta?->npm))) {
-            if ($pembayaran->peserta?->id) {
-                //set notif
-                ProsesData::updateOrCreate([
-                    'source' => $pembayaran->peserta->id,
-                    'queue' => 'generate-npm'
-                ], [
-                    'source' => $pembayaran->peserta->id,
-                    'queue' => 'generate-npm'
-                ]);
+        if ($pembayaran->jenis_pembayaran == 'ukt') {
+            // update notif lunas ukt di verifikasi_peserta
+            $pembyaran->peserta->verifikasiberkas->update([
+                'bayar_ukt' => 1
+            ]);
 
-                // generate npm
-                dispatch(new GenerateNPM($pembayaran->peserta->id));
+            if (empty(trim($pembayaran->peserta?->npm))) {
+                if ($pembayaran->peserta?->id) {
+                    //set notif
+                    ProsesData::updateOrCreate([
+                        'source' => $pembayaran->peserta->id,
+                        'queue' => 'generate-npm'
+                    ], [
+                        'source' => $pembayaran->peserta->id,
+                        'queue' => 'generate-npm'
+                    ]);
+
+                    // generate npm
+                    dispatch(new GenerateNPM($pembayaran->peserta->id));
+                }
             }
         }
 

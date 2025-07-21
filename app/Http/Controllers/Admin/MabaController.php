@@ -44,7 +44,11 @@ class MabaController extends Controller
                     return $str;
                 })
                 ->editColumn('bayar_ukt', function ($row) {
-                    $str = $row->bayar_ukt ? '<span class="text-success">Lunas</span>' : '<span class="text-danger">Belum Lunas</span>';
+                    $str = '<span class="text-danger">Belum Lunas</span>';
+
+                    if ($row->bayar_ukt || $row->npm) {
+                        $str = '<span class="text-success">Lunas</span>';
+                    }
                     return $str;
                 })
                 ->editColumn('ket_jalur', function ($row) {
@@ -159,11 +163,16 @@ class MabaController extends Controller
         if ($params && $peserta_id) {
 
             // set pelunasan ukt
-            $pembyaran = PesertauktPembayaran::where('peserta_id', $peserta_id)->where('jenis_pembayaran', 'ukt')->first();
+            $pembyaran = PesertauktPembayaran::with('peserta')->where('peserta_id', $peserta_id)->where('jenis_pembayaran', 'ukt')->first();
             if (!$pembyaran->lunas) {
                 $pembyaran->update([
                     'lunas' => 1,
                     'tgl_pelunasan' => now()
+                ]);
+
+                // set notif lunas_ukt
+                $pembyaran->peserta->verifikasiberkas->update([
+                    'bayar_ukt' => 1
                 ]);
             }
 
