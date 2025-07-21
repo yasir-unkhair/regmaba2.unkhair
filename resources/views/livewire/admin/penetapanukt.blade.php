@@ -58,8 +58,7 @@
                                 <select wire:model="kategori_ipi" class="form-control">
                                     <option value="">-- Kategori IPI --</option>
                                     @foreach ($listdata_ipi as $row)
-                                        <option value="{{ $row->id }}"
-                                            {{ $vonis_ipi == 'k' . $row->kategori ? 'selected' : '' }}>
+                                        <option value="{{ $row->id }}">
                                             {{ 'UKT-' . $row->kategori . ' (Rp. ' . rupiah($row->nominal) . ')' }}
                                         </option>
                                     @endforeach

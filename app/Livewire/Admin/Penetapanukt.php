@@ -47,7 +47,7 @@ class Penetapanukt extends Component
         $kategori_ukt = $this->kategori_ukt;
         $nominal_ukt = 0;
 
-        $kategori_ipi = $this->kategori_ipi;
+        $vonis_ipi = '';
         $nominal_ipi = 0;
         if (!in_array($this->kategori_ukt, ['wawancara', 'kip-k'])) {
             $ukt = ProdiBiayastudi::where('id', $this->kategori_ukt)->first();
@@ -60,7 +60,7 @@ class Penetapanukt extends Component
 
         if ($jalur == 'mandiri') {
             $ipi = ProdiBiayastudi::where('id', $this->kategori_ipi)->first();
-            $kategori_ipi = 'k' . $ipi->kategori;
+            $vonis_ipi = 'k' . $ipi->kategori;
             $nominal_ipi = (int) abs($ipi->nominal);
             if (!$nominal_ipi) {
                 $this->addError("kategori_ipi", "Nomimal IPI tidak valid!");
@@ -71,7 +71,7 @@ class Penetapanukt extends Component
             $data = [
                 'vonis_ukt' => $kategori_ukt,
                 'nominal_ukt' => $nominal_ukt,
-                'vonis_ipi' => $kategori_ipi,
+                'vonis_ipi' => $vonis_ipi,
                 'nominal_ipi' => $nominal_ipi,
                 'tgl_vonis' => now(),
                 'user_id_vonis' => auth()->user()->id
@@ -115,7 +115,8 @@ class Penetapanukt extends Component
         $this->kategori_ukt = $this->get->verifikasiberkas?->vonis_ukt;
 
         if (strtolower($this->get->jalur) == 'mandiri') {
-            $this->vonis_ipi = $this->get->verifikasiberkas?->vonis_ipi;
+            $this->vonis_ipi = (int) $this->get->verifikasiberkas?->vonis_ipi;
+            $this->kategori_ipi = ProdiBiayastudi::byprodi($this->get->prodi_id)->jenisbiaya('ipi')->where('kategori', $this->vonis_ipi)->first()->id;
             $this->nominal_ipi = $this->get->verifikasiberkas?->nominal_ipi;
         }
         $this->dispatch('open-modal');
