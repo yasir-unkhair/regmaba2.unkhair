@@ -170,6 +170,9 @@ class MabaController extends Controller
 
             // set pelunasan ukt
             $pembyaran = PesertauktPembayaran::with('peserta')->where('peserta_id', $peserta_id)->where('jenis_pembayaran', 'ukt')->first();
+
+            dd($pembyaran);
+
             if (!$pembyaran->lunas) {
                 $pembyaran->update([
                     'lunas' => 1,
