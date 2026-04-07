@@ -24,7 +24,8 @@ class BankBtn
                 'nama' => $pembayaran->peserta->nama_peserta,
                 'nominal' => $pembayaran->amount,
                 'deskripsi' => 'Pemeriksaan Kesehatan Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun,
-                'jenis_bayar' => $pembayaran->jenis_pembayaran
+                'jenis_bayar' => $pembayaran->jenis_pembayaran,
+                'nogiro' => '21001300006701'
             ];
         } elseif ($pembayaran->jenis_pembayaran == 'ipi') {
             $params = [
@@ -37,7 +38,8 @@ class BankBtn
                 'nama' => $pembayaran->peserta->nama_peserta,
                 'nominal' => $pembayaran->amount,
                 'deskripsi' => 'IPI Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun,
-                'jenis_bayar' => $pembayaran->jenis_pembayaran
+                'jenis_bayar' => $pembayaran->jenis_pembayaran,
+                'nogiro' => ''
             ];
         } elseif ($pembayaran->jenis_pembayaran == 'ukt') {
             $params = [
@@ -50,7 +52,8 @@ class BankBtn
                 'nama' => $pembayaran->peserta->nama_peserta,
                 'nominal' => $pembayaran->amount,
                 'deskripsi' => 'UKT Mahasiswa Baru ' . $pembayaran->peserta->setup->tahun,
-                'jenis_bayar' => 'umb'
+                'jenis_bayar' => 'umb',
+                'nogiro' => ''
             ];
         }
 
