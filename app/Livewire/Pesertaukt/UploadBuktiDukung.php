@@ -54,7 +54,7 @@ class UploadBuktiDukung extends Component
             $get = $berkas->find($dokumen_old['berkas_id']);
             if ($get) {
                 // delete file s3
-                Storage::disk('local')->delete($get->path_berkas . $get->name_berkas);
+                Storage::disk('public')->delete($get->path_berkas . $get->name_berkas);
 
                 // delete row di tabel master_berkas
                 $berkas->hapus($dokumen_old['berkas_id']);
@@ -62,8 +62,8 @@ class UploadBuktiDukung extends Component
         }
 
         // proses upload
-        Storage::disk('local')->put($path . $nama_file, file_get_contents($file->getRealPath()), 'public');
-        $url_file = Storage::disk('local')->url($path . $nama_file);
+        Storage::disk('public')->put($path . $nama_file, file_get_contents($file->getRealPath()), 'public');
+        $url_file = Storage::disk('public')->url($path . $nama_file);
 
         // remove file local after upload s3 
         if (file_exists($file->getRealPath())) {

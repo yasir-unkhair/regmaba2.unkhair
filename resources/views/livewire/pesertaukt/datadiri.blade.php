@@ -121,8 +121,8 @@
                                 @enderror
                             </div>
                             <div class="col-sm-4">
-                                <div class="datepicker date input-group">
-                                    <input type="text" placeholder="Choose Date" class="form-control"
+                                <div class="input-group">
+                                    <input type="date" placeholder="Choose Date" class="form-control"
                                         wire:model="tgl_lahir">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
