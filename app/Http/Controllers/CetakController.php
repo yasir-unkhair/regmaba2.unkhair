@@ -239,7 +239,7 @@ class CetakController extends Controller
 
         $pdf->Cell(1, 0.5, '', 'L', 0, 'C');
         $pdf->Cell(7, 0.5, '* Penghasilan Ayah', '', 0, 'L');
-        $pdf->Cell(10.5, 0.5, ': Rp. ' . number_format($keluarga->penghasilan_ayah), 'R', 0, 'L');
+        $pdf->Cell(10.5, 0.5, ': Rp. ' . rupiah($keluarga->penghasilan_ayah), 'R', 0, 'L');
         $pdf->Ln();
 
         $pdf->Cell(1, 0.5, '', 'L', 0, 'C');
@@ -259,7 +259,7 @@ class CetakController extends Controller
 
         $pdf->Cell(1, 0.5, '', 'L', 0, 'C');
         $pdf->Cell(7, 0.5, '* Penghasilan Ibu', '', 0, 'L');
-        $pdf->Cell(10.5, 0.5, ': Rp. ' . number_format($keluarga->penghasilan_ibu), 'R', 0, 'L');
+        $pdf->Cell(10.5, 0.5, ': Rp. ' . rupiah($keluarga->penghasilan_ibu), 'R', 0, 'L');
         $pdf->Ln();
 
         $pdf->Cell(1, 0.5, '', 'L', 0, 'C');
@@ -354,7 +354,7 @@ class CetakController extends Controller
 
             $pdf->Cell(1, 0.5, '4', 'L', 0, 'C');
             $pdf->Cell(7, 0.5, 'Penghasilan Wali', '', 0, 'L');
-            $pdf->Cell(10.5, 0.5, ': Rp. ' . ucwords(strtolower(number_format($biaya->penghasilan_wali))), 'R', 0, 'L');
+            $pdf->Cell(10.5, 0.5, ': Rp. ' . ucwords(strtolower(rupiah($biaya->penghasilan_wali))), 'R', 0, 'L');
             $pdf->Ln();
 
             $pdf->Cell(1, 0.5, '', 'L', 0, 'C');
@@ -649,7 +649,7 @@ class CetakController extends Controller
 
         $pdf->Cell(1, 0.5, '', 'L', 0, 'C');
         $pdf->Cell(7, 0.5, '* Penghasilan Ayah', '', 0, 'L');
-        $pdf->Cell(10.5, 0.5, ': Rp. ' . number_format($keluarga->penghasilan_ayah), 'R', 0, 'L');
+        $pdf->Cell(10.5, 0.5, ': Rp. ' . rupiah($keluarga->penghasilan_ayah), 'R', 0, 'L');
         $pdf->Ln();
 
         $pdf->Cell(1, 0.5, '', 'L', 0, 'C');
@@ -669,7 +669,7 @@ class CetakController extends Controller
 
         $pdf->Cell(1, 0.5, '', 'L', 0, 'C');
         $pdf->Cell(7, 0.5, '* Penghasilan Ibu', '', 0, 'L');
-        $pdf->Cell(10.5, 0.5, ': Rp. ' . number_format($keluarga->penghasilan_ibu), 'R', 0, 'L');
+        $pdf->Cell(10.5, 0.5, ': Rp. ' . rupiah($keluarga->penghasilan_ibu), 'R', 0, 'L');
         $pdf->Ln();
 
         $pdf->Cell(1, 0.5, '', 'L', 0, 'C');
@@ -764,7 +764,7 @@ class CetakController extends Controller
 
             $pdf->Cell(1, 0.5, '4', 'L', 0, 'C');
             $pdf->Cell(7, 0.5, 'Penghasilan Wali', '', 0, 'L');
-            $pdf->Cell(10.5, 0.5, ': Rp. ' . ucwords(strtolower(number_format($biaya->penghasilan_wali))), 'R', 0, 'L');
+            $pdf->Cell(10.5, 0.5, ': Rp. ' . ucwords(strtolower(rupiah($biaya->penghasilan_wali))), 'R', 0, 'L');
             $pdf->Ln();
 
             $pdf->Cell(1, 0.5, '', 'L', 0, 'C');
