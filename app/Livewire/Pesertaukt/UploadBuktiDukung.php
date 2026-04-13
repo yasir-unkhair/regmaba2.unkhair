@@ -76,7 +76,7 @@ class UploadBuktiDukung extends Component
             'url_berkas' => $url_file,
             'type_berkas' => $file->getClientOriginalExtension(),
             'size_berkas' => $ukuran_file,
-            'penyimpanan' => 'cloud',
+            'penyimpanan' => 'local',
         ]);
 
         if (!trim($this->dokumen_old)) {
